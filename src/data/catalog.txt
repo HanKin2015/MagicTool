@@ -1,0 +1,9 @@
+fopen
+linux
+stdarg
+shell
+awk
+wc
+sed
+grep
+char
