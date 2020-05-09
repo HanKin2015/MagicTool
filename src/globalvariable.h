@@ -2,6 +2,7 @@
 #define GLOBALVARIABLE_H
 #include <QString>
 #include <QFont>
+#include <QDebug>
 
 #include <string>
 #include <string.h>
@@ -43,6 +44,7 @@ extern QString StdString2QString(string str);
 extern char* trim(char* str, const char* delimiter);
 extern void SplitString(const string& s, vector<string>& v, const string& c);
 extern void SplitStringByChar();
-extern int WriteFile(const char *file_path);
+extern int WriteFile(const char *file_path, const char *write_type, RecordStruct rs);
 extern vector<RecordStruct> ReadFile(const char *file_path);
+extern vector<vector<string> > ReadFileAll(const char *file_path);
 #endif // GLOBALVARIABLE_H

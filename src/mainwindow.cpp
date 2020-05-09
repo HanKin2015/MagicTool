@@ -27,12 +27,12 @@ void MainWindow::InitMainWindow()
     QGridLayout *main_window_gl = new QGridLayout(this);
 
     QLineEdit *search_le = new QLineEdit(this);
-    QPushButton *search_btn = new QPushButton("search", this);
+    QPushButton *search_btn = new QPushButton("搜索", this);
 
     //main_window_gl->addWidget(search_le, 1, 0, 1, 3, Qt::AlignLeft);
     main_window_gl->addWidget(search_le, 1, 0, 1, 3);
     main_window_gl->addWidget(search_btn, 1, 3, 1, 1);
-    main_window_gl->addWidget(messageWidget, 2, 0, 10, 8);
+    main_window_gl->addWidget(record_tw, 2, 0, 10, 8);
 
     ui->centralwidget->setLayout(main_window_gl);
 
@@ -42,27 +42,25 @@ void MainWindow::InitMainWindow()
 void MainWindow::InitTableWidget()
 {
 
-    messageWidget->setColumnCount(6);
-    messageWidget->setHorizontalHeaderLabels(QStringList() << tr("站点") << tr("用户名") << tr("密码")<< tr("备注") << tr("hide") << tr("other"));    // 设置列名
+    record_tw->setColumnCount(6);
+    record_tw->setHorizontalHeaderLabels(QStringList() << tr("站点") << tr("用户名") << tr("密码")<< tr("备注") << tr("hide") << tr("other"));    // 设置列名
 //    for(int i = 0; i < 5; i++)
-//        messageWidget->setColumnWidth(i, 200);
-    messageWidget->setColumnWidth(2, 180);
-    messageWidget->setColumnWidth(3, 180);
-    messageWidget->setColumnHidden(4,true);
-    messageWidget->setColumnWidth(5, 240);
+//        record_tw->setColumnWidth(i, 200);
+    record_tw->setColumnWidth(2, 180);
+    record_tw->setColumnWidth(3, 180);
+    record_tw->setColumnHidden(4,true);
+    record_tw->setColumnWidth(5, 240);
     //获得水平方向表头的item对象
-    QTableWidgetItem *columnHeaderItem = messageWidget->horizontalHeaderItem(1);
+    QTableWidgetItem *columnHeaderItem = record_tw->horizontalHeaderItem(1);
     //columnHeaderItem->setFont(QFont("Helvetica"));  //设置字体
     columnHeaderItem->setBackgroundColor(QColor(0,60,10));  //设置单元格背景颜色
     columnHeaderItem->setTextColor(QColor(200,111,30));     //设置文字颜色
 
-    messageWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    //无法编辑表格
+    record_tw->setEditTriggers(QAbstractItemView::NoEditTriggers);
 
 
-
-
-
-    //按条件进行搜索：始发地，目的地，出发日期，活动项目
+    //按条件进行搜索
 //       string startString = "NULL";
 //       if(start->text() != NULL && startLabel->isChecked()) startString = QStringToStdString(start->text());
 //       string endString = "NULL";
@@ -74,43 +72,45 @@ void MainWindow::InitTableWidget()
 //       vector<EventStruct>  es = client.getEvent(startString,endString,timeString,typeString);
 //       vector<EventStruct>::iterator iter2 = es.begin();
 //       if(es.size() == 0) {
-//           messageWidget->clearContents();
-//           messageWidget->setRowCount(0);
-//   //        messageWidget->show();
+//           record_tw->clearContents();
+//           record_tw->setRowCount(0);
+//   //        record_tw->show();
 //           QMessageBox::information(this, tr(""),
 //                   tr("未搜索到结果！"),
 //                   QMessageBox::tr("确定"));
 //           return ;
 //       }
-//       messageWidget->setRowCount(es.size());   // 设置结果占的行数
+//       record_tw->setRowCount(es.size());   // 设置结果占的行数
 //   //    if(es.size() <= resultNum) {
-//           messageWidget->clearContents();
+//           record_tw->clearContents();
 //   //    }
 //       resultNum = es.size();
 
 
     qDebug() << application_dir_path;
-    QString file_path = "D:\\Users\\Administrator\\My Document\\MagicTool\\hankin.txt";
+    QString file_path = ".\\data\\hankin.txt";
     vector<RecordStruct> ret = ReadFile(file_path.toLatin1().data());
     int record_cnt = static_cast<int>(ret.size());
-    messageWidget->setRowCount(record_cnt);
+
+    qDebug("current record size = %d", record_cnt);
+    record_tw->setRowCount(record_cnt);
 
     for (int i = 0; i < record_cnt; i++)
     {
-        messageWidget->setRowHeight(i,50);
-        QTableWidgetItem *item0 = messageWidget->item(i,0); // 发布人
-        QTableWidgetItem *item1 = messageWidget->item(i,1); // 人数
-        QTableWidgetItem *item2 = messageWidget->item(i,2); // 始发地
-        QTableWidgetItem *item3 = messageWidget->item(i,3); // 备注
-        //QTableWidgetItem *item4 = messageWidget->item(i,4); //
+        record_tw->setRowHeight(i,50);
+        QTableWidgetItem *item0 = record_tw->item(i,0); // 发布人
+        QTableWidgetItem *item1 = record_tw->item(i,1); // 人数
+        QTableWidgetItem *item2 = record_tw->item(i,2); // 始发地
+        QTableWidgetItem *item3 = record_tw->item(i,3); // 备注
+        //QTableWidgetItem *item4 = record_tw->item(i,4); //
 
         QWidget *remark = new QWidget();
-        QGridLayout *layout = new QGridLayout(messageWidget);
+        QGridLayout *layout = new QGridLayout(record_tw);
         // 创建QPushButton控件
-        QPushButton *joinBtn = new QPushButton(messageWidget);
+        QPushButton *joinBtn = new QPushButton(record_tw);
         joinBtn->setText("一起嗨");
         layout->addWidget(joinBtn,0,0,1,1);
-        QPushButton *detailBtn = new QPushButton(messageWidget);
+        QPushButton *detailBtn = new QPushButton(record_tw);
         detailBtn->setText("详情");
         layout->addWidget(detailBtn,0,1,1,1);
         remark->setLayout(layout);
@@ -122,36 +122,36 @@ void MainWindow::InitTableWidget()
             item0 = new QTableWidgetItem;
             item0->setText(StdString2QString(ret[i].web_name));
             item0->setTextAlignment(Qt::AlignCenter);
-            messageWidget->setItem(i, 0, item0);
+            record_tw->setItem(i, 0, item0);
 
             item1 = new QTableWidgetItem;
             //item1->setText(QString("%1人").arg(5));
             item1->setText(StdString2QString(ret[i].user_name));
             item1->setTextAlignment(Qt::AlignCenter);
-            messageWidget->setItem(i, 1, item1);
+            record_tw->setItem(i, 1, item1);
 
             item2 = new QTableWidgetItem;
             item2->setText(StdString2QString(ret[i].pwd));
             item2->setTextAlignment(Qt::AlignCenter);
-            messageWidget->setItem(i, 2, item2);
+            record_tw->setItem(i, 2, item2);
 
             item3 = new QTableWidgetItem;
             item3->setText(StdString2QString(ret[i].note));
             item3->setTextAlignment(Qt::AlignCenter);
-            messageWidget->setItem(i, 3, item3);
+            record_tw->setItem(i, 3, item3);
 
             //item7 = new QTableWidgetItem;
-            messageWidget->setCellWidget(i,5,remark);
+            record_tw->setCellWidget(i,5,remark);
 
         }
     }
-    messageWidget->show();
-    //messageWidget->clearContents();
+    record_tw->show();
+    //record_tw->clearContents();
 }
 
 void MainWindow::InitMainWindowMenu()
 {
-    this->resize(850, 600);
+    this->resize(900, 600);
     this->setWindowTitle("Magic Tool");
     this->setWindowIcon(QIcon(application_dir_path + "/image/alienx64.png"));
     //QFont font;
@@ -160,21 +160,23 @@ void MainWindow::InitMainWindowMenu()
     //this->setFont(font);
 
     // 创建文件菜单
-    file_menu = ui->menubar->addMenu(tr("文件(&F)"));
+    QMenu *file_menu = ui->menubar->addMenu(tr("文件(&F)"));
     QAction *csv_actoion = file_menu->addAction("导出为csv");
     QAction *txt_actoion = file_menu->addAction("导出为txt");
     QAction *xlsx_actoion = file_menu->addAction("导出为xlsx");
-    exit_action = file_menu->addAction(tr("退出"));
+    QAction *backup_action = file_menu->addAction("创建备份");
+    QAction *exit_action = file_menu->addAction(tr("退出"));
     connect(csv_actoion,SIGNAL(triggered()),this,SLOT(BlackActionClicked()));
     connect(txt_actoion,SIGNAL(triggered()),this,SLOT(WhiteActionClicked()));
     connect(xlsx_actoion,SIGNAL(triggered()),this,SLOT(BlackActionClicked()));
     connect(exit_action,SIGNAL(triggered()),this,SLOT(WhiteActionClicked()));
+    connect(backup_action,SIGNAL(triggered()),this,SLOT(WhiteActionClicked()));
 
     // 创建换肤菜单
-    skin_menu = ui->menubar->addMenu(tr("换肤(&S)"));
-    black_action = skin_menu->addAction(tr("&黑色炫酷"));
-    white_action = skin_menu->addAction(tr("&白色靓丽"));
-    default_action = skin_menu->addAction(tr("&默认皮肤"));
+    QMenu *skin_menu = ui->menubar->addMenu(tr("换肤(&S)"));
+    QAction *black_action = skin_menu->addAction(tr("&黑色炫酷"));
+    QAction *white_action = skin_menu->addAction(tr("&白色靓丽"));
+    QAction *default_action = skin_menu->addAction(tr("&默认皮肤"));
     connect(black_action,SIGNAL(triggered()),this,SLOT(BlackActionClicked()));
     connect(white_action,SIGNAL(triggered()),this,SLOT(WhiteActionClicked()));
     connect(default_action,SIGNAL(triggered()),this,SLOT(DefaultActionClicked()));
@@ -182,7 +184,7 @@ void MainWindow::InitMainWindowMenu()
     // 创建窗口菜单（由于不需要全局使用，所以可以在cpp文件中声明定义）
     QMenu *window_menu = ui->menubar->addMenu(tr("窗口(&W)"));
     QAction *cteam_action = window_menu->addAction(tr("&cteam"));
-    QAction *demo_action = window_menu->addAction(tr("&demo"));
+    QAction *demo_action = window_menu->addAction(tr("&笔记搜索"));
     connect(cteam_action,SIGNAL(triggered()),this,SLOT(CTeamDemo()));
     connect(demo_action,SIGNAL(triggered()),this,SLOT(DemoActionClicked()));
 
@@ -198,10 +200,10 @@ void MainWindow::InitMainWindowMenu()
     connect(qry_action,SIGNAL(triggered()),this,SLOT(QryActionClicked()));
 
     // 创建帮助菜单
-    help_menu = ui->menubar->addMenu(tr("帮助(&H)"));
-    document_action = help_menu->addAction(tr("&文档"));
-    update_log_action = help_menu->addAction(tr("更新日志"));
-    about_action = help_menu->addAction(tr("&关于"));
+    QMenu *help_menu = ui->menubar->addMenu(tr("帮助(&H)"));
+    QAction *document_action = help_menu->addAction(tr("&文档"));
+    QAction *update_log_action = help_menu->addAction(tr("更新日志"));
+    QAction *about_action = help_menu->addAction(tr("&关于"));
     connect(about_action,SIGNAL(triggered()),this,SLOT(AboutActionClicked()));
     connect(document_action,SIGNAL(triggered()),this,SLOT(DocumentActionClicked()));
     connect(update_log_action,SIGNAL(triggered()),this,SLOT(UpdateLogActionClicked()));
@@ -209,7 +211,7 @@ void MainWindow::InitMainWindowMenu()
 
 void MainWindow::DetailMessage()
 {
-    QDialog *add_dialog = new QDialog(this);
+    detail_dialog = new QDialog(this);
 
     QGridLayout *grid_layout = new QGridLayout;
 
@@ -232,8 +234,8 @@ void MainWindow::DetailMessage()
     ok_btn = new QPushButton("确定");
     grid_layout->addWidget(ok_btn, 4, 3, 1, 2);
 
-    add_dialog->setLayout(grid_layout);
-    add_dialog->show();
+    detail_dialog->setLayout(grid_layout);
+    detail_dialog->show();
 }
 
 void MainWindow::AddActionClicked()
@@ -250,28 +252,97 @@ void MainWindow::DelActionClicked()
 void MainWindow::ChgActionClicked()
 {
     DetailMessage();
-    web_name2->setText("baidu");
-    user_name2->setText("hankin");
-    pwd_name2->setText("1122233");
-    note_name2->setText("?");
+
+    QList<QTableWidgetItem*> items = record_tw->selectedItems();
+    current_select_row = record_tw->currentRow();
+//    for(int i = 0; i < 4; i++)
+//    {
+//        QTableWidgetItem *item = record_tw->item(row, i);
+//        QString text = item->text(); //获取内容
+//        qDebug() << text;
+//    }
+
+    web_name2->setText(record_tw->item(current_select_row, 0)->text());
+    user_name2->setText(record_tw->item(current_select_row, 1)->text());
+    pwd_name2->setText(record_tw->item(current_select_row, 2)->text());
+    note_name2->setText(record_tw->item(current_select_row, 3)->text());
+    connect(ok_btn, SIGNAL(clicked()), this, SLOT(ChgBtnClicked()));
 }
 
 void MainWindow::QryActionClicked()
 {
 
 }
-
-bool JudgeEmpty()
+bool MainWindow::Save2Local()
 {
+    QString file_path = ".\\data\\hankin.txt";
+    FILE *fp = fopen(file_path.toLatin1().data(), "w");
+    if (fp == nullptr) {
+        qDebug("fopen error! err=%u, %s", errno, strerror(errno));
+        return false;
+    }
+
+    int rows = record_tw->rowCount();
+    for (int i = 0; i < rows; i++) {
+        RecordStruct rs;
+        rs.web_name = QString2StdString(record_tw->item(i, 0)->text());
+        rs.user_name = QString2StdString(record_tw->item(i, 1)->text());
+        rs.pwd = QString2StdString(record_tw->item(i, 2)->text());
+        if (record_tw->item(i, 3)->text() == "\n") {
+            fprintf(fp, "%s,%s,%s,\n", rs.web_name.data(), rs.user_name.data(), rs.pwd.data());
+        } else {
+            rs.note = QString2StdString(record_tw->item(i, 3)->text());
+            fprintf(fp, "%s,%s,%s,%s\n", rs.web_name.data(), rs.user_name.data(), rs.pwd.data(), rs.note.data());
+        }
+    }
+
+    fclose(fp);
+
+FAILED:
+    return false;
+}
+
+void MainWindow::ChgBtnClicked()
+{
+    record_tw->item(current_select_row, 0)->setText(web_name2->text());
+    record_tw->item(current_select_row, 1)->setText(user_name2->text());
+    record_tw->item(current_select_row, 2)->setText(pwd_name2->text());
+    record_tw->item(current_select_row, 3)->setText(note_name2->text());
+    Save2Local();
+    detail_dialog->close();
+}
+
+void MainWindow::Tips()
+{
+    QMessageBox::information(this, tr(""),
+            tr("无效的记录！"),
+            QMessageBox::tr("确定"));
+}
+
+bool MainWindow::IsValidRecord()
+{
+    if (web_name2->text() == nullptr) {
+        goto FAILED;
+    }
+    if (user_name2->text() == nullptr) {
+        goto FAILED;
+    }
+    if (pwd_name2->text() == nullptr) {
+        goto FAILED;
+    }
+
     return true;
+FAILED:
+    Tips();
+    return false;
 }
 
 
 
 void MainWindow::AddBtnClicked()
 {
-    if(JudgeEmpty() == false) return ;
-    QMessageBox mb(QMessageBox::Warning, "","确定要发布当前的组团信息？");
+    if(IsValidRecord() == false) return ;
+    QMessageBox mb(QMessageBox::Warning, "","确定要添加当前记录？");
     mb.setStandardButtons(QMessageBox::Ok|QMessageBox::Cancel);
     mb.setButtonText (QMessageBox::Ok,QString("确 定"));
     mb.setButtonText (QMessageBox::Cancel,QString("取 消"));
@@ -280,21 +351,25 @@ void MainWindow::AddBtnClicked()
         /*添加event*/
         RecordStruct rs;
         rs.web_name = QString2StdString(web_name2->text());
+        rs.user_name = QString2StdString(user_name2->text());
+        rs.pwd = QString2StdString(pwd_name2->text());
+        rs.note = QString2StdString(note_name2->text());
 
 
-    if (WriteFile("ds"))
-    {
-        //SearchBtnClicked();
-        QMessageBox::information(this, tr(""),
-                tr("发布成功！"),
-                QMessageBox::tr("确定"));
-        }
-        else {
+        QString file_path = ".\\data\\hankin.txt";
+        if (!WriteFile(file_path.toLatin1().data(), "a", rs))
+        {
+            InitTableWidget();
             QMessageBox::information(this, tr(""),
-                    tr("请修改出发日期，同一天只能发布一种活动项目！"),
+                    tr("添加成功！"),
+                    QMessageBox::tr("确定"));
+        } else {
+            QMessageBox::information(this, tr(""),
+                    tr("添加失败！"),
                     QMessageBox::tr("确定"));
         }
     }
+    detail_dialog->close();
 }
 
 
@@ -369,7 +444,7 @@ void MainWindow::CTeamDemo()
 
      // 反馈信息
 
-    mainLayout->addWidget(messageWidget, 4, 0, 1, 8);
+    mainLayout->addWidget(record_tw, 4, 0, 1, 8);
 
      ui->centralwidget->setLayout(mainLayout);
 
@@ -414,7 +489,7 @@ void MainWindow::StlFopenButtonClicked()
     }
 
     QString tmp = search_content->text();
-    QString file_path = QString("D:\\Users\\Administrator\\My Document\\MagicTool\\stl_%1.txt").arg(tmp);
+    QString file_path = QString(".\\data\\stl_%1.txt").arg(tmp);
 
 
     QString demo = read_csv(file_path.toLatin1().data());
@@ -429,7 +504,7 @@ void MainWindow::MyWindow()
 void MainWindow::DemoActionClicked()
 {
     QDialog *demo = new QDialog(this);
-    demo->setWindowTitle("雏形");
+    demo->setWindowTitle("知识库");
 
 
     QWidget *win=new QWidget(demo);
@@ -458,6 +533,25 @@ void MainWindow::DemoActionClicked()
     quit->setText(tr("退出"));
     QObject::connect(quit,SIGNAL(clicked()),win,SLOT(close()));
 
+    QTableWidget *catalog_tw = new QTableWidget(win);
+    catalog_tw->setColumnCount(1);
+    catalog_tw->setColumnWidth(0, 150);
+    catalog_tw->setHorizontalHeaderLabels((QStringList() << tr("name")));
+    QString file_path = ".\\data\\catalog.txt";
+    vector<vector<string> > ret = ReadFileAll(file_path.toLatin1().data());
+    int catalog_cnt = static_cast<int>(ret.size());
+    catalog_tw->setRowCount(catalog_cnt);
+    for (int i = 0; i < catalog_cnt; i++) {
+        //catalog_tw->setRowHeight(i,50);
+        QTableWidgetItem *item = catalog_tw->item(i, 0);
+        item = new QTableWidgetItem;
+        item->setText(StdString2QString(ret[i][0]));
+        item->setTextAlignment(Qt::AlignCenter);
+        catalog_tw->setItem(i, 0, item);
+    }
+    catalog_tw->show();
+
+
     QWidget *show_widget = new QWidget(win);
     show_widget->resize(600, 600);
 
@@ -469,6 +563,7 @@ void MainWindow::DemoActionClicked()
     vbox_left->addWidget(search_button);
     vbox_left->addWidget(stl_fopen);
     vbox_left->addWidget(quit);
+    vbox_left->addWidget(catalog_tw);
 
     vbox_right->addWidget(show_widget);
 

@@ -50,15 +50,18 @@ extern string QString2StdString(QString str)
     std::string s = str.toStdString();
     std::string encoded = base64_encode(reinterpret_cast<const unsigned char*>(s.c_str()), s.length());
     //std::string decoded = base64_decode(encoded);
-    return encoded;
+    //return encoded;
+    return s;
 }
 
 extern QString StdString2QString(string str)
 {
-    //std::string decoded = base64_decode(str);
-    std::string decoded = str;
-    return QString::fromStdString(decoded);
+    std::string decoded = base64_decode(str);
+    //return QString::fromStdString(decoded);
+    //return QString::fromLocal8Bit(str.c_str());
+    return QString::fromStdString(str);
 }
+
 
 //巧妙：删除字符串的首尾多余的字符，如空格
 //str为字符串，delimiter也可为字符串
@@ -74,7 +77,7 @@ extern char* trim(char* str, const char* delimiter)
     int len;
 
 
-    len = strlen(p1);
+    len = static_cast<int>(strlen(p1));
     p2 = p1 + len - 1;
     while (strchr(delimiter, *p1))
         p1++;
@@ -141,7 +144,8 @@ extern vector<RecordStruct> ReadFile(const char *file_path)
     // define varibale
     vector<RecordStruct> ret;
     RecordStruct tmp;
-    const int buffer_size = 100;
+    vector<string> vec;
+    const int buffer_size = 10000;
     char buffer[buffer_size + 1];
     char *current_path;
     FILE *fp = nullptr;
@@ -163,18 +167,23 @@ extern vector<RecordStruct> ReadFile(const char *file_path)
 
     // read file
     while (fgets(buffer, buffer_size, fp) != nullptr) {
-        //qDebug() << buffer;
-        vector<string> vec;
+        //trim(buffer, "\n");
         SplitString(buffer, vec, ",");
+        //qDebug() << QString::fromLocal8Bit(buffer);
+        //qDebug("buffer = %s; size = %d", QString::fromLocal8Bit(buffer), vec.size());
         if (vec.size() != 4) {
-            qDebug("vec size un equl 4");
+            qDebug("vec size unequl 4");
             goto FAILED;
         }
         tmp.web_name = vec[0];
         tmp.user_name = vec[1];
         tmp.pwd = vec[2];
-        tmp.note = vec[3];
+        char *ch = const_cast<char*>(vec[3].data());
+        trim(ch, "\n");
+        tmp.note = ch;
+
         ret.push_back(tmp);
+        vec.clear();
     }
 
 FAILED:
@@ -184,30 +193,54 @@ FAILED:
     return ret;
 }
 
-extern int WriteFile(const char *file_path)
+extern vector<vector<string> > ReadFileAll(const char *file_path)
 {
-    qDebug("start read csv");
+    qDebug("start read file = %s", file_path);
 
-    const int buffer_size = 100;
+    // define varibale
+    vector<vector<string> > ret;
+    vector<string> vec;
+    const int buffer_size = 10000;
     char buffer[buffer_size + 1];
-    QString tmp = "";
-    char *current_path;
-    current_path = getcwd(nullptr, 0);
-    if (current_path == nullptr) {
-        qDebug("get current_path faild! err=%u, %s", errno, strerror(errno));
-        return -1;
-    }
-    qDebug("current_path = %s", current_path);
+    FILE *fp = nullptr;
 
-    FILE *fp = fopen(file_path, "r");
+    // open file
+    fp = fopen(file_path, "r");
+    if (fp == nullptr) {
+        qDebug("fopen error! err=%u, %s", errno, strerror(errno));
+         goto FAILED;
+    }
+
+    // read file
+    while (fgets(buffer, buffer_size, fp) != nullptr) {
+        trim(buffer, "\n");
+        SplitString(buffer, vec, ",");
+        ret.push_back(vec);
+        vec.clear();
+    }
+
+FAILED:
+    if (fp != nullptr) {
+        fclose(fp);
+    }
+    return ret;
+}
+
+extern int WriteFile(const char *file_path, const char *write_type, RecordStruct rs)
+{
+    qDebug("start read file = %s", file_path);
+
+    string tmp = "";
+    FILE *fp = nullptr;
+
+    fp = fopen(file_path, write_type);
     if (fp == nullptr) {
         qDebug("fopen error! err=%u, %s", errno, strerror(errno));
         return -1;
     }
-    while (fgets(buffer, buffer_size, fp) != nullptr) {
-        //qDebug() << buffer;
-        tmp += QString::fromLocal8Bit(buffer);
-    }
+
+    fprintf(fp, "%s,%s,%s,%s\n", rs.web_name.data(), rs.user_name.data(), rs.pwd.data(), rs.note.data());
+
     fclose(fp);
     return 0;
 }
