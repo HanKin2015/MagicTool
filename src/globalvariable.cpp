@@ -8,14 +8,6 @@
 #include "base64.h"
 extern int const fontSize = 22;
 extern int const boldSize = 60;
-extern QString startLocate = "";
-extern QString endLocate="";
-extern QString startDate="";
-extern QString hiType="";
-extern QString userNameGlobal = "";
-extern int eventIDGlobal = 0;
-extern QString startGlobal="";
-extern QString endGlobal="";
 
 extern QFont GetFont()
 {

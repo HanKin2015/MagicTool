@@ -26,8 +26,9 @@
 #include <QMenuBar>
 #include <QDebug>
 #include <QSignalMapper>
+#include <QTranslator>
 #include "globalvariable.h"
-
+#include "accountbook.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -56,6 +57,8 @@ public:
     QLineEdit *note_name2;	//备注
     QPushButton *ok_btn;	//确定按钮
     int current_select_row;	//当前表格选择的行号
+
+    QTranslator*  translator;
 
     
     void InitMainWindow();			//初始化主界面
@@ -99,6 +102,10 @@ private slots:
     void QryActionClicked();
     void AddBtnClicked();
     void ChgBtnClicked();
+
+    //
+    void ChineseActionClicked();
+    void EnglishActionClicked();
 
 	//帮助菜单槽
     void AboutActionClicked();

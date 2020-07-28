@@ -717,9 +717,6 @@ void MainWindow::ChineseActionClicked()
     } else {
         qDebug() << "load zh_CN.qm failed!";
     }
-    this->~MainWindow();
-    MainWindow w;
-    w.show();
 }
 //切换位原本英文语言
 void MainWindow::EnglishActionClicked()
@@ -735,5 +732,4 @@ void MainWindow::EnglishActionClicked()
     qApp->installTranslator(nullptr);
 
     ui->retranslateUi(this);
-    this->repaint();
 }

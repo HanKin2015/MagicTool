@@ -16,6 +16,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    accountbook.cpp \
     base64.cpp \
     globalvariable.cpp \
     iniparser.cpp \
@@ -23,15 +24,28 @@ SOURCES += \
     mainwindow.cpp
 
 HEADERS += \
+    accountbook.h \
     base64.h \
     globalvariable.h \
     iniparser.h \
     mainwindow.h
 
 FORMS += \
+    accountbook.ui \
     mainwindow.ui
+
+RESOURCES += \
+
+
+TRANSLATIONS += \
+    zh_CN.ts
+
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+DISTFILES += \
+    zh_CN.ts
+

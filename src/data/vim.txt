@@ -1,0 +1,2 @@
+shift+v 移动 shift+v，然后esc+p快速剪切粘贴
+光标移到到行首，然后shift+c则剪切当前行（当前光标及后），然后esc+p粘贴

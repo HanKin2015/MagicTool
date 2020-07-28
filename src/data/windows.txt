@@ -1,0 +1,19 @@
+# windows错误码查询
+net helpmsg 5006
+
+# 查询系统版本
+运行窗口-》winver
+
+# 快速电脑属性
+win+Break
+
+# 卸载驱动
+pnputil自带命令
+pnputil /delete-driver oem23.inf /force
+通过设备管理器的inf名称查看，oem*是第三方驱动
+pnputil -e枚举驱动
+
+# pchunter不支持1909
+
+# CTRL+Y的功能是恢复上一bai步操作。
+CTRL+Z功能就是撤销上一步的操作

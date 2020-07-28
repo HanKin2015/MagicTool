@@ -24,18 +24,18 @@ struct RecordStruct{
     string note;
 };
 
+struct AccountBookStruct{
+    string date;
+    string weather;
+    string type;
+    string money;
+    string mode;
+    string note;
+};
+
 extern int const fontSize ;
 extern int const boldSize ;
-extern QString const fontName;
-extern QString startLocate;
-extern QString endLocate;
-extern QString startDate;
-extern QString hiType;
-extern QString userNameGlobal;
-extern int eventIDGlobal;
 
-extern QString startGlobal;
-extern QString endGlobal;
 
 extern QFont GetFont();
 extern QString GetStyle();
@@ -45,6 +45,8 @@ extern char* trim(char* str, const char* delimiter);
 extern void SplitString(const string& s, vector<string>& v, const string& c);
 extern void SplitStringByChar();
 extern int WriteFile(const char *file_path, const char *write_type, RecordStruct rs);
+//密码器专用读取
 extern vector<RecordStruct> ReadFile(const char *file_path);
+//读取以逗号隔开的文件，返回不定长的数据
 extern vector<vector<string> > ReadFileAll(const char *file_path);
 #endif // GLOBALVARIABLE_H

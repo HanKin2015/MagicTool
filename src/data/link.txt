@@ -1,0 +1,28 @@
+Linux文件系统中，有所谓的链接(link)，我们可以将其视为档案的别名，而链接又可分为两种 : 硬链接(hard link)与软链接(symbolic link)，硬链接的意思是一个档案可以有多个名称，而软链接的方式则是产生一个特殊的档案，该档案的内容是指向另一个档案的位置。硬链接是存在同一个文件系统中，而软链接却可以跨越不同的文件系统。
+
+不论是硬链接或软链接都不会将原本的档案复制一份，只会占用非常少量的磁碟空间。
+
+# 软链接
+[root@localhost test]# ll
+-rw-r--r-- 1 root bin      61 11-13 06:03 log2013.log
+[root@localhost test]# ln -s log2013.log link2013
+[root@localhost test]# ll
+lrwxrwxrwx 1 root root     11 12-07 16:01 link2013 -> log2013.log
+-rw-r--r-- 1 root bin      61 11-13 06:03 log2013.log
+
+# 硬链接
+[root@localhost test]# ll
+lrwxrwxrwx 1 root root     11 12-07 16:01 link2013 -> log2013.log
+-rw-r--r-- 1 root bin      61 11-13 06:03 log2013.log
+[root@localhost test]# ln log2013.log ln2013
+[root@localhost test]# ll
+lrwxrwxrwx 1 root root     11 12-07 16:01 link2013 -> log2013.log
+-rw-r--r-- 2 root bin      61 11-13 06:03 ln2013
+-rw-r--r-- 2 root bin      61 11-13 06:03 log2013.log
+
+# 想修改软链接的指向
+目前想到是删除后重新创建
+
+或者是直接执行创建软链接的命令
+ln -s 实体文件路径 软链接
+
