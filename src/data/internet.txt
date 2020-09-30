@@ -17,3 +17,8 @@ ubuntu：
 sudo vim /etc/hosts
 /etc/init.d/networking restart
 /etc/init.d/network-manager restart
+
+# 4、ip能ping通，但是使用火狐浏览器打不开
+修改dns无用，因为直接使用ip访问，与dns无关
+防火墙或者或者https://
+最终准备重置浏览器或者安装新的浏览器，在浏览器设置里面发现真的使用了代理。
