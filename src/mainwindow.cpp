@@ -500,8 +500,7 @@ void MainWindow::StlFopenButtonClicked()
     }
 
     QString tmp = search_content->text();
-    QString file_path = QString(".\\data\\%1.txt").arg(tmp);
-
+    QString file_path = QString(".\\data\\note\\%1.txt").arg(tmp);
 
     QString demo = read_csv(file_path.toLatin1().data());
     demo_example->setText(demo);
@@ -717,9 +716,6 @@ void MainWindow::ChineseActionClicked()
     } else {
         qDebug() << "load zh_CN.qm failed!";
     }
-    this->~MainWindow();
-    MainWindow w;
-    w.show();
 }
 //切换位原本英文语言
 void MainWindow::EnglishActionClicked()
@@ -735,5 +731,4 @@ void MainWindow::EnglishActionClicked()
     qApp->installTranslator(nullptr);
 
     ui->retranslateUi(this);
-    this->repaint();
 }
