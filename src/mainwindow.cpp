@@ -1,7 +1,8 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
-
+int MainWindow::EXIT_CODE_REBOOT = -123456789;
+QString MainWindow::LANG_FILE_PATH = "D:\\Users\\Administrator\\My Document\\MagicTool\\config\\lang.ini";
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -12,9 +13,9 @@ MainWindow::MainWindow(QWidget *parent)
     //application_dir_path = QCoreApplication::applicationDirPath();
     application_dir_path = "D:\\Users\\Administrator\\My Document\\MagicTool";
 
-    //初始化主窗口菜单栏
+    // 初始化主窗口菜单栏
     InitMainWindowMenu();
-    //初始化主窗口
+    // 初始化主窗口
     InitMainWindow();
     InitTableWidget();
 }
@@ -24,6 +25,10 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+/*
+ * 初始化主窗口菜单栏
+ *
+*/
 void MainWindow::InitMainWindowMenu()
 {
     this->resize(900, 600);
@@ -667,68 +672,52 @@ void MainWindow::DefaultActionClicked()
 void MainWindow::DocumentActionClicked()
 {
     QMessageBox::information(this, tr("文档"),
-                tr("用户可以输入始发地、目的地、选择出发类型与活动性质，点击搜索即可查看当前"
-                   "行程的群组信息。选择有意愿的群组，点击“一起high”，即可加入。也可点击详情按钮，查看当前群组的人员信息。"
-                   "如果当前没有该活动的群组，系统会提示您，是否发布行程。在没有具体地点或者其他打算时，用户也可以选择输入几"
-                   "个条件中的一种或者几种，来查找相同行程的群组。\n关于此页面其他按钮说明：\n注销：点击后返回登录界面，用户"
-                   "登录状态转换为非登录状态；\n资料：点击后显示用户当前个人资料，并且可以对资料进行修改；\n消息：点击后查看"
-                   "站内消息；\n活动：可以查看已发布的活动和参加的活动，还可以看活动记录；\n换肤：根据自己风格，选择界面颜色；"
-                   "\n帮助：包含软件使用文档及相关说明。"),
+                tr("集密码和学习笔记于一身！"),
                 QMessageBox::tr("确定"));
 }
 
 void MainWindow::AboutActionClicked()
 {
     QMessageBox::information(this, tr("关于软件"),
-                tr("该PC端APP，是一个同行者的信息搜索平台，旨在为喜欢游玩，但是身边同学朋友时间冲突，想找人结伴的年轻人提供"
-                   "一个检索平台，让他们尽量能够快速便捷的寻找合适同行者。该APP有登录、注册、主页面（发布行程、搜索）、群组详"
-                   "情、个人资料修改等功能。\n             版本·Bate版"),
+                tr("Build time : 23 Octouber 2020\nBuild 1001"),
                 QMessageBox::tr("确定"));
 }
 
 void MainWindow::UpdateLogActionClicked()
 {
     QMessageBox::information(this, tr("更新日志"),
-                tr("1. 增加记住密码功能\n2. 皮肤优化\n3.修复参团人数BUG\n4. 增加发送信息检测用户\n5.修复搜索不到结果出现表格边框问题\n"
-                   "6.增加密码找回\n7.能显示正在进行的活动\n8.发布日期增加了判断"),
+                tr("从文件里读取。"),
                 QMessageBox::tr("确定"));
 }
 
 
-//中文
+/*
+ * 切换为中文语言
+ * 保存一个标记到本地配置数据文件lang.ini
+ * 1则表示为中文模式，0则表示为英文模式
+*/
 void MainWindow::ChineseActionClicked()
 {
     qDebug() << "Chinese";
-
-    if  (translator  !=  nullptr){
-        qApp->removeTranslator(translator);//如果之前加载过翻译文件，则移除之前的翻译文件。
-        delete  translator;
-        translator  =  nullptr;
-    }
-
-    translator  =  new  QTranslator;
-
-    if(translator->load(application_dir_path + "\\zh_CN.qm")) {
-        qApp->installTranslator(translator);
-        ui->retranslateUi(this);
-
-        qDebug() << "load zh_CN.qm sucssed!";
-    } else {
-        qDebug() << "load zh_CN.qm failed!";
-    }
+    vector<char*> data;
+    data.push_back("1");
+    WriteFile(LANG_FILE_PATH.toStdString().data(), data);
+    Reboot();
 }
-//切换位原本英文语言
+
+/*
+ * 切换为英文语言
+*/
 void MainWindow::EnglishActionClicked()
 {
     qDebug() << "English";
+    vector<char*> data;
+    data.push_back("0");
+    WriteFile(LANG_FILE_PATH.toStdString().data(), data);
+    Reboot();
+}
 
-    if  (translator  !=  nullptr){
-        qApp->removeTranslator(translator);//如果之前加载过翻译文件，则移除之前的翻译文件。
-        delete  translator;
-        translator  =  nullptr;
-        qDebug() << "???";
-    }
-    qApp->installTranslator(nullptr);
-
-    ui->retranslateUi(this);
+void MainWindow::Reboot()
+{
+    qApp->exit(MainWindow::EXIT_CODE_REBOOT);
 }

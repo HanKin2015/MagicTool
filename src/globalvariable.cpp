@@ -5,7 +5,7 @@
 #include <QFontDatabase>
 #include <QTextCodec>
 #include <QFile>
-#include "base64.h"
+#include "libary/base64.h"
 extern int const fontSize = 22;
 extern int const boldSize = 60;
 

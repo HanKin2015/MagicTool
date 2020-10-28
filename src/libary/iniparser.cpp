@@ -1,4 +1,4 @@
-#include "INIParser.h"
+#include "iniparser.h"
 
 #define INIDEBUG
 CMyINI::CMyINI()

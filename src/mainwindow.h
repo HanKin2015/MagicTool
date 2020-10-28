@@ -27,8 +27,11 @@
 #include <QDebug>
 #include <QSignalMapper>
 #include <QTranslator>
+#include <QDir>
+#include <QProcess>
 #include "globalvariable.h"
 #include "accountbook.h"
+#include "libary/common.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -60,7 +63,9 @@ public:
 
     QTranslator*  translator;
 
-    
+    static int EXIT_CODE_REBOOT;
+    static QString LANG_FILE_PATH;
+
     void InitMainWindow();			//初始化主界面
     void InitMainWindowMenu();	//初始化窗口菜单栏
     void InitTableWidget();			//初始化表格
@@ -68,6 +73,7 @@ public:
     bool IsValidRecord();				//判断是不是合法的记录
     void Tips();								//警告提示弹窗
     bool Save2Local();					//保存表格中的内容到本地数据库
+    void Reboot();
 
 protected:
     void MouseDownEvent(QMouseEvent* );

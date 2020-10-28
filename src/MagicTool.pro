@@ -17,17 +17,19 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     accountbook.cpp \
-    base64.cpp \
     globalvariable.cpp \
-    iniparser.cpp \
+    libary/base64.cpp \
+    libary/common.cpp \
+    libary/iniparser.cpp \
     main.cpp \
     mainwindow.cpp
 
 HEADERS += \
     accountbook.h \
-    base64.h \
     globalvariable.h \
-    iniparser.h \
+    libary/base64.h \
+    libary/common.h \
+    libary/iniparser.h \
     mainwindow.h
 
 FORMS += \

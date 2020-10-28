@@ -40,3 +40,18 @@ arp -a
 arp -d
 
 https://uupdump.ml/?lang=zh-cn
+
+# System Idle Process
+System Idle Process SYSTEM并不是一个真正的进程，System Idle Process是核心虚拟出来的，多任务操作系统都会存在！
+
+在没有可用的进程时，系统处于空运行状态，此时就是System Idle Process SYSTEM在运行！故它占用百分之九十以上CPU时间，说明你的机器负荷很轻！
+
+假如我们使用Photoshop制图时，你会发现，System Idle Process SYSTEM占用CPU时刻都在变化着，更多的时候在变小。
+
+"System Idle Process" 中的 idle 是“空闲”的意思
+
+"System Idle Process" 即“系统空闲进程”
+
+System Idle Process占用越多CPU时，说明你的电脑越空闲
+
+System Idle Process 当达到5%以下的时候，那么你可以选择重启了！
