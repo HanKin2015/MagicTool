@@ -2,12 +2,14 @@
 #include <QApplication>
 #include <QTextCodec>
 
-//transfor utf8
+// transfor utf8
 void ChangeTextCodec()
 {
     QTextCodec *codec = QTextCodec::codecForName("utf8");
     QTextCodec::setCodecForLocale(codec);
 }
+
+
 
 int main(int argc, char *argv[])
 {
@@ -16,18 +18,26 @@ int main(int argc, char *argv[])
     do {
         QApplication app(argc, argv);
 
+        // 当前代码路径，QT相对路径是相对于QtCreator的build路径，可以在项目中设置。推荐在代码中修改当前的相对路径。
+        QDir::setCurrent(CURRENT_DEMO_PATH);
+        qDebug("current demo path = %s\n", QDir::currentPath().toLatin1().data());
+
+        // 字体设置
         QFont font = app.font();
         font.setPixelSize(14);
         //app.setFont(font);
 
+        // 中英文设置
         QTranslator translator;
         vector<char*> data;
-        ReadFile(MainWindow::LANG_FILE_PATH.toStdString().data(), data);
+        ReadFile(LANG_FILE_PATH.toStdString().data(), data);
         if (data.size() == 1) {
             if (strncmp(data[0], "1", 1) == 0) {
-                translator.load("zh_CN.qm", "D:\\Users\\Administrator\\My Document\\MagicTool\\config\\");
+                translator.load(ZH_CN_QM_FILE_NAME, CONFIG_DIR_PATH);
+                qDebug("load zh_cn.qm file success!\n");
             } else {
                 //translator.load();
+                qDebug("change english layout!\n");
             }
             app.installTranslator(&translator);
         }
@@ -36,7 +46,7 @@ int main(int argc, char *argv[])
         w.show();
 
         exit_code = app.exec();
-    } while(exit_code == MainWindow::EXIT_CODE_REBOOT);
+    } while(exit_code == EXIT_CODE_REBOOT);
 
     return exit_code;
 }

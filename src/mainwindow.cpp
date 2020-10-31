@@ -1,23 +1,16 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
-int MainWindow::EXIT_CODE_REBOOT = -123456789;
-QString MainWindow::LANG_FILE_PATH = "D:\\Users\\Administrator\\My Document\\MagicTool\\config\\lang.ini";
-
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
-    , translator(nullptr)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    //application_dir_path = QCoreApplication::applicationDirPath();
-    application_dir_path = "D:\\Users\\Administrator\\My Document\\MagicTool";
 
     // 初始化主窗口菜单栏
     InitMainWindowMenu();
     // 初始化主窗口
     InitMainWindow();
-    InitTableWidget();
 }
 
 MainWindow::~MainWindow()
@@ -33,7 +26,7 @@ void MainWindow::InitMainWindowMenu()
 {
     this->resize(900, 600);
     this->setWindowTitle(tr("Magic Tool"));
-    this->setWindowIcon(QIcon(application_dir_path + "/image/alienx64.png"));
+    this->setWindowIcon(QIcon(APP_LOGO_FILE_PATH));
     //QFont font;
     //font.setPointSize(20);
     //font.setFamily("Consolas");
@@ -41,11 +34,11 @@ void MainWindow::InitMainWindowMenu()
 
     // 创建文件菜单
     QMenu *file_menu = ui->menubar->addMenu(tr("file(&F)"));
-    QAction *csv_actoion = file_menu->addAction("导出为csv");
-    QAction *txt_actoion = file_menu->addAction("导出为txt");
-    QAction *xlsx_actoion = file_menu->addAction("导出为xlsx");
-    QAction *backup_action = file_menu->addAction("创建备份");
-    QAction *exit_action = file_menu->addAction(tr("退出"));
+    QAction *csv_actoion = file_menu->addAction(tr("export to csv"));
+    QAction *txt_actoion = file_menu->addAction(tr("export to txt"));
+    QAction *xlsx_actoion = file_menu->addAction(tr("export to xlsx"));
+    QAction *backup_action = file_menu->addAction(tr("create backup"));
+    QAction *exit_action = file_menu->addAction(tr("exit"));
     connect(csv_actoion,SIGNAL(triggered()),this,SLOT(BlackActionClicked()));
     connect(txt_actoion,SIGNAL(triggered()),this,SLOT(WhiteActionClicked()));
     connect(xlsx_actoion,SIGNAL(triggered()),this,SLOT(BlackActionClicked()));
@@ -54,26 +47,28 @@ void MainWindow::InitMainWindowMenu()
 
     // 创建换肤菜单
     QMenu *skin_menu = ui->menubar->addMenu(tr("skin(&S)"));
-    QAction *black_action = skin_menu->addAction(tr("&黑色炫酷"));
-    QAction *white_action = skin_menu->addAction(tr("&白色靓丽"));
-    QAction *default_action = skin_menu->addAction(tr("&默认皮肤"));
+    QAction *black_action = skin_menu->addAction(tr("&cool black"));
+    QAction *white_action = skin_menu->addAction(tr("&beautiful white"));
+    QAction *default_action = skin_menu->addAction(tr("&default"));
     connect(black_action,SIGNAL(triggered()),this,SLOT(BlackActionClicked()));
     connect(white_action,SIGNAL(triggered()),this,SLOT(WhiteActionClicked()));
     connect(default_action,SIGNAL(triggered()),this,SLOT(DefaultActionClicked()));
 
     // 创建窗口菜单（由于不需要全局使用，所以可以在cpp文件中声明定义）
     QMenu *window_menu = ui->menubar->addMenu(tr("window(&W)"));
-    QAction *cteam_action = window_menu->addAction(tr("&cteam"));
-    QAction *demo_action = window_menu->addAction(tr("&笔记搜索"));
-    connect(cteam_action,SIGNAL(triggered()),this,SLOT(CTeamDemo()));
-    connect(demo_action,SIGNAL(triggered()),this,SLOT(DemoActionClicked()));
+    QAction *AB_action = window_menu->addAction(tr("&account book"));
+    QAction *PN_action = window_menu->addAction(tr("&perfect note"));
+    QAction *PM_action = window_menu->addAction(tr("&password manager"));
+    connect(AB_action,SIGNAL(triggered()),this,SLOT(ABActionClicked()));
+    connect(PN_action,SIGNAL(triggered()),this,SLOT(PNActionClicked()));
+    connect(PM_action,SIGNAL(triggered()),this,SLOT(PNActionClicked()));
 
     // 创建操作菜单：增删改查
     QMenu *operation_menu = ui->menubar->addMenu(tr("operation(&O)"));
-    QAction *add_action = operation_menu->addAction(tr("&增加"));
-    QAction *del_action = operation_menu->addAction(tr("&删除"));
-    QAction *chg_action = operation_menu->addAction(tr("&修改"));
-    QAction *qry_action = operation_menu->addAction(tr("&查询"));
+    QAction *add_action = operation_menu->addAction(tr("&add"));
+    QAction *del_action = operation_menu->addAction(tr("&delete"));
+    QAction *chg_action = operation_menu->addAction(tr("&change"));
+    QAction *qry_action = operation_menu->addAction(tr("&query"));
     connect(add_action,SIGNAL(triggered()),this,SLOT(AddActionClicked()));
     connect(del_action,SIGNAL(triggered()),this,SLOT(DelActionClicked()));
     connect(chg_action,SIGNAL(triggered()),this,SLOT(ChgActionClicked()));
@@ -110,120 +105,10 @@ void MainWindow::InitMainWindow()
 
     ui->centralwidget->setLayout(main_window_gl);
 
-   connect(search_btn, &QPushButton::clicked, this, &MainWindow::MyWindow);
+   connect(search_btn, &QPushButton::clicked, this, &MainWindow::ABActionClicked);
 }
 
-void MainWindow::InitTableWidget()
-{
 
-    record_tw->setColumnCount(6);
-    record_tw->setHorizontalHeaderLabels(QStringList() << tr("站点") << tr("用户名") << tr("密码")<< tr("备注") << tr("hide") << tr("other"));    // 设置列名
-//    for(int i = 0; i < 5; i++)
-//        record_tw->setColumnWidth(i, 200);
-    record_tw->setColumnWidth(2, 180);
-    record_tw->setColumnWidth(3, 180);
-    record_tw->setColumnHidden(4,true);
-    record_tw->setColumnWidth(5, 240);
-    //获得水平方向表头的item对象
-    QTableWidgetItem *columnHeaderItem = record_tw->horizontalHeaderItem(1);
-    //columnHeaderItem->setFont(QFont("Helvetica"));  //设置字体
-    columnHeaderItem->setBackgroundColor(QColor(0,60,10));  //设置单元格背景颜色
-    columnHeaderItem->setTextColor(QColor(200,111,30));     //设置文字颜色
-
-    //无法编辑表格
-    record_tw->setEditTriggers(QAbstractItemView::NoEditTriggers);
-
-
-    //按条件进行搜索
-//       string startString = "NULL";
-//       if(start->text() != NULL && startLabel->isChecked()) startString = QStringToStdString(start->text());
-//       string endString = "NULL";
-//       if(end->text() != NULL && endLabel->isChecked()) endString = QStringToStdString(end->text());
-//       string timeString = "NULL";
-//       if(dateTime->text() != NULL && timeLabel->isChecked()) timeString = QStringToStdString(dateTime->text());
-//       string typeString = "NULL";
-//       if(type->currentText() != NULL && typeLabel->isChecked()) typeString = QStringToStdString(type->currentText());
-//       vector<EventStruct>  es = client.getEvent(startString,endString,timeString,typeString);
-//       vector<EventStruct>::iterator iter2 = es.begin();
-//       if(es.size() == 0) {
-//           record_tw->clearContents();
-//           record_tw->setRowCount(0);
-//   //        record_tw->show();
-//           QMessageBox::information(this, tr(""),
-//                   tr("未搜索到结果！"),
-//                   QMessageBox::tr("确定"));
-//           return ;
-//       }
-//       record_tw->setRowCount(es.size());   // 设置结果占的行数
-//   //    if(es.size() <= resultNum) {
-//           record_tw->clearContents();
-//   //    }
-//       resultNum = es.size();
-
-
-    qDebug() << application_dir_path;
-    QString file_path = ".\\data\\hankin.txt";
-    vector<RecordStruct> ret = ReadFile(file_path.toLatin1().data());
-    int record_cnt = static_cast<int>(ret.size());
-
-    qDebug("current record size = %d", record_cnt);
-    record_tw->setRowCount(record_cnt);
-
-    for (int i = 0; i < record_cnt; i++)
-    {
-        record_tw->setRowHeight(i,50);
-        QTableWidgetItem *item0 = record_tw->item(i,0); // 发布人
-        QTableWidgetItem *item1 = record_tw->item(i,1); // 人数
-        QTableWidgetItem *item2 = record_tw->item(i,2); // 始发地
-        QTableWidgetItem *item3 = record_tw->item(i,3); // 备注
-        //QTableWidgetItem *item4 = record_tw->item(i,4); //
-
-        QWidget *remark = new QWidget();
-        QGridLayout *layout = new QGridLayout(record_tw);
-        // 创建QPushButton控件
-        QPushButton *joinBtn = new QPushButton(record_tw);
-        joinBtn->setText("一起嗨");
-        layout->addWidget(joinBtn,0,0,1,1);
-        QPushButton *detailBtn = new QPushButton(record_tw);
-        detailBtn->setText("详情");
-        layout->addWidget(detailBtn,0,1,1,1);
-        remark->setLayout(layout);
-
-        size_t j =  static_cast<size_t>(i);
-
-        if(item0) {
-            item0->setFlags((item0->flags()&(~Qt::ItemIsEditable)));
-        }
-        else {
-            item0 = new QTableWidgetItem;
-            item0->setText(StdString2QString(ret[j].web_name));
-            item0->setTextAlignment(Qt::AlignCenter);
-            record_tw->setItem(i, 0, item0);
-
-            item1 = new QTableWidgetItem;
-            //item1->setText(QString("%1人").arg(5));
-            item1->setText(StdString2QString(ret[j].user_name));
-            item1->setTextAlignment(Qt::AlignCenter);
-            record_tw->setItem(i, 1, item1);
-
-            item2 = new QTableWidgetItem;
-            item2->setText(StdString2QString(ret[j].pwd));
-            item2->setTextAlignment(Qt::AlignCenter);
-            record_tw->setItem(i, 2, item2);
-
-            item3 = new QTableWidgetItem;
-            item3->setText(StdString2QString(ret[j].note));
-            item3->setTextAlignment(Qt::AlignCenter);
-            record_tw->setItem(i, 3, item3);
-
-            //item7 = new QTableWidgetItem;
-            record_tw->setCellWidget(i,5,remark);
-
-        }
-    }
-    record_tw->show();
-    //record_tw->clearContents();
-}
 
 void MainWindow::DetailMessage()
 {
@@ -318,154 +203,7 @@ FAILED:
     return false;
 }
 
-void MainWindow::ChgBtnClicked()
-{
-    record_tw->item(current_select_row, 0)->setText(web_name2->text());
-    record_tw->item(current_select_row, 1)->setText(user_name2->text());
-    record_tw->item(current_select_row, 2)->setText(pwd_name2->text());
-    record_tw->item(current_select_row, 3)->setText(note_name2->text());
-    Save2Local();
-    detail_dialog->close();
-}
 
-void MainWindow::Tips()
-{
-    QMessageBox::information(this, tr(""),
-            tr("无效的记录！"),
-            QMessageBox::tr("确定"));
-}
-
-bool MainWindow::IsValidRecord()
-{
-    if (web_name2->text() == nullptr) {
-        goto FAILED;
-    }
-    if (user_name2->text() == nullptr) {
-        goto FAILED;
-    }
-    if (pwd_name2->text() == nullptr) {
-        goto FAILED;
-    }
-
-    return true;
-FAILED:
-    Tips();
-    return false;
-}
-
-
-
-void MainWindow::AddBtnClicked()
-{
-    if(IsValidRecord() == false) return ;
-    QMessageBox mb(QMessageBox::Warning, "","确定要添加当前记录？");
-    mb.setStandardButtons(QMessageBox::Ok|QMessageBox::Cancel);
-    mb.setButtonText (QMessageBox::Ok,QString("确 定"));
-    mb.setButtonText (QMessageBox::Cancel,QString("取 消"));
-    if(mb.exec() == QMessageBox::Ok)
-    {
-        /*添加event*/
-        RecordStruct rs;
-        rs.web_name = QString2StdString(web_name2->text());
-        rs.user_name = QString2StdString(user_name2->text());
-        rs.pwd = QString2StdString(pwd_name2->text());
-        rs.note = QString2StdString(note_name2->text());
-
-
-        QString file_path = ".\\data\\hankin.txt";
-        if (!WriteFile(file_path.toLatin1().data(), "a", rs))
-        {
-            InitTableWidget();
-            QMessageBox::information(this, tr(""),
-                    tr("添加成功！"),
-                    QMessageBox::tr("确定"));
-        } else {
-            QMessageBox::information(this, tr(""),
-                    tr("添加失败！"),
-                    QMessageBox::tr("确定"));
-        }
-    }
-    detail_dialog->close();
-}
-
-
-
-void MainWindow::CTeamDemo()
-{
-    QPixmap image;
-    //QImage *image = new QImage();//定义一张图片
-    QLabel *avatar = new QLabel(this);  //头像
-    QLabel *userName = new QLabel(this);//用户名称
-    QGridLayout *mainLayout = new QGridLayout(this);
-    QCheckBox *startLabel = new QCheckBox(this);
-    QLineEdit *start = new QLineEdit(this); //始发地
-    QCheckBox *endLabel = new QCheckBox(this);
-    QLineEdit *end = new QLineEdit(this);   //目的地
-    QCheckBox *timeLabel = new QCheckBox(this);
-    QDateEdit *dateTime = new QDateEdit(this);//出发日期
-    QCheckBox *typeLabel = new QCheckBox(this);
-    QComboBox *type = new QComboBox(this);  //活动项目
-
-    QPushButton *searchBtn = new QPushButton(this); //搜索按钮
-    QPushButton *publishBtn = new QPushButton(this);  //发布按钮
-
-
-    image.load("images/alienx64.png");//加载
-    avatar->clear();//清空
-    avatar->setPixmap(image);//加载到Label标签
-    avatar->show();//显示
-    avatar->setMaximumHeight(80);
-    avatar->setMaximumWidth(80);
-     mainLayout->addWidget(avatar,0,3,1,1);
-    //    userName->setText(userNameGlobal);
-     userName->setAlignment(Qt::AlignCenter);
-     userName->setMinimumHeight(100);
-     mainLayout->addWidget(userName,0,2,1,3);
-
-     startLabel->setText("始发地:");
-     mainLayout->addWidget(startLabel,1,0,1,1);
-     mainLayout->addWidget(start,1,1,1,3);
-     timeLabel->setText("出发日期:");
-     dateTime->setDisplayFormat("yyyy-MM-dd");
-     dateTime->setCalendarPopup(true);
-    //    QDateTime current_date_time = QDateTime::currentDateTime().;
-    //    QString current_date = current_date_time.toString("yyyy-MM-dd");
-     dateTime->setDate(QDate::currentDate());
-    //    dateTime->setDisplayFormat(current_date);
-     mainLayout->addWidget(timeLabel,1,4,1,1);
-     mainLayout->addWidget(dateTime,1,5,1,3);
-
-     endLabel->setText("目的地:");
-     mainLayout->addWidget(endLabel,2,0,1,1);
-     mainLayout->addWidget(end,2,1,1,3);
-     typeLabel->setText("活动项目:");
-     mainLayout->addWidget(typeLabel,2,4,1,1);
-     type->addItem("电影");
-     type->addItem("骑自行车");
-     type->addItem("旅游");
-     type->addItem("打球");
-     type->addItem("下棋");
-     type->addItem("打牌");
-     type->addItem("露营");
-     mainLayout->addWidget(type,2,5,1,3);
-     QLabel *hj = new QLabel();
-     hj->setText("温馨提示:搜索时可以勾选相应的条件.");
-     hj->setStyleSheet("color:rgb(100,100,100);");
-     mainLayout->addWidget(hj,3,0,1,2);
-
-     searchBtn->setText("搜索");
-     mainLayout->addWidget(searchBtn,3,7,1,1);
-     publishBtn->setText("发布");
-     mainLayout->addWidget(publishBtn,3,6,1,1);
-
-     // 反馈信息
-
-    mainLayout->addWidget(record_tw, 4, 0, 1, 8);
-
-     ui->centralwidget->setLayout(mainLayout);
-
-    connect(searchBtn, &QPushButton::clicked, this, &MainWindow::MyWindow);
-}
 
 QString read_csv(const char *file_path)
 {
@@ -511,102 +249,30 @@ void MainWindow::StlFopenButtonClicked()
     demo_example->setText(demo);
 }
 
-void MainWindow::MyWindow()
+void MainWindow::ABActionClicked()
 {
-    accountbook *m = new accountbook();
+    AccountBook *m = new AccountBook();
     m->show();
 }
 
-void MainWindow::DemoActionClicked()
+void MainWindow::PNActionClicked()
 {
-    QDialog *demo = new QDialog(this);
-    demo->setWindowTitle("知识库");
-
-
-    QWidget *win=new QWidget(demo);
-
-    win->resize(1200, 800);
-
-    QHBoxLayout *hbox_layout=new QHBoxLayout(win);//水平布局管理器（父管理器）；
-    QVBoxLayout *vbox_left =new QVBoxLayout;//垂直布局管理器（子管理器）；
-    QVBoxLayout *vbox_right=new QVBoxLayout;
-
-    //设定每个布局管理器中的部件间间隔
-    hbox_layout->setSpacing(50);
-    vbox_left->setSpacing(25);
-    vbox_right->setSpacing(25);
-
-    //搜索框
-    search_content = new QLineEdit(win);
-    QPushButton *search_button = new QPushButton("搜索", win);
-    connect(search_button, &QPushButton::clicked, this, &MainWindow::StlFopenButtonClicked);
-
-    QPushButton *stl_fopen = new QPushButton(win);
-    stl_fopen->setText(tr("读文件"));
-    QObject::connect(stl_fopen, &QPushButton::clicked, this, &MainWindow::StlFopenButtonClicked);
-
-    QPushButton *quit=new QPushButton(win);
-    quit->setText(tr("退出"));
-    QObject::connect(quit,SIGNAL(clicked()),win,SLOT(close()));
-
-    QTableWidget *catalog_tw = new QTableWidget(win);
-    catalog_tw->setColumnCount(1);
-    catalog_tw->setColumnWidth(0, 150);
-    catalog_tw->setHorizontalHeaderLabels((QStringList() << tr("name")));
-    QString file_path = ".\\data\\catalog.txt";
-    vector<vector<string> > ret = ReadFileAll(file_path.toLatin1().data());
-    int catalog_cnt = static_cast<int>(ret.size());
-    catalog_tw->setRowCount(catalog_cnt);
-    for (int i = 0; i < catalog_cnt; i++) {
-        //catalog_tw->setRowHeight(i,50);
-        QTableWidgetItem *item = catalog_tw->item(i, 0);
-        item = new QTableWidgetItem;
-        item->setText(StdString2QString(ret[static_cast<size_t>(i)][0]));
-        item->setTextAlignment(Qt::AlignCenter);
-        catalog_tw->setItem(i, 0, item);
-    }
-    catalog_tw->show();
-
-
-    QWidget *show_widget = new QWidget(win);
-    show_widget->resize(1000, 800);
-
-    demo_example=new QTextEdit(show_widget);
-    demo_example->resize(1000, 800);
-    QFont font;
-    font.setPointSize(14);
-    font.setBold(true);
-    font.setFamily("Consolas");
-    demo_example->setFont(font);
-    demo_example->setText("hello world!");
-
-    vbox_left->addWidget(search_content);
-    vbox_left->addWidget(search_button);
-    vbox_left->addWidget(stl_fopen);
-    vbox_left->addWidget(quit);
-    vbox_left->addWidget(catalog_tw);
-
-    vbox_right->addWidget(show_widget);
-
-    hbox_layout->addLayout(vbox_left, 2);
-    hbox_layout->addLayout(vbox_right, 10);
-
-    win->show();
-    demo->show();
+    AccountBook *m = new AccountBook();
+    m->show();
 }
 
 
 //重写退出事件
 void MainWindow::closeEvent(QCloseEvent *event)
 {
-    QMessageBox close_mb(QMessageBox::Warning, "","确定要退出？");
+    QMessageBox close_mb(QMessageBox::Warning, "",tr("Are you sure exit?"));
     //close_mb.setWindowTitle("你舍得离开吗");
     close_mb.setWindowFlag(Qt::FramelessWindowHint);
     close_mb.setAttribute(Qt::WA_ShowModal, true);
 
     close_mb.setStandardButtons(QMessageBox::Ok|QMessageBox::Cancel);
-    close_mb.setButtonText (QMessageBox::Ok,QString("确 定"));
-    close_mb.setButtonText (QMessageBox::Cancel,QString("取 消"));
+    close_mb.setButtonText (QMessageBox::Ok,QString(tr("yes")));
+    close_mb.setButtonText (QMessageBox::Cancel,QString(tr("no")));
     if(close_mb.exec() == QMessageBox::Ok)
     {
         //关闭服务器
@@ -622,7 +288,7 @@ void MainWindow::closeEvent(QCloseEvent *event)
 
 void MainWindow::BlackActionClicked()
 {
-    QFile qss(application_dir_path + "/style/black.qss");
+    QFile qss(BLACK_SKIN_FILE_PATH);
     qss.open(QFile::ReadOnly);
     this->setStyleSheet(qss.readAll());
     qss.close();
@@ -630,7 +296,7 @@ void MainWindow::BlackActionClicked()
 
 void MainWindow::WhiteActionClicked()
 {
-    QFile qss(application_dir_path + "/style/white.qss");
+    QFile qss(WHITE_SKIN_FILE_PATH);
     qss.open(QFile::ReadOnly);
     this->setStyleSheet(qss.readAll());
     qss.close();
@@ -638,22 +304,6 @@ void MainWindow::WhiteActionClicked()
 
 void MainWindow::DefaultActionClicked()
 {
-    QString applicationDirPath = QCoreApplication::applicationDirPath();
-    qDebug()<< "applicationDirPath = " <<applicationDirPath;
-
-    QString applicationFilePath = QCoreApplication::applicationFilePath();
-    qDebug()<< "applicationFilePath = " <<applicationFilePath;
-
-    QString currentPath = QDir::currentPath();  //方法一
-    qDebug() << "currentPath = " << currentPath;
-
-    char *current_path;     //方法二
-    current_path = getcwd(nullptr, 0);
-    if (current_path == nullptr) {
-        qDebug("get current_path faild! err=%u, %s", errno, strerror(errno));
-    }
-    qDebug("current_path = %s", current_path);
-
     QFont font;
     font.setPointSize(20);
     font.setFamily(("Consolas"));
@@ -663,7 +313,7 @@ void MainWindow::DefaultActionClicked()
 
 
 
-    QFile qss(application_dir_path + "/style/base.qss");
+    QFile qss(DEFAULT_SKIN_FILE_PATH);
     qss.open(QFile::ReadOnly);
     this->setStyleSheet(qss.readAll());
     qss.close();
@@ -671,23 +321,23 @@ void MainWindow::DefaultActionClicked()
 
 void MainWindow::DocumentActionClicked()
 {
-    QMessageBox::information(this, tr("文档"),
+    QMessageBox::information(this, tr("document"),
                 tr("集密码和学习笔记于一身！"),
-                QMessageBox::tr("确定"));
+                QMessageBox::tr("ok"));
 }
 
 void MainWindow::AboutActionClicked()
 {
-    QMessageBox::information(this, tr("关于软件"),
+    QMessageBox::information(this, tr("about software"),
                 tr("Build time : 23 Octouber 2020\nBuild 1001"),
-                QMessageBox::tr("确定"));
+                QMessageBox::tr("ok"));
 }
 
 void MainWindow::UpdateLogActionClicked()
 {
-    QMessageBox::information(this, tr("更新日志"),
+    QMessageBox::information(this, tr("update log"),
                 tr("从文件里读取。"),
-                QMessageBox::tr("确定"));
+                QMessageBox::tr("ok"));
 }
 
 
@@ -695,29 +345,33 @@ void MainWindow::UpdateLogActionClicked()
  * 切换为中文语言
  * 保存一个标记到本地配置数据文件lang.ini
  * 1则表示为中文模式，0则表示为英文模式
-*/
+ */
 void MainWindow::ChineseActionClicked()
 {
     qDebug() << "Chinese";
     vector<char*> data;
-    data.push_back("1");
+    data.push_back(const_cast<char*>("1"));
     WriteFile(LANG_FILE_PATH.toStdString().data(), data);
     Reboot();
 }
 
 /*
  * 切换为英文语言
-*/
+ */
 void MainWindow::EnglishActionClicked()
 {
     qDebug() << "English";
     vector<char*> data;
-    data.push_back("0");
+    data.push_back(const_cast<char*>("0"));
     WriteFile(LANG_FILE_PATH.toStdString().data(), data);
     Reboot();
 }
 
+/*
+ *
+ *
+ */
 void MainWindow::Reboot()
 {
-    qApp->exit(MainWindow::EXIT_CODE_REBOOT);
+    qApp->exit(EXIT_CODE_REBOOT);
 }

@@ -49,8 +49,6 @@ public:
     QTextEdit *demo_example;    //show demo window
     QLineEdit *search_content;  //search content
 
-    QString application_dir_path;//application dir path, invalid
-
     //record
     QTableWidget *record_tw = new QTableWidget(this);
     QDialog *detail_dialog;	//记录弹窗
@@ -61,14 +59,8 @@ public:
     QPushButton *ok_btn;	//确定按钮
     int current_select_row;	//当前表格选择的行号
 
-    QTranslator*  translator;
-
-    static int EXIT_CODE_REBOOT;
-    static QString LANG_FILE_PATH;
-
     void InitMainWindow();			//初始化主界面
     void InitMainWindowMenu();	//初始化窗口菜单栏
-    void InitTableWidget();			//初始化表格
     void DetailMessage();				//显示记录框的内容
     bool IsValidRecord();				//判断是不是合法的记录
     void Tips();								//警告提示弹窗
@@ -89,12 +81,11 @@ private:
 private slots:
 
 	//其他槽
-    void MyWindow();
+    void ABActionClicked();
     void StlFopenButtonClicked();
 	
 	//窗口菜单槽
-    void DemoActionClicked();
-    void CTeamDemo();
+    void PNActionClicked();
 
     //皮肤菜单槽
     void BlackActionClicked();
@@ -106,10 +97,8 @@ private slots:
     void DelActionClicked();
     void ChgActionClicked();
     void QryActionClicked();
-    void AddBtnClicked();
-    void ChgBtnClicked();
 
-    //
+    // 语言菜单槽
     void ChineseActionClicked();
     void EnglishActionClicked();
 

@@ -33,8 +33,44 @@ struct AccountBookStruct{
     string note;
 };
 
-extern int const fontSize ;
-extern int const boldSize ;
+extern int const fontSize;
+extern int const boldSize;
+
+
+// other
+const QString CURRENT_DEMO_PATH = "D:/Users/Administrator/My Document/MagicTool/";
+const QString ZH_CN_QM_FILE_NAME = "zh_CN.qm";
+const int EXIT_CODE_REBOOT = -123456789;
+
+// config
+const QString CONFIG_DIR_PATH = "./config/";
+const QString LANG_FILE_PATH = "./config/lang.ini";
+const QString WHITE_SKIN_FILE_PATH = "./config/white.qss";
+const QString BLACK_SKIN_FILE_PATH = "./config/black.qss";
+const QString DEFAULT_SKIN_FILE_PATH = "./config/default.qss";
+
+// image
+const QString APP_LOGO_FILE_PATH = "./image/alienx64.png";
+const QString AB_LOGO_FILE_PATH = "./image/accountbook64.png";
+const QString PN_LOGO_FILE_PATH = "";
+const QString PM_LOGO_FILE_PATH = "";
+
+// log
+const QString LOG_FILE_PATH = "./log/magictool.log";
+
+// data
+const QString AB_DATA_DIR_PATH = "./data/accountbook/";
+const QString PN_DATA_DIR_PATH = "./data/perfectnote/";
+const QString PM_DATA_DIR_PATH = "./data/passwormanager/";
+
+
+
+
+
+
+
+
+
 
 
 extern QFont GetFont();

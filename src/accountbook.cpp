@@ -1,42 +1,35 @@
 #include "accountbook.h"
 #include "ui_accountbook.h"
 
-accountbook::accountbook(QWidget *parent) :
+AccountBook::AccountBook(QWidget *parent) :
     QDialog(parent),
-    ui(new Ui::accountbook)
+    ui(new Ui::AccountBook)
 {
     ui->setupUi(this);
-
-    //application_dir_path = QCoreApplication::applicationDirPath();
-    application_dir_path = "D:\\Users\\Administrator\\My Document\\MagicTool";
 
     //初始化主窗口菜单栏
     InitMainWindowMenu();
     //初始化主窗口
     InitMainWindow();
     InitTableWidget();
-
-
-
-
 }
 
-accountbook::~accountbook()
+AccountBook::~AccountBook()
 {
     delete ui;
 }
 
-void accountbook::InitMainWindowMenu()
+void AccountBook::InitMainWindowMenu()
 {
     this->resize(900, 600);
-    this->setWindowTitle("account book");
-    this->setWindowIcon(QIcon(application_dir_path + "/image/accountbook64.png"));
+    this->setWindowTitle(tr("account book"));
+    this->setWindowIcon(QIcon(AB_LOGO_FILE_PATH));
 
     //创建操作菜单：增删改查
     QMenuBar *mb = new QMenuBar(this);
     mb->setGeometry(QRect(0, 0, this->width(), 24));
     QMenu* file_menu = mb->addMenu(tr("&file"));
-    QAction *exit_action = file_menu->addAction(tr("&退出"));
+    QAction *exit_action = file_menu->addAction(tr("&exit"));
     exit_action->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_N));
 
     QMenu *add_action = mb->addMenu(tr("&add"));
@@ -50,7 +43,7 @@ void accountbook::InitMainWindowMenu()
 }
 
 
-void accountbook::InitMainWindow()
+void AccountBook::InitMainWindow()
 {
     QWidget *main_window = new QWidget(this);
     main_window->resize(900, 600 - 24);
@@ -69,12 +62,12 @@ void accountbook::InitMainWindow()
     main_window_gl->addWidget(record_tw, 1, 0, 10, 8);
 
     main_window->setLayout(main_window_gl);
-   connect(search_btn, &QPushButton::clicked, this, &accountbook::AddActionClicked);
+   connect(search_btn, &QPushButton::clicked, this, &AccountBook::AddActionClicked);
 
    main_window->showFullScreen();
 }
 
-void accountbook::InitTableWidget()
+void AccountBook::InitTableWidget()
 {
     record_tw->setColumnCount(6);
     record_tw->setHorizontalHeaderLabels(QStringList() << tr("日期") << tr("天气") << tr("类型")<< tr("方式")<< tr("消费金额/元") << tr("备注"));    // 设置列名
@@ -115,7 +108,7 @@ void accountbook::InitTableWidget()
 
 
 
-void accountbook::DetailMessage()
+void AccountBook::DetailMessage()
 {
     detail_dialog = new QDialog(this);
 
@@ -146,18 +139,18 @@ void accountbook::DetailMessage()
     detail_dialog->show();
 }
 
-void accountbook::AddActionClicked()
+void AccountBook::AddActionClicked()
 {
     DetailMessage();
     connect(ok_btn, SIGNAL(clicked()), this, SLOT(AddBtnClicked()));
 }
 
-void accountbook::DelActionClicked()
+void AccountBook::DelActionClicked()
 {
 
 }
 
-void accountbook::ChgActionClicked()
+void AccountBook::ChgActionClicked()
 {
     DetailMessage();
 
@@ -177,11 +170,11 @@ void accountbook::ChgActionClicked()
     connect(ok_btn, SIGNAL(clicked()), this, SLOT(ChgBtnClicked()));
 }
 
-void accountbook::QryActionClicked()
+void AccountBook::QryActionClicked()
 {
 
 }
-bool accountbook::Save2Local()
+bool AccountBook::Save2Local()
 {
     QString file_path = ".\\data\\hankin.txt";
     FILE *fp = fopen(file_path.toLatin1().data(), "w");
@@ -208,7 +201,7 @@ bool accountbook::Save2Local()
     return true;
 }
 
-void accountbook::ChgBtnClicked()
+void AccountBook::ChgBtnClicked()
 {
     record_tw->item(current_select_row, 0)->setText(web_name2->text());
     record_tw->item(current_select_row, 1)->setText(user_name2->text());
@@ -218,14 +211,14 @@ void accountbook::ChgBtnClicked()
     detail_dialog->close();
 }
 
-void accountbook::Tips()
+void AccountBook::Tips()
 {
     QMessageBox::information(this, tr(""),
             tr("无效的记录！"),
-            QMessageBox::tr("确定"));
+            QMessageBox::tr("ok"));
 }
 
-bool accountbook::IsValidRecord()
+bool AccountBook::IsValidRecord()
 {
     if (web_name2->text() == nullptr) {
         goto FAILED;
@@ -245,7 +238,7 @@ FAILED:
 
 
 
-void accountbook::AddBtnClicked()
+void AccountBook::AddBtnClicked()
 {
     if(IsValidRecord() == false) return ;
     QMessageBox mb(QMessageBox::Warning, "","确定要添加当前记录？");

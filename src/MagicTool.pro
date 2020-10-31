@@ -22,7 +22,9 @@ SOURCES += \
     libary/common.cpp \
     libary/iniparser.cpp \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    passwordmanager.cpp \
+    perfectnote.cpp
 
 HEADERS += \
     accountbook.h \
@@ -30,17 +32,21 @@ HEADERS += \
     libary/base64.h \
     libary/common.h \
     libary/iniparser.h \
-    mainwindow.h
+    mainwindow.h \
+    passwordmanager.h \
+    perfectnote.h
 
 FORMS += \
     accountbook.ui \
-    mainwindow.ui
+    mainwindow.ui \
+    passwordmanager.ui \
+    perfectnote.ui
 
 RESOURCES += \
 
 
 TRANSLATIONS += \
-    zh_CN.ts
+    config/zh_CN.ts
 
 
 # Default rules for deployment.
@@ -49,5 +55,5 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 DISTFILES += \
-    zh_CN.ts
+    config/zh_CN.ts
 

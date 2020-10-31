@@ -28,16 +28,16 @@
 #include "globalvariable.h"
 
 namespace Ui {
-class accountbook;
+class AccountBook;
 }
 
-class accountbook : public QDialog
+class AccountBook : public QDialog
 {
     Q_OBJECT
 
 public:
-    explicit accountbook(QWidget *parent = nullptr);
-    ~accountbook();
+    explicit AccountBook(QWidget *parent = nullptr);
+    ~AccountBook();
 
     void InitMainWindow();		//初始化主界面
     void InitMainWindowMenu();	//初始化窗口菜单栏
@@ -48,7 +48,7 @@ public:
     bool Save2Local();
 
 private:
-    Ui::accountbook *ui;
+    Ui::AccountBook *ui;
 
     QString application_dir_path;
 
