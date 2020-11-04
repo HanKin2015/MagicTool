@@ -16,8 +16,17 @@ public:
     explicit PerfectNote(QWidget *parent = nullptr);
     ~PerfectNote();
 
+    QTextEdit *demo_example;      //show demo window
+    QLineEdit *search_line_edit;  //search content
+
+    void InitMainWindow();			//初始化主界面
+
+
 private:
     Ui::PerfectNote *ui;
+
+private slots:
+    void StlFopenButtonClicked();
 };
 
 #endif // PERFECTNOTE_H

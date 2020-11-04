@@ -6,15 +6,18 @@ PerfectNote::PerfectNote(QWidget *parent) :
     ui(new Ui::PerfectNote)
 {
     ui->setupUi(this);
+
+    // 初始化主窗口
+    InitMainWindow();
 }
-#if 0
-PerfectNote::Init()
+
+void PerfectNote::InitMainWindow()
 {
-    QDialog *demo = new QDialog(this);
-    demo->setWindowTitle(tr("perfect note"));
+    this->resize(1200, 800);
+    this->setWindowIcon(QIcon(PN_LOGO_FILE_PATH));
+    this->setWindowTitle(tr("perfect note"));
 
-
-    QWidget *win=new QWidget(demo);
+    QWidget *win=new QWidget(this);
 
     win->resize(1200, 800);
 
@@ -28,24 +31,23 @@ PerfectNote::Init()
     vbox_right->setSpacing(25);
 
     //搜索框
-    search_content = new QLineEdit(win);
-    QPushButton *search_button = new QPushButton("搜索", win);
-    connect(search_button, &QPushButton::clicked, this, &MainWindow::StlFopenButtonClicked);
+    search_line_edit = new QLineEdit(win);
+    QPushButton *search_button = new QPushButton(tr("search"), win);
+    connect(search_button, &QPushButton::clicked, this, &PerfectNote::StlFopenButtonClicked);
 
     QPushButton *stl_fopen = new QPushButton(win);
-    stl_fopen->setText(tr("读文件"));
-    QObject::connect(stl_fopen, &QPushButton::clicked, this, &MainWindow::StlFopenButtonClicked);
+    stl_fopen->setText(tr("read file"));
+    QObject::connect(stl_fopen, &QPushButton::clicked, this, &PerfectNote::StlFopenButtonClicked);
 
     QPushButton *quit=new QPushButton(win);
-    quit->setText(tr("退出"));
+    quit->setText(tr("exit"));
     QObject::connect(quit,SIGNAL(clicked()),win,SLOT(close()));
 
     QTableWidget *catalog_tw = new QTableWidget(win);
     catalog_tw->setColumnCount(1);
     catalog_tw->setColumnWidth(0, 150);
-    catalog_tw->setHorizontalHeaderLabels((QStringList() << tr("name")));
-    QString file_path = ".\\data\\catalog.txt";
-    vector<vector<string> > ret = ReadFileAll(file_path.toLatin1().data());
+    catalog_tw->setHorizontalHeaderLabels((QStringList() << tr("catalog")));
+    vector<vector<string> > ret = ReadFileAll(PN_CATALOG_FILE_PATH.toLatin1().data());
     int catalog_cnt = static_cast<int>(ret.size());
     catalog_tw->setRowCount(catalog_cnt);
     for (int i = 0; i < catalog_cnt; i++) {
@@ -71,7 +73,7 @@ PerfectNote::Init()
     demo_example->setFont(font);
     demo_example->setText("hello world!");
 
-    vbox_left->addWidget(search_content);
+    vbox_left->addWidget(search_line_edit);
     vbox_left->addWidget(search_button);
     vbox_left->addWidget(stl_fopen);
     vbox_left->addWidget(quit);
@@ -83,9 +85,52 @@ PerfectNote::Init()
     hbox_layout->addLayout(vbox_right, 10);
 
     win->show();
-    demo->show();
 }
-#endif
+
+QString read_csv(const char *file_path)
+{
+    qDebug("start read csv");
+
+    const int buffer_size = 100;
+    char buffer[buffer_size + 1];
+    QString tmp = "";
+    char *current_path;
+    current_path = getcwd(nullptr, 0);
+    if (current_path == nullptr) {
+        qDebug("get current_path faild! err=%u, %s", errno, strerror(errno));
+        return tmp;
+    }
+    qDebug("current_path = %s", current_path);
+
+    FILE *fp = fopen(file_path, "r");
+    if (fp == nullptr) {
+        qDebug("fopen error! err=%u, %s", errno, strerror(errno));
+        return tmp;
+    }
+    while (fgets(buffer, buffer_size, fp) != nullptr) {
+        //qDebug() << buffer;
+        tmp += QString::fromLocal8Bit(buffer);
+    }
+    fclose(fp);
+    return tmp;
+}
+
+void PerfectNote::StlFopenButtonClicked()
+{
+    char *current_path;
+    current_path = getcwd(nullptr, 0);
+    if (current_path == nullptr) {
+        qDebug("get current_path faild! err=%u, %s", errno, strerror(errno));
+        return;
+    }
+
+    QString tmp = search_line_edit->text();
+    QString file_path = QString(PN_DATA_DIR_PATH + "%1.txt").arg(tmp);
+
+    QString demo = read_csv(file_path.toLatin1().data());
+    demo_example->setText(demo);
+}
+
 PerfectNote::~PerfectNote()
 {
     delete ui;

@@ -61,7 +61,7 @@ void MainWindow::InitMainWindowMenu()
     QAction *PM_action = window_menu->addAction(tr("&password manager"));
     connect(AB_action,SIGNAL(triggered()),this,SLOT(ABActionClicked()));
     connect(PN_action,SIGNAL(triggered()),this,SLOT(PNActionClicked()));
-    connect(PM_action,SIGNAL(triggered()),this,SLOT(PNActionClicked()));
+    connect(PM_action,SIGNAL(triggered()),this,SLOT(PMActionClicked()));
 
     // 创建操作菜单：增删改查
     QMenu *operation_menu = ui->menubar->addMenu(tr("operation(&O)"));
@@ -203,64 +203,23 @@ FAILED:
     return false;
 }
 
-
-
-QString read_csv(const char *file_path)
-{
-    qDebug("start read csv");
-
-    const int buffer_size = 100;
-    char buffer[buffer_size + 1];
-    QString tmp = "";
-    char *current_path;
-    current_path = getcwd(nullptr, 0);
-    if (current_path == nullptr) {
-        qDebug("get current_path faild! err=%u, %s", errno, strerror(errno));
-        return tmp;
-    }
-    qDebug("current_path = %s", current_path);
-
-    FILE *fp = fopen(file_path, "r");
-    if (fp == nullptr) {
-        qDebug("fopen error! err=%u, %s", errno, strerror(errno));
-        return tmp;
-    }
-    while (fgets(buffer, buffer_size, fp) != nullptr) {
-        //qDebug() << buffer;
-        tmp += QString::fromLocal8Bit(buffer);
-    }
-    fclose(fp);
-    return tmp;
-}
-
-void MainWindow::StlFopenButtonClicked()
-{
-    char *current_path;
-    current_path = getcwd(nullptr, 0);
-    if (current_path == nullptr) {
-        qDebug("get current_path faild! err=%u, %s", errno, strerror(errno));
-        return;
-    }
-
-    QString tmp = search_content->text();
-    QString file_path = QString(".\\data\\note\\%1.txt").arg(tmp);
-
-    QString demo = read_csv(file_path.toLatin1().data());
-    demo_example->setText(demo);
-}
-
 void MainWindow::ABActionClicked()
 {
-    AccountBook *m = new AccountBook();
-    m->show();
+    AccountBook *ab = new AccountBook();
+    ab->show();
 }
 
 void MainWindow::PNActionClicked()
 {
-    AccountBook *m = new AccountBook();
-    m->show();
+    PerfectNote *pn = new PerfectNote();
+    pn->show();
 }
 
+void MainWindow::PMActionClicked()
+{
+    PasswordManager *pm = new PasswordManager();
+    pm->show();
+}
 
 //重写退出事件
 void MainWindow::closeEvent(QCloseEvent *event)

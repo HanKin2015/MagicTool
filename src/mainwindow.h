@@ -1,37 +1,11 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
-#include <QMainWindow>
-#include <QPushButton>
-#include <QLabel>
-#include <QString>
-#include <QFont>
-#include <QRect>
-#include <QColor>
-#include <QTextBrowser>
-#include <QDialog>
-#include <QObject>
-#include <QMessageBox>
-#include <QFileDialog>
-#include <QFontDialog>
-#include <QGridLayout>
-#include <QLineEdit>
-#include <QTextEdit>
-#include <QComboBox>
-#include <QTableWidget>
-#include <QDateEdit>
-#include <QCloseEvent>
-#include <QCheckBox>
-#include <QMenu>
-#include <QMenuBar>
-#include <QDebug>
-#include <QSignalMapper>
-#include <QTranslator>
-#include <QDir>
-#include <QProcess>
 #include "globalvariable.h"
 #include "accountbook.h"
 #include "libary/common.h"
+#include "perfectnote.h"
+#include "passwordmanager.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -46,8 +20,6 @@ public:
     ~MainWindow();
 
     //不能在这里进行初始化new，否则在cpp文件中就无法知道其类型
-    QTextEdit *demo_example;    //show demo window
-    QLineEdit *search_content;  //search content
 
     //record
     QTableWidget *record_tw = new QTableWidget(this);
@@ -79,13 +51,11 @@ private:
     Ui::MainWindow *ui;
 
 private slots:
-
-	//其他槽
-    void ABActionClicked();
-    void StlFopenButtonClicked();
 	
 	//窗口菜单槽
+    void ABActionClicked();
     void PNActionClicked();
+    void PMActionClicked();
 
     //皮肤菜单槽
     void BlackActionClicked();

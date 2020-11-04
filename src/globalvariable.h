@@ -3,6 +3,32 @@
 #include <QString>
 #include <QFont>
 #include <QDebug>
+#include <QMainWindow>
+#include <QPushButton>
+#include <QLabel>
+#include <QString>
+#include <QRect>
+#include <QColor>
+#include <QTextBrowser>
+#include <QDialog>
+#include <QObject>
+#include <QMessageBox>
+#include <QFileDialog>
+#include <QFontDialog>
+#include <QGridLayout>
+#include <QLineEdit>
+#include <QTextEdit>
+#include <QComboBox>
+#include <QTableWidget>
+#include <QDateEdit>
+#include <QCloseEvent>
+#include <QCheckBox>
+#include <QMenu>
+#include <QMenuBar>
+#include <QSignalMapper>
+#include <QTranslator>
+#include <QDir>
+#include <QProcess>
 
 #include <string>
 #include <string.h>
@@ -15,6 +41,7 @@
 #include <cstring>
 #include <stdarg.h>
 #include <direct.h>
+
 using namespace std;
 
 struct RecordStruct{
@@ -37,8 +64,10 @@ extern int const fontSize;
 extern int const boldSize;
 
 
+// specil
+const QString CURRENT_DEMO_PATH = "D:/Github/MagicTool/src/";
+
 // other
-const QString CURRENT_DEMO_PATH = "D:/Users/Administrator/My Document/MagicTool/";
 const QString ZH_CN_QM_FILE_NAME = "zh_CN.qm";
 const int EXIT_CODE_REBOOT = -123456789;
 
@@ -52,8 +81,8 @@ const QString DEFAULT_SKIN_FILE_PATH = "./config/default.qss";
 // image
 const QString APP_LOGO_FILE_PATH = "./image/alienx64.png";
 const QString AB_LOGO_FILE_PATH = "./image/accountbook64.png";
-const QString PN_LOGO_FILE_PATH = "";
-const QString PM_LOGO_FILE_PATH = "";
+const QString PN_LOGO_FILE_PATH = "./image/perfectnote64.png";
+const QString PM_LOGO_FILE_PATH = "./image/passwordmanager64.png";
 
 // log
 const QString LOG_FILE_PATH = "./log/magictool.log";
@@ -62,6 +91,7 @@ const QString LOG_FILE_PATH = "./log/magictool.log";
 const QString AB_DATA_DIR_PATH = "./data/accountbook/";
 const QString PN_DATA_DIR_PATH = "./data/perfectnote/";
 const QString PM_DATA_DIR_PATH = "./data/passwormanager/";
+const QString PN_CATALOG_FILE_PATH = "./data/perfectnote/catalog.txt";
 
 
 

@@ -88,6 +88,7 @@ Works now!
 
 ## 首页设计成图片幻灯片
 
+## Qt中报错error: allocation of incomplete type ‘Ui::‘
 
 
 

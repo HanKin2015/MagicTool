@@ -25,6 +25,7 @@ extern QFont GetFont()
             return fontStyle;
         }
     }
+    return QFont();
 }
 
 extern QString GetStyle()

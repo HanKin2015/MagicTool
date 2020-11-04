@@ -16,6 +16,8 @@ public:
     explicit PasswordManager(QWidget *parent = nullptr);
     ~PasswordManager();
 
+    void InitMainWindow();
+
 private:
     Ui::PasswordManager *ui;
 };
