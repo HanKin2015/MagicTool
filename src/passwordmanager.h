@@ -16,10 +16,20 @@ public:
     explicit PasswordManager(QWidget *parent = nullptr);
     ~PasswordManager();
 
-    void InitMainWindow();
+    QTableWidget *passwd_table = new QTableWidget(this);
+
+    void InitMenuBar();
+    void InitToolBar();
+    void InitMainBody();
+    void InitTableWidget();
 
 private:
     Ui::PasswordManager *ui;
+
+public slots:
+    void TrigerMenuBar(QAction* act);
+    void TrigerToolBar(QToolButton* tb);
+    void AddActionClicked();
 };
 
 #endif // PASSWORDMANAGER_H

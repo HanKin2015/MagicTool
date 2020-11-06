@@ -50,8 +50,6 @@ public:
 private:
     Ui::AccountBook *ui;
 
-    QString application_dir_path;
-
     QTableWidget *record_tw = new QTableWidget(this);
     QDialog *detail_dialog;	//记录弹窗
     QLineEdit *web_name2;	//站点
@@ -69,6 +67,9 @@ private slots:
     void QryActionClicked();
     void AddBtnClicked();
     void ChgBtnClicked();
+	
+	void TrigerMenu(QAction* act);
+    void TrigerToolBar(QToolButton* tb);
 };
 
 #endif // ACCOUNTBOOK_H

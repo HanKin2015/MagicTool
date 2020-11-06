@@ -6,42 +6,42 @@
     <message>
         <location filename="../accountbook.cpp" line="25"/>
         <source>account book</source>
-        <translation type="unfinished"></translation>
+        <translation type="finished">账本</translation>
     </message>
     <message>
         <location filename="../accountbook.cpp" line="31"/>
         <source>&amp;file</source>
-        <translation type="unfinished">文件</translation>
+        <translation type="finished">&amp;文件</translation>
     </message>
     <message>
         <location filename="../accountbook.cpp" line="32"/>
         <source>&amp;exit</source>
-        <translation type="unfinished"></translation>
+        <translation type="finished">&amp;退出</translation>
     </message>
     <message>
         <location filename="../accountbook.cpp" line="35"/>
         <source>&amp;add</source>
-        <translation type="unfinished">&amp;增加</translation>
+        <translation type="finished">&amp;增加</translation>
     </message>
     <message>
         <location filename="../accountbook.cpp" line="36"/>
         <source>&amp;delete</source>
-        <translation type="unfinished">&amp;删除</translation>
+        <translation type="finished">&amp;删除</translation>
     </message>
     <message>
         <location filename="../accountbook.cpp" line="37"/>
         <source>&amp;change</source>
-        <translation type="unfinished">&amp;修改</translation>
+        <translation type="finished">&amp;修改</translation>
     </message>
     <message>
         <location filename="../accountbook.cpp" line="38"/>
         <source>&amp;query</source>
-        <translation type="unfinished">&amp;查询</translation>
+        <translation type="finished">&amp;查询</translation>
     </message>
     <message>
         <location filename="../accountbook.cpp" line="56"/>
         <source>search</source>
-        <translation type="unfinished">搜索</translation>
+        <translation type="finished">搜索</translation>
     </message>
     <message>
         <location filename="../accountbook.cpp" line="73"/>

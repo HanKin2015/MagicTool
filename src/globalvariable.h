@@ -29,6 +29,8 @@
 #include <QTranslator>
 #include <QDir>
 #include <QProcess>
+#include <QToolBar>
+#include <QToolButton>
 
 #include <string>
 #include <string.h>
@@ -83,6 +85,14 @@ const QString APP_LOGO_FILE_PATH = "./image/alienx64.png";
 const QString AB_LOGO_FILE_PATH = "./image/accountbook64.png";
 const QString PN_LOGO_FILE_PATH = "./image/perfectnote64.png";
 const QString PM_LOGO_FILE_PATH = "./image/passwordmanager64.png";
+const QString ADD_PNG_PATH = "./image/add.png";
+const QString DELETE_PNG_PATH = "./image/delete.png";
+const QString CHANGE_PNG_PATH = "./image/change.png";
+const QString QUERY_PNG_PATH = "./image/query.png";
+const QString FILE_PNG_PATH = "./image/file.png";
+const QString FOLER_PNG_PATH = "./image/folder.png";
+const QString ABOUT_PNG_PATH = "./image/about.png";
+const QString DOCUMENT_PNG_PATH = "./image/document.png";
 
 // log
 const QString LOG_FILE_PATH = "./log/magictool.log";
@@ -92,6 +102,7 @@ const QString AB_DATA_DIR_PATH = "./data/accountbook/";
 const QString PN_DATA_DIR_PATH = "./data/perfectnote/";
 const QString PM_DATA_DIR_PATH = "./data/passwormanager/";
 const QString PN_CATALOG_FILE_PATH = "./data/perfectnote/catalog.txt";
+const QString AB_DATA_FILE_PATH = "./data/accountbook/data.txt";
 
 
 

@@ -26,28 +26,78 @@ void AccountBook::InitMainWindowMenu()
     this->setWindowIcon(QIcon(AB_LOGO_FILE_PATH));
 
     //创建操作菜单：增删改查
-    QMenuBar *mb = new QMenuBar(this);
-    mb->setGeometry(QRect(0, 0, this->width(), 24));
-    QMenu* file_menu = mb->addMenu(tr("&file"));
+    QMenu* file_menu = new QMenu(tr("&file"));
     QAction *exit_action = file_menu->addAction(tr("&exit"));
     exit_action->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_N));
 
-    QMenu *add_action = mb->addMenu(tr("&add"));
-    QMenu *del_action = mb->addMenu(tr("&delete"));
-    QMenu *chg_action = mb->addMenu(tr("&change"));
-    QMenu *qry_action = mb->addMenu(tr("&query"));
-    connect(add_action,SIGNAL(triggered()),this,SLOT(AddActionClicked()));
-    connect(del_action,SIGNAL(triggered()),this,SLOT(DelActionClicked()));
-    connect(chg_action,SIGNAL(triggered()),this,SLOT(ChgActionClicked()));
-    connect(qry_action,SIGNAL(triggered()),this,SLOT(QryActionClicked()));
+    QMenu *add_menu = new QMenu(tr("&add"));
+    QMenu *del_menu = new QMenu(tr("&delete"));
+    QMenu *chg_menu = new QMenu(tr("&change"));
+    QMenu *qry_menu = new QMenu(tr("&query"));
+    connect(add_menu,SIGNAL(triggered()),this,SLOT(AddActionClicked()));
+    connect(del_menu,SIGNAL(triggered()),this,SLOT(DelActionClicked()));
+    connect(chg_menu,SIGNAL(triggered()),this,SLOT(ChgActionClicked()));
+    connect(qry_menu,SIGNAL(triggered()),this,SLOT(QryActionClicked()));
+	
+    QMenuBar *mb = new QMenuBar(this);
+    mb->addMenu(file_menu);
+    mb->addMenu(add_menu);
+    mb->addMenu(del_menu);
+    mb->addMenu(chg_menu);
+    mb->addMenu(qry_menu);
+    //mb->setGeometry(QRect(0, 0, this->width(), 32));
+    mb->setGeometry(0, 0, this->width(), 32);
+    connect(mb, SIGNAL(triggered(QAction*)), this, SLOT(TrigerMenu(QAction*)));
+	
+    //创建工具栏
+    QToolBar *tb = new QToolBar(this);
+    //QAction *add_act = new QAction(QIcon(ADD_PNG_PATH), tr("add"), this);      //创建QToolButton
+    //tb->addAction(add_act);             			//向工具栏添加QToolButton按钮
+
+    QToolButton *add_btn = new QToolButton(this);
+    add_btn->setIcon(QIcon(ADD_PNG_PATH));
+    add_btn->setFixedSize(30, 30);
+    tb->addWidget(add_btn);
+
+    QToolButton *del_btn = new QToolButton(this);
+    del_btn->setIcon(QIcon(DELETE_PNG_PATH));
+    del_btn->setFixedSize(30, 30);
+    tb->addWidget(del_btn);
+
+    QToolButton *chg_btn = new QToolButton(this);
+    chg_btn->setIcon(QIcon(CHANGE_PNG_PATH));
+    chg_btn->setFixedSize(30, 30);
+    tb->addWidget(chg_btn);
+
+    QToolButton *qry_btn = new QToolButton(this);
+    qry_btn->setIcon(QIcon(QUERY_PNG_PATH));
+    qry_btn->setFixedSize(30, 30);
+    tb->addWidget(qry_btn);
+    
+    //tb->setStyleSheet("background-color:rgb(200,40,43);color:rgb(204,204,204)");
+    tb->setGeometry(0, 32, this->width(), 32);
+    connect(tb, SIGNAL(triggered(QToolButton*)), this, SLOT(TrigerToolBar(QToolButton*)));
 }
 
+/*
+ * 打印日志吧
+ *
+ */
+void AccountBook::TrigerMenu(QAction* act)
+{
+    qDebug() << act->text() << "键被按下";
+}
+
+void AccountBook::TrigerToolBar(QToolButton* tb)
+{
+    qDebug() << tb->text() << "键被按下";
+}
 
 void AccountBook::InitMainWindow()
 {
     QWidget *main_window = new QWidget(this);
-    main_window->resize(900, 600 - 24);
-    main_window->move(0, 24);
+    main_window->resize(900, 600 - 64);
+    main_window->move(0, 64);
 
 
     QGridLayout *main_window_gl = new QGridLayout(main_window);
@@ -82,8 +132,7 @@ void AccountBook::InitTableWidget()
     //无法编辑表格
     record_tw->setEditTriggers(QAbstractItemView::NoEditTriggers);
 
-    QString file_path = application_dir_path + "\\data\\accoutbook\\data.txt";
-    vector<vector<string> > ret = ReadFileAll(file_path.toLatin1().data());
+    vector<vector<string> > ret = ReadFileAll(AB_DATA_FILE_PATH.toLatin1().data());
     int record_cnt = static_cast<int>(ret.size());
 
     qDebug("current record size = %d", record_cnt);
@@ -111,6 +160,7 @@ void AccountBook::InitTableWidget()
 void AccountBook::DetailMessage()
 {
     detail_dialog = new QDialog(this);
+    detail_dialog->setWindowTitle("detail");
 
     QGridLayout *grid_layout = new QGridLayout;
 
@@ -132,7 +182,7 @@ void AccountBook::DetailMessage()
     grid_layout->addWidget(note_name2, 3, 2, 1, 3);
 
 
-    ok_btn = new QPushButton("确定");
+    ok_btn = new QPushButton(tr("ok"));
     grid_layout->addWidget(ok_btn, 4, 3, 1, 2);
 
     detail_dialog->setLayout(grid_layout);
