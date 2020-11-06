@@ -17,19 +17,31 @@ public:
     ~PasswordManager();
 
     QTableWidget *passwd_table = new QTableWidget(this);
+    QDialog *dialog;
+    QString platform;
+    QString account;
+    QString password;
+    QString remarks;
 
     void InitMenuBar();
     void InitToolBar();
     void InitMainBody();
     void InitTableWidget();
+    void PasswordMessageWindow();
+    void PassMsgWindowBtnClicked();
+    bool IsValidRecord();
+    void Tips();
+    bool Save2Local();
 
 private:
     Ui::PasswordManager *ui;
 
 public slots:
     void TrigerMenuBar(QAction* act);
-    void TrigerToolBar(QToolButton* tb);
     void AddActionClicked();
+    void DelActionClicked();
+    void ChgActionClicked();
+    void QryActionClicked();
 };
 
 #endif // PASSWORDMANAGER_H

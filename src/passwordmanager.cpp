@@ -23,29 +23,38 @@ PasswordManager::PasswordManager(QWidget *parent) :
 
 void PasswordManager::InitMenuBar()
 {
-    //创建操作菜单：增删改查
-    QMenu* file_menu = new QMenu(tr("&file"));
+    //创建文件菜单
+    QMenu* file_menu = new QMenu(tr("file(&F)"));
     QAction *exit_action = file_menu->addAction(tr("&exit"));
     exit_action->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_N));
 
-    QMenu *add_menu = new QMenu(tr("&add"));
-    QMenu *del_menu = new QMenu(tr("&delete"));
-    QMenu *chg_menu = new QMenu(tr("&change"));
-    QMenu *qry_menu = new QMenu(tr("&query"));
-    connect(add_menu,SIGNAL(triggered()),this,SLOT(AddActionClicked()));
-    connect(del_menu,SIGNAL(triggered()),this,SLOT(DelActionClicked()));
-    connect(chg_menu,SIGNAL(triggered()),this,SLOT(ChgActionClicked()));
-    connect(qry_menu,SIGNAL(triggered()),this,SLOT(QryActionClicked()));
+    // 创建操作菜单：增删改查
+    QMenu *operation_menu = new QMenu(tr("operation(&O)"));
+    QAction *add_action = operation_menu->addAction(tr("&add"));
+    QAction *del_action = operation_menu->addAction(tr("&delete"));
+    QAction *chg_action = operation_menu->addAction(tr("&change"));
+    QAction *qry_action = operation_menu->addAction(tr("&query"));
+    connect(add_action,SIGNAL(triggered()),this,SLOT(AddActionClicked()));
+    connect(del_action,SIGNAL(triggered()),this,SLOT(DelActionClicked()));
+    connect(chg_action,SIGNAL(triggered()),this,SLOT(ChgActionClicked()));
+    connect(qry_action,SIGNAL(triggered()),this,SLOT(QryActionClicked()));
+
+    // 创建帮助菜单
+    QMenu *help_menu = new QMenu(tr("help(&H)"));
+    QAction *document_action = help_menu->addAction(tr("&document"));
+    QAction *update_log_action = help_menu->addAction(tr("&update log"));
+    QAction *about_action = help_menu->addAction(tr("&about"));
+    //connect(about_action,SIGNAL(triggered()),this,SLOT(AboutActionClicked()));
+    //connect(document_action,SIGNAL(triggered()),this,SLOT(DocumentActionClicked()));
+    //connect(update_log_action,SIGNAL(triggered()),this,SLOT(UpdateLogActionClicked()));
 
     QMenuBar *mb = new QMenuBar(this);
     mb->addMenu(file_menu);
-    mb->addMenu(add_menu);
-    mb->addMenu(del_menu);
-    mb->addMenu(chg_menu);
-    mb->addMenu(qry_menu);
+    mb->addMenu(operation_menu);
+    mb->addMenu(help_menu);
     //mb->setGeometry(QRect(0, 0, this->width(), 32));
     mb->setGeometry(0, 0, this->width(), 32);
-    connect(mb, SIGNAL(triggered(QAction*)), this, SLOT(TrigerMenu(QAction*)));
+    connect(mb, SIGNAL(triggered(QAction*)), this, SLOT(TrigerMenubar(QAction*)));
 }
 
 void PasswordManager::InitToolBar()
@@ -74,10 +83,10 @@ void PasswordManager::InitToolBar()
     qry_btn->setIcon(QIcon(QUERY_PNG_PATH));
     qry_btn->setFixedSize(30, 30);
     tb->addWidget(qry_btn);
+    connect(qry_btn, SIGNAL(clicked()), this, SLOT(PassMsgWindowBtnClicked()));
 
     //tb->setStyleSheet("background-color:rgb(200,40,43);color:rgb(204,204,204)");
     tb->setGeometry(0, 32, this->width(), 32);
-    connect(tb, SIGNAL(triggered(QToolButton*)), this, SLOT(TrigerToolBar(QToolButton*)));
 }
 
 PasswordManager::~PasswordManager()
@@ -92,11 +101,6 @@ PasswordManager::~PasswordManager()
 void PasswordManager::TrigerMenuBar(QAction* act)
 {
     qDebug() << act->text() << "键被按下";
-}
-
-void PasswordManager::TrigerToolBar(QToolButton* tb)
-{
-    qDebug() << tb->text() << "键被按下";
 }
 
 void PasswordManager::InitMainBody()
@@ -118,16 +122,16 @@ void PasswordManager::InitMainBody()
     main_window_gl->addWidget(passwd_table, 1, 0, 10, 8);
 
     main_window->setLayout(main_window_gl);
-   connect(search_btn, &QPushButton::clicked, this, &PasswordManager::AddActionClicked);
+    connect(search_btn, &QPushButton::clicked, this, &PasswordManager::AddActionClicked);
 
-   main_window->showFullScreen();
+    main_window->showFullScreen();
 }
 
 void PasswordManager::InitTableWidget()
 {
-    passwd_table->setColumnCount(6);
-    passwd_table->setHorizontalHeaderLabels(QStringList() << tr("日期") << tr("天气") << tr("类型")<< tr("方式")<< tr("消费金额/元") << tr("备注"));    // 设置列名
-    for(int i = 0; i < 5; i++)
+    passwd_table->setColumnCount(4);
+    passwd_table->setHorizontalHeaderLabels(QStringList() << tr("platform") << tr("account") << tr("password")<< tr("remarks"));    // 设置列名
+    for(int i = 0; i < 4; i++)
         passwd_table->setColumnWidth(i, 150);
     //获得水平方向表头的item对象
     QTableWidgetItem *columnHeaderItem = passwd_table->horizontalHeaderItem(1);
@@ -138,7 +142,7 @@ void PasswordManager::InitTableWidget()
     //无法编辑表格
     passwd_table->setEditTriggers(QAbstractItemView::NoEditTriggers);
 
-    vector<vector<string> > ret = ReadFileAll(AB_DATA_FILE_PATH.toLatin1().data());
+    vector<vector<string> > ret = ReadFileAll(PM_DATA_FILE_PATH.toLatin1().data());
     int record_cnt = static_cast<int>(ret.size());
 
     qDebug("current record size = %d", record_cnt);
@@ -162,43 +166,52 @@ void PasswordManager::InitTableWidget()
 }
 
 
-
-void PasswordManager::DetailMessage()
+/*
+ * 增加和修改都会调用这个弹框
+ */
+void PasswordManager::PasswordMessageWindow()
 {
-    detail_dialog = new QDialog(this);
-    detail_dialog->setWindowTitle("detail");
+    dialog = new QDialog(this);
+    dialog->setWindowTitle(tr("password message"));
 
     QGridLayout *grid_layout = new QGridLayout;
 
-    QLabel *web_name1 = new QLabel("站 点");
-    web_name2 = new QLineEdit();
-    grid_layout->addWidget(web_name1, 0, 0, 1, 2);
-    grid_layout->addWidget(web_name2, 0, 2, 1, 3);
-    QLabel *user_name1 = new QLabel("用户名");
-    user_name2 = new QLineEdit();
-    grid_layout->addWidget(user_name1, 1, 0, 1, 2);
-    grid_layout->addWidget(user_name2, 1, 2, 1, 3);
-    QLabel *pwd_name1 = new QLabel("密 码");
-    pwd_name2 = new QLineEdit();
-    grid_layout->addWidget(pwd_name1, 2, 0, 1, 2);
-    grid_layout->addWidget(pwd_name2, 2, 2, 1, 3);
-    QLabel *note_name1 = new QLabel("备 注");
-    note_name2 = new QLineEdit();
-    grid_layout->addWidget(note_name1, 3, 0, 1, 2);
-    grid_layout->addWidget(note_name2, 3, 2, 1, 3);
+    QLabel *platform_label = new QLabel(tr("platform"));
+    QLineEdit *platform_edit = new QLineEdit(platform);
+    grid_layout->addWidget(platform_label, 0, 0, 1, 2);
+    grid_layout->addWidget(platform_edit, 0, 2, 1, 3);
+
+    QLabel *account_label = new QLabel("account");
+    QLineEdit *account_edit = new QLineEdit(account);
+    grid_layout->addWidget(account_label, 1, 0, 1, 2);
+    grid_layout->addWidget(account_edit, 1, 2, 1, 3);
+
+    QLabel *password_label = new QLabel("password");
+    QLineEdit *password_edit = new QLineEdit(password);
+    grid_layout->addWidget(password_label, 2, 0, 1, 2);
+    grid_layout->addWidget(password_edit, 2, 2, 1, 3);
+
+    QLabel *remarks_label = new QLabel("remarks");
+    QLineEdit *remarks_edit = new QLineEdit(remarks);
+    grid_layout->addWidget(remarks_label, 3, 0, 1, 2);
+    grid_layout->addWidget(remarks_edit, 3, 2, 1, 3);
 
 
-    ok_btn = new QPushButton(tr("ok"));
+    QPushButton *ok_btn = new QPushButton(tr("ok"));
     grid_layout->addWidget(ok_btn, 4, 3, 1, 2);
+    connect(ok_btn, SIGNAL(clicked()), this, SLOT(PassMsgWindowBtnClicked()));
 
-    detail_dialog->setLayout(grid_layout);
-    detail_dialog->show();
+    dialog->setLayout(grid_layout);
+    dialog->show();
 }
 
 void PasswordManager::AddActionClicked()
 {
-    DetailMessage();
-    connect(ok_btn, SIGNAL(clicked()), this, SLOT(AddBtnClicked()));
+    platform = "";
+    account = "";
+    password = "";
+    remarks = "";
+    PasswordMessageWindow();
 }
 
 void PasswordManager::DelActionClicked()
@@ -208,10 +221,8 @@ void PasswordManager::DelActionClicked()
 
 void PasswordManager::ChgActionClicked()
 {
-    DetailMessage();
-
-    QList<QTableWidgetItem*> items = record_tw->selectedItems();
-    current_select_row = record_tw->currentRow();
+    QList<QTableWidgetItem*> items = passwd_table->selectedItems();
+    int row = passwd_table->currentRow();
 //    for(int i = 0; i < 4; i++)
 //    {
 //        QTableWidgetItem *item = record_tw->item(row, i);
@@ -219,11 +230,11 @@ void PasswordManager::ChgActionClicked()
 //        qDebug() << text;
 //    }
 
-    web_name2->setText(record_tw->item(current_select_row, 0)->text());
-    user_name2->setText(record_tw->item(current_select_row, 1)->text());
-    pwd_name2->setText(record_tw->item(current_select_row, 2)->text());
-    note_name2->setText(record_tw->item(current_select_row, 3)->text());
-    connect(ok_btn, SIGNAL(clicked()), this, SLOT(ChgBtnClicked()));
+    platform = passwd_table->item(row, 0)->text();
+    account = passwd_table->item(row, 1)->text();
+    password = passwd_table->item(row, 2)->text();
+    remarks = passwd_table->item(row, 3)->text();
+    PasswordMessageWindow();
 }
 
 void PasswordManager::QryActionClicked()
@@ -232,23 +243,22 @@ void PasswordManager::QryActionClicked()
 }
 bool PasswordManager::Save2Local()
 {
-    QString file_path = ".\\data\\hankin.txt";
-    FILE *fp = fopen(file_path.toLatin1().data(), "w");
+    FILE *fp = fopen(PM_DATA_FILE_PATH.toLatin1().data(), "w");
     if (fp == nullptr) {
         qDebug("fopen error! err=%u, %s", errno, strerror(errno));
         return false;
     }
 
-    int rows = record_tw->rowCount();
+    int rows = passwd_table->rowCount();
     for (int i = 0; i < rows; i++) {
         RecordStruct rs;
-        rs.web_name = QString2StdString(record_tw->item(i, 0)->text());
-        rs.user_name = QString2StdString(record_tw->item(i, 1)->text());
-        rs.pwd = QString2StdString(record_tw->item(i, 2)->text());
-        if (record_tw->item(i, 3)->text() == "\n") {
+        rs.web_name = QString2StdString(passwd_table->item(i, 0)->text());
+        rs.user_name = QString2StdString(passwd_table->item(i, 1)->text());
+        rs.pwd = QString2StdString(passwd_table->item(i, 2)->text());
+        if (passwd_table->item(i, 3)->text() == "\n") {
             fprintf(fp, "%s,%s,%s,\n", rs.web_name.data(), rs.user_name.data(), rs.pwd.data());
         } else {
-            rs.note = QString2StdString(record_tw->item(i, 3)->text());
+            rs.note = QString2StdString(passwd_table->item(i, 3)->text());
             fprintf(fp, "%s,%s,%s,%s\n", rs.web_name.data(), rs.user_name.data(), rs.pwd.data(), rs.note.data());
         }
     }
@@ -257,32 +267,22 @@ bool PasswordManager::Save2Local()
     return true;
 }
 
-void PasswordManager::ChgBtnClicked()
-{
-    record_tw->item(current_select_row, 0)->setText(web_name2->text());
-    record_tw->item(current_select_row, 1)->setText(user_name2->text());
-    record_tw->item(current_select_row, 2)->setText(pwd_name2->text());
-    record_tw->item(current_select_row, 3)->setText(note_name2->text());
-    Save2Local();
-    detail_dialog->close();
-}
-
 void PasswordManager::Tips()
 {
     QMessageBox::information(this, tr(""),
-            tr("无效的记录！"),
+            tr("password data message have format errors!"),
             QMessageBox::tr("ok"));
 }
 
-bool AccountBook::IsValidRecord()
+bool PasswordManager::IsValidRecord()
 {
-    if (web_name2->text() == nullptr) {
+    if (platform == nullptr) {
         goto FAILED;
     }
-    if (user_name2->text() == nullptr) {
+    if (account == nullptr) {
         goto FAILED;
     }
-    if (pwd_name2->text() == nullptr) {
+    if (password == nullptr) {
         goto FAILED;
     }
 
@@ -294,37 +294,21 @@ FAILED:
 
 
 
-void AccountBook::AddBtnClicked()
+void PasswordManager::PassMsgWindowBtnClicked()
 {
     if(IsValidRecord() == false) return ;
-    QMessageBox mb(QMessageBox::Warning, "","确定要添加当前记录？");
-    mb.setStandardButtons(QMessageBox::Ok|QMessageBox::Cancel);
-    mb.setButtonText (QMessageBox::Ok,QString("确 定"));
-    mb.setButtonText (QMessageBox::Cancel,QString("取 消"));
-    if(mb.exec() == QMessageBox::Ok)
-    {
-        /*添加event*/
-        RecordStruct rs;
-        rs.web_name = QString2StdString(web_name2->text());
-        rs.user_name = QString2StdString(user_name2->text());
-        rs.pwd = QString2StdString(pwd_name2->text());
-        rs.note = QString2StdString(note_name2->text());
 
-
-        QString file_path = ".\\data\\hankin.txt";
-        if (!WriteFile(file_path.toLatin1().data(), "a", rs))
-        {
-            InitTableWidget();
-            QMessageBox::information(this, tr(""),
-                    tr("添加成功！"),
-                    QMessageBox::tr("确定"));
-        } else {
-            QMessageBox::information(this, tr(""),
-                    tr("添加失败！"),
-                    QMessageBox::tr("确定"));
-        }
-    }
-    detail_dialog->close();
+	int row = passwd_table->currentRow();
+	if (row == -1) {
+        row = passwd_table->rowCount() + 1;
+	}
+	passwd_table->item(row, 0)->setText(platform);
+	passwd_table->item(row, 1)->setText(account);
+	passwd_table->item(row, 2)->setText(password);
+	passwd_table->item(row, 3)->setText(remarks);
+    dialog->close();
+    delete dialog;
+    dialog = nullptr;
 }
 
 

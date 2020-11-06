@@ -311,11 +311,11 @@ void AccountBook::AddBtnClicked()
             InitTableWidget();
             QMessageBox::information(this, tr(""),
                     tr("添加成功！"),
-                    QMessageBox::tr("确定"));
+                    QMessageBox::tr("ok"));
         } else {
             QMessageBox::information(this, tr(""),
                     tr("添加失败！"),
-                    QMessageBox::tr("确定"));
+                    QMessageBox::tr("ok"));
         }
     }
     detail_dialog->close();

@@ -103,7 +103,7 @@ const QString PN_DATA_DIR_PATH = "./data/perfectnote/";
 const QString PM_DATA_DIR_PATH = "./data/passwormanager/";
 const QString PN_CATALOG_FILE_PATH = "./data/perfectnote/catalog.txt";
 const QString AB_DATA_FILE_PATH = "./data/accountbook/data.txt";
-
+const QString PM_DATA_FILE_PATH = "./data/passwordmanager/data.txt";
 
 
 

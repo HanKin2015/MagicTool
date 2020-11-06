@@ -6,85 +6,90 @@
     <message>
         <location filename="../accountbook.cpp" line="25"/>
         <source>account book</source>
-        <translation type="finished">账本</translation>
+        <translation>账本</translation>
     </message>
     <message>
-        <location filename="../accountbook.cpp" line="31"/>
+        <location filename="../accountbook.cpp" line="29"/>
         <source>&amp;file</source>
-        <translation type="finished">&amp;文件</translation>
+        <translation>&amp;文件</translation>
     </message>
     <message>
-        <location filename="../accountbook.cpp" line="32"/>
+        <location filename="../accountbook.cpp" line="30"/>
         <source>&amp;exit</source>
-        <translation type="finished">&amp;退出</translation>
+        <translation>&amp;退出</translation>
+    </message>
+    <message>
+        <location filename="../accountbook.cpp" line="33"/>
+        <source>&amp;add</source>
+        <translation>&amp;增加</translation>
+    </message>
+    <message>
+        <location filename="../accountbook.cpp" line="34"/>
+        <source>&amp;delete</source>
+        <translation>&amp;删除</translation>
     </message>
     <message>
         <location filename="../accountbook.cpp" line="35"/>
-        <source>&amp;add</source>
-        <translation type="finished">&amp;增加</translation>
+        <source>&amp;change</source>
+        <translation>&amp;修改</translation>
     </message>
     <message>
         <location filename="../accountbook.cpp" line="36"/>
-        <source>&amp;delete</source>
-        <translation type="finished">&amp;删除</translation>
-    </message>
-    <message>
-        <location filename="../accountbook.cpp" line="37"/>
-        <source>&amp;change</source>
-        <translation type="finished">&amp;修改</translation>
-    </message>
-    <message>
-        <location filename="../accountbook.cpp" line="38"/>
         <source>&amp;query</source>
-        <translation type="finished">&amp;查询</translation>
+        <translation>&amp;查询</translation>
     </message>
     <message>
-        <location filename="../accountbook.cpp" line="56"/>
+        <location filename="../accountbook.cpp" line="106"/>
         <source>search</source>
-        <translation type="finished">搜索</translation>
+        <translation>搜索</translation>
     </message>
     <message>
-        <location filename="../accountbook.cpp" line="73"/>
+        <location filename="../accountbook.cpp" line="123"/>
         <source>日期</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../accountbook.cpp" line="73"/>
+        <location filename="../accountbook.cpp" line="123"/>
         <source>天气</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../accountbook.cpp" line="73"/>
+        <location filename="../accountbook.cpp" line="123"/>
         <source>类型</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../accountbook.cpp" line="73"/>
+        <location filename="../accountbook.cpp" line="123"/>
         <source>方式</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../accountbook.cpp" line="73"/>
+        <location filename="../accountbook.cpp" line="123"/>
         <source>消费金额/元</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../accountbook.cpp" line="73"/>
+        <location filename="../accountbook.cpp" line="123"/>
         <source>备注</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../accountbook.cpp" line="217"/>
+        <location filename="../accountbook.cpp" line="185"/>
+        <source>ok</source>
+        <translation type="unfinished">确定</translation>
+    </message>
+    <message>
+        <location filename="../accountbook.cpp" line="267"/>
         <source>无效的记录！</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../accountbook.cpp" line="263"/>
+        <location filename="../accountbook.cpp" line="313"/>
         <source>添加成功！</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../accountbook.cpp" line="267"/>
+        <location filename="../accountbook.cpp" line="317"/>
         <source>添加失败！</source>
         <translation type="unfinished"></translation>
     </message>
@@ -290,9 +295,80 @@ Build 1001</source>
 <context>
     <name>PasswordManager</name>
     <message>
-        <location filename="../passwordmanager.cpp" line="18"/>
+        <location filename="../passwordmanager.cpp" line="12"/>
         <source>password manager</source>
         <translation>密码管理器</translation>
+    </message>
+    <message>
+        <location filename="../passwordmanager.cpp" line="27"/>
+        <source>&amp;file</source>
+        <translation type="finished">文件</translation>
+    </message>
+    <message>
+        <location filename="../passwordmanager.cpp" line="28"/>
+        <source>&amp;exit</source>
+        <translation type="finished">&amp;退出</translation>
+    </message>
+    <message>
+        <location filename="../passwordmanager.cpp" line="31"/>
+        <source>&amp;add</source>
+        <translation type="finished">&amp;增加</translation>
+    </message>
+    <message>
+        <location filename="../passwordmanager.cpp" line="32"/>
+        <source>&amp;delete</source>
+        <translation type="finished">&amp;删除</translation>
+    </message>
+    <message>
+        <location filename="../passwordmanager.cpp" line="33"/>
+        <source>&amp;change</source>
+        <translation type="finished">&amp;修改</translation>
+    </message>
+    <message>
+        <location filename="../passwordmanager.cpp" line="34"/>
+        <source>&amp;query</source>
+        <translation type="finished">&amp;查询</translation>
+    </message>
+    <message>
+        <location filename="../passwordmanager.cpp" line="112"/>
+        <source>search</source>
+        <translation type="finished">搜索</translation>
+    </message>
+    <message>
+        <location filename="../passwordmanager.cpp" line="171"/>
+        <source>password message</source>
+        <translation>密码信息</translation>
+    </message>
+    <message>
+        <location filename="../passwordmanager.cpp" line="129"/>
+        <location filename="../passwordmanager.cpp" line="175"/>
+        <source>platform</source>
+        <translation>平台</translation>
+    </message>
+    <message>
+        <location filename="../passwordmanager.cpp" line="129"/>
+        <source>account</source>
+        <translation type="finished">账号</translation>
+    </message>
+    <message>
+        <location filename="../passwordmanager.cpp" line="129"/>
+        <source>password</source>
+        <translation type="finished">密码</translation>
+    </message>
+    <message>
+        <location filename="../passwordmanager.cpp" line="129"/>
+        <source>remarks</source>
+        <translation type="finished">备注</translation>
+    </message>
+    <message>
+        <location filename="../passwordmanager.cpp" line="196"/>
+        <source>ok</source>
+        <translation>确定</translation>
+    </message>
+    <message>
+        <location filename="../passwordmanager.cpp" line="262"/>
+        <source>password data message have format errors!</source>
+        <translation>密码数据信息有格式错误!</translation>
     </message>
 </context>
 <context>
@@ -305,7 +381,7 @@ Build 1001</source>
     <message>
         <location filename="../perfectnote.cpp" line="35"/>
         <source>search</source>
-        <translation type="unfinished">搜索</translation>
+        <translation>搜索</translation>
     </message>
     <message>
         <location filename="../perfectnote.cpp" line="39"/>
@@ -326,16 +402,13 @@ Build 1001</source>
 <context>
     <name>QMessageBox</name>
     <message>
-        <location filename="../accountbook.cpp" line="264"/>
         <location filename="../accountbook.cpp" line="268"/>
-        <source>确定</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../accountbook.cpp" line="218"/>
+        <location filename="../accountbook.cpp" line="314"/>
+        <location filename="../accountbook.cpp" line="318"/>
         <location filename="../mainwindow.cpp" line="285"/>
         <location filename="../mainwindow.cpp" line="292"/>
         <location filename="../mainwindow.cpp" line="299"/>
+        <location filename="../passwordmanager.cpp" line="263"/>
         <source>ok</source>
         <translation>确定</translation>
     </message>
