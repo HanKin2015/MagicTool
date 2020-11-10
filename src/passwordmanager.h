@@ -16,28 +16,30 @@ public:
     explicit PasswordManager(QWidget *parent = nullptr);
     ~PasswordManager();
 
-    QTableWidget *passwd_table = new QTableWidget(this);
+    QTableWidget *passwd_table;
     QDialog *dialog;
-    QString platform;
-    QString account;
-    QString password;
-    QString remarks;
+    QLineEdit *platform_edit;
+    QLineEdit *account_edit;
+    QLineEdit *password_edit;
+    QLineEdit *remarks_edit;
+    int current_row;            // 如果是增加则为总数加1，如果是修改则是当前选中的行号
 
     void InitMenuBar();
     void InitToolBar();
     void InitMainBody();
     void InitTableWidget();
-    void PasswordMessageWindow();
-    void PassMsgWindowBtnClicked();
+    void PasswordMessageWindow(QString platform, QString account, QString password, QString remarks);
     bool IsValidRecord();
     void Tips();
     bool Save2Local();
+    void AddTableWidgetItemData(int column, QLineEdit *data);
 
 private:
     Ui::PasswordManager *ui;
 
-public slots:
+private slots:
     void TrigerMenuBar(QAction* act);
+    void PwdMsgWindowBtnClicked();
     void AddActionClicked();
     void DelActionClicked();
     void ChgActionClicked();

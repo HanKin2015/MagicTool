@@ -3,6 +3,13 @@
 
 PasswordManager::PasswordManager(QWidget *parent) :
     QDialog(parent),
+    passwd_table(nullptr),
+    dialog(nullptr),
+    platform_edit(nullptr),
+    account_edit(nullptr),
+    password_edit(nullptr),
+    remarks_edit(nullptr),
+    current_row(0),
     ui(new Ui::PasswordManager)
 {
     ui->setupUi(this);
@@ -19,7 +26,12 @@ PasswordManager::PasswordManager(QWidget *parent) :
 
     // 初始化主体
     InitMainBody();
+
+    // 初始化表格
+    InitTableWidget();
+
 }
+
 
 void PasswordManager::InitMenuBar()
 {
@@ -54,7 +66,7 @@ void PasswordManager::InitMenuBar()
     mb->addMenu(help_menu);
     //mb->setGeometry(QRect(0, 0, this->width(), 32));
     mb->setGeometry(0, 0, this->width(), 32);
-    connect(mb, SIGNAL(triggered(QAction*)), this, SLOT(TrigerMenubar(QAction*)));
+    connect(mb, SIGNAL(triggered(QAction*)), this, SLOT(TrigerMenuBar(QAction*)));
 }
 
 void PasswordManager::InitToolBar()
@@ -68,22 +80,25 @@ void PasswordManager::InitToolBar()
     add_btn->setIcon(QIcon(ADD_PNG_PATH));
     add_btn->setFixedSize(30, 30);
     tb->addWidget(add_btn);
+    connect(add_btn, SIGNAL(clicked()), this, SLOT(AddActionClicked()));
 
     QToolButton *del_btn = new QToolButton(this);
     del_btn->setIcon(QIcon(DELETE_PNG_PATH));
     del_btn->setFixedSize(30, 30);
     tb->addWidget(del_btn);
+    connect(del_btn, SIGNAL(clicked()), this, SLOT(DelActionClicked()));
 
     QToolButton *chg_btn = new QToolButton(this);
     chg_btn->setIcon(QIcon(CHANGE_PNG_PATH));
     chg_btn->setFixedSize(30, 30);
     tb->addWidget(chg_btn);
+    connect(chg_btn, SIGNAL(clicked()), this, SLOT(ChgActionClicked()));
 
     QToolButton *qry_btn = new QToolButton(this);
     qry_btn->setIcon(QIcon(QUERY_PNG_PATH));
     qry_btn->setFixedSize(30, 30);
     tb->addWidget(qry_btn);
-    connect(qry_btn, SIGNAL(clicked()), this, SLOT(PassMsgWindowBtnClicked()));
+    connect(qry_btn, SIGNAL(clicked()), this, SLOT(QryActionClicked()));
 
     //tb->setStyleSheet("background-color:rgb(200,40,43);color:rgb(204,204,204)");
     tb->setGeometry(0, 32, this->width(), 32);
@@ -109,17 +124,16 @@ void PasswordManager::InitMainBody()
     main_window->resize(900, 600 - 64);
     main_window->move(0, 64);
 
-
     QGridLayout *main_window_gl = new QGridLayout(main_window);
 
     QLineEdit *search_content = new QLineEdit(main_window);
     QPushButton *search_btn = new QPushButton(tr("search"), main_window);
 
-    //main_window_gl->addWidget(search_le, 1, 0, 1, 3, Qt::AlignLeft);
+    passwd_table = new QTableWidget(main_window);
 
-    main_window_gl->addWidget(search_content, 0, 0, 1, 3);
+    main_window_gl->addWidget(search_content, 0, 1, 1, 2);
     main_window_gl->addWidget(search_btn, 0, 3, 1, 1);
-    main_window_gl->addWidget(passwd_table, 1, 0, 10, 8);
+    main_window_gl->addWidget(passwd_table, 1, 0, 10, 4);
 
     main_window->setLayout(main_window_gl);
     connect(search_btn, &QPushButton::clicked, this, &PasswordManager::AddActionClicked);
@@ -169,37 +183,39 @@ void PasswordManager::InitTableWidget()
 /*
  * 增加和修改都会调用这个弹框
  */
-void PasswordManager::PasswordMessageWindow()
+void PasswordManager::PasswordMessageWindow(QString platform, QString account, QString password, QString remarks)
 {
+    qDebug("%s:%d", __FUNCTION__, __LINE__);
+
     dialog = new QDialog(this);
     dialog->setWindowTitle(tr("password message"));
 
-    QGridLayout *grid_layout = new QGridLayout;
+    QGridLayout *grid_layout = new QGridLayout();
 
     QLabel *platform_label = new QLabel(tr("platform"));
-    QLineEdit *platform_edit = new QLineEdit(platform);
+    platform_edit = new QLineEdit(platform, dialog);
     grid_layout->addWidget(platform_label, 0, 0, 1, 2);
     grid_layout->addWidget(platform_edit, 0, 2, 1, 3);
 
-    QLabel *account_label = new QLabel("account");
-    QLineEdit *account_edit = new QLineEdit(account);
+    QLabel *account_label = new QLabel(tr("account"));
+    account_edit = new QLineEdit(account, dialog);
     grid_layout->addWidget(account_label, 1, 0, 1, 2);
     grid_layout->addWidget(account_edit, 1, 2, 1, 3);
 
-    QLabel *password_label = new QLabel("password");
-    QLineEdit *password_edit = new QLineEdit(password);
+    QLabel *password_label = new QLabel(tr("password"));
+    password_edit = new QLineEdit(password, dialog);
     grid_layout->addWidget(password_label, 2, 0, 1, 2);
     grid_layout->addWidget(password_edit, 2, 2, 1, 3);
 
-    QLabel *remarks_label = new QLabel("remarks");
-    QLineEdit *remarks_edit = new QLineEdit(remarks);
+    QLabel *remarks_label = new QLabel(tr("remarks"));
+    remarks_edit = new QLineEdit(remarks, dialog);
     grid_layout->addWidget(remarks_label, 3, 0, 1, 2);
     grid_layout->addWidget(remarks_edit, 3, 2, 1, 3);
 
 
     QPushButton *ok_btn = new QPushButton(tr("ok"));
     grid_layout->addWidget(ok_btn, 4, 3, 1, 2);
-    connect(ok_btn, SIGNAL(clicked()), this, SLOT(PassMsgWindowBtnClicked()));
+    connect(ok_btn, SIGNAL(clicked()), this, SLOT(PwdMsgWindowBtnClicked()));
 
     dialog->setLayout(grid_layout);
     dialog->show();
@@ -207,34 +223,41 @@ void PasswordManager::PasswordMessageWindow()
 
 void PasswordManager::AddActionClicked()
 {
-    platform = "";
-    account = "";
-    password = "";
-    remarks = "";
-    PasswordMessageWindow();
+    current_row = passwd_table->rowCount();
+    PasswordMessageWindow("", "", "", "");
 }
 
 void PasswordManager::DelActionClicked()
 {
-
+    current_row = passwd_table->currentRow();
+    if (current_row != -1) {
+        QMessageBox mb(QMessageBox::Warning, "", tr("Are you sure to delete this password message?"));
+        mb.setStandardButtons(QMessageBox::Ok|QMessageBox::Cancel);
+        mb.setButtonText (QMessageBox::Ok,QString(tr("yes")));
+        mb.setButtonText (QMessageBox::Cancel,QString(tr("no")));
+        if(mb.exec() == QMessageBox::Ok) {
+            passwd_table->removeRow(current_row);
+        }
+    }
 }
 
 void PasswordManager::ChgActionClicked()
 {
+    qDebug("%s:%d", __FUNCTION__, __LINE__);
+
     QList<QTableWidgetItem*> items = passwd_table->selectedItems();
-    int row = passwd_table->currentRow();
+    current_row = passwd_table->currentRow();
 //    for(int i = 0; i < 4; i++)
 //    {
 //        QTableWidgetItem *item = record_tw->item(row, i);
 //        QString text = item->text(); //获取内容
 //        qDebug() << text;
 //    }
-
-    platform = passwd_table->item(row, 0)->text();
-    account = passwd_table->item(row, 1)->text();
-    password = passwd_table->item(row, 2)->text();
-    remarks = passwd_table->item(row, 3)->text();
-    PasswordMessageWindow();
+    qDebug("%s:%d", __FUNCTION__, __LINE__);
+    PasswordMessageWindow(passwd_table->item(current_row, 0) ? passwd_table->item(current_row, 0)->text() : "",
+                          passwd_table->item(current_row, 1) ? passwd_table->item(current_row, 1)->text() : "",
+                          passwd_table->item(current_row, 2) ? passwd_table->item(current_row, 2)->text() : "",
+                          passwd_table->item(current_row, 3) ? passwd_table->item(current_row, 3)->text() : "");
 }
 
 void PasswordManager::QryActionClicked()
@@ -269,20 +292,20 @@ bool PasswordManager::Save2Local()
 
 void PasswordManager::Tips()
 {
-    QMessageBox::information(this, tr(""),
+    QMessageBox::information(this, tr("warning"),
             tr("password data message have format errors!"),
             QMessageBox::tr("ok"));
 }
 
 bool PasswordManager::IsValidRecord()
 {
-    if (platform == nullptr) {
+    if (platform_edit->text() == "") {
         goto FAILED;
     }
-    if (account == nullptr) {
+    if (account_edit->text() == "") {
         goto FAILED;
     }
-    if (password == nullptr) {
+    if (password_edit->text() == "") {
         goto FAILED;
     }
 
@@ -292,20 +315,29 @@ FAILED:
     return false;
 }
 
-
-
-void PasswordManager::PassMsgWindowBtnClicked()
+void PasswordManager::AddTableWidgetItemData(int column, QLineEdit *data)
 {
-    if(IsValidRecord() == false) return ;
+    if (passwd_table->item(current_row, column)) {
+        passwd_table->item(current_row, column)->setText(data->text());
+    } else {
+        passwd_table->setRowCount(current_row + 1);
+        QTableWidgetItem *item = passwd_table->item(current_row, column);
+        item = new QTableWidgetItem;
+        item->setText(data->text());
+        item->setTextAlignment(Qt::AlignCenter);
+        passwd_table->setItem(current_row, column, item);
+    }
+}
 
-	int row = passwd_table->currentRow();
-	if (row == -1) {
-        row = passwd_table->rowCount() + 1;
-	}
-	passwd_table->item(row, 0)->setText(platform);
-	passwd_table->item(row, 1)->setText(account);
-	passwd_table->item(row, 2)->setText(password);
-	passwd_table->item(row, 3)->setText(remarks);
+void PasswordManager::PwdMsgWindowBtnClicked()
+{
+    if(IsValidRecord() == false) return;
+
+    AddTableWidgetItemData(0, platform_edit);
+    AddTableWidgetItemData(1, account_edit);
+    AddTableWidgetItemData(2, password_edit);
+    AddTableWidgetItemData(3, remarks_edit);
+
     dialog->close();
     delete dialog;
     dialog = nullptr;

@@ -30,24 +30,23 @@ void AccountBook::InitMainWindowMenu()
     QAction *exit_action = file_menu->addAction(tr("&exit"));
     exit_action->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_N));
 
-    QMenu *add_menu = new QMenu(tr("&add"));
-    QMenu *del_menu = new QMenu(tr("&delete"));
-    QMenu *chg_menu = new QMenu(tr("&change"));
-    QMenu *qry_menu = new QMenu(tr("&query"));
-    connect(add_menu,SIGNAL(triggered()),this,SLOT(AddActionClicked()));
-    connect(del_menu,SIGNAL(triggered()),this,SLOT(DelActionClicked()));
-    connect(chg_menu,SIGNAL(triggered()),this,SLOT(ChgActionClicked()));
-    connect(qry_menu,SIGNAL(triggered()),this,SLOT(QryActionClicked()));
+    // 创建操作菜单：增删改查
+    QMenu *operation_menu = new QMenu(tr("operation(&O)"));
+    QAction *add_action = operation_menu->addAction(tr("&add"));
+    QAction *del_action = operation_menu->addAction(tr("&delete"));
+    QAction *chg_action = operation_menu->addAction(tr("&change"));
+    QAction *qry_action = operation_menu->addAction(tr("&query"));
+    connect(add_action,SIGNAL(triggered()),this,SLOT(AddActionClicked()));
+    connect(del_action,SIGNAL(triggered()),this,SLOT(DelActionClicked()));
+    connect(chg_action,SIGNAL(triggered()),this,SLOT(ChgActionClicked()));
+    connect(qry_action,SIGNAL(triggered()),this,SLOT(QryActionClicked()));
 	
     QMenuBar *mb = new QMenuBar(this);
     mb->addMenu(file_menu);
-    mb->addMenu(add_menu);
-    mb->addMenu(del_menu);
-    mb->addMenu(chg_menu);
-    mb->addMenu(qry_menu);
+    mb->addMenu(operation_menu);
     //mb->setGeometry(QRect(0, 0, this->width(), 32));
     mb->setGeometry(0, 0, this->width(), 32);
-    connect(mb, SIGNAL(triggered(QAction*)), this, SLOT(TrigerMenu(QAction*)));
+    connect(mb, SIGNAL(triggered(QAction*)), this, SLOT(TrigerMenuBar(QAction*)));
 	
     //创建工具栏
     QToolBar *tb = new QToolBar(this);
@@ -76,21 +75,15 @@ void AccountBook::InitMainWindowMenu()
     
     //tb->setStyleSheet("background-color:rgb(200,40,43);color:rgb(204,204,204)");
     tb->setGeometry(0, 32, this->width(), 32);
-    connect(tb, SIGNAL(triggered(QToolButton*)), this, SLOT(TrigerToolBar(QToolButton*)));
 }
 
 /*
  * 打印日志吧
  *
  */
-void AccountBook::TrigerMenu(QAction* act)
+void AccountBook::TrigerMenuBar(QAction* act)
 {
     qDebug() << act->text() << "键被按下";
-}
-
-void AccountBook::TrigerToolBar(QToolButton* tb)
-{
-    qDebug() << tb->text() << "键被按下";
 }
 
 void AccountBook::InitMainWindow()

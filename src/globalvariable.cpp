@@ -9,6 +9,11 @@
 extern int const fontSize = 22;
 extern int const boldSize = 60;
 
+void Log()
+{
+    qDebug("%s:%d", __FUNCTION__, __LINE__);
+}
+
 extern QFont GetFont()
 {
     //中文支持

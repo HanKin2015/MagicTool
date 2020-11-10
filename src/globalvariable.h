@@ -109,7 +109,7 @@ const QString PM_DATA_FILE_PATH = "./data/passwordmanager/data.txt";
 
 
 
-
+void Log();
 
 
 

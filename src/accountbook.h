@@ -68,8 +68,7 @@ private slots:
     void AddBtnClicked();
     void ChgBtnClicked();
 	
-	void TrigerMenu(QAction* act);
-    void TrigerToolBar(QToolButton* tb);
+    void TrigerMenuBar(QAction* act);
 };
 
 #endif // ACCOUNTBOOK_H

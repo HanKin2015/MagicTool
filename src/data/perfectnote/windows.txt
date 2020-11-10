@@ -55,3 +55,9 @@ System Idle Process SYSTEM²¢²»ÊÇÒ»¸öÕæÕýµÄ½ø³Ì£¬System Idle ProcessÊÇºËÐÄÐéÄâ³öÀ
 System Idle ProcessÕ¼ÓÃÔ½¶àCPUÊ±£¬ËµÃ÷ÄãµÄµçÄÔÔ½¿ÕÏÐ
 
 System Idle Process µ±´ïµ½5%ÒÔÏÂµÄÊ±ºò£¬ÄÇÃ´Äã¿ÉÒÔÑ¡ÔñÖØÆôÁË£¡
+
+# Ô¶³Ì×ÀÃæ
+mstsc
+¹Ø±Õ·À»ðÇ½
+¼ÆËã»úÊôÐÔ-¡·Ô¶³ÌÉèÖÃ-¡·ÔÊÐíÔ¶³Ì×ÀÃæµÄ¼ÆËã»úÁ¬½Ó
+Ô¶³ÌµÄ¼ÆËã»úÕË»§ÐèÒªÉèÖÃÃÜÂë
