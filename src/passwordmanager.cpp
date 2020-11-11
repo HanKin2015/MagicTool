@@ -29,10 +29,16 @@ PasswordManager::PasswordManager(QWidget *parent) :
 
     // 初始化表格
     InitTableWidget();
-
 }
 
+PasswordManager::~PasswordManager()
+{
+    delete ui;
+}
 
+/*
+ * 初始化菜单栏：文件、操作、帮助
+ */
 void PasswordManager::InitMenuBar()
 {
     //创建文件菜单
@@ -69,6 +75,9 @@ void PasswordManager::InitMenuBar()
     connect(mb, SIGNAL(triggered(QAction*)), this, SLOT(TrigerMenuBar(QAction*)));
 }
 
+/*
+ * 初始化工具栏：增加、删除、修改、查询
+ */
 void PasswordManager::InitToolBar()
 {
     //创建工具栏
@@ -104,20 +113,19 @@ void PasswordManager::InitToolBar()
     tb->setGeometry(0, 32, this->width(), 32);
 }
 
-PasswordManager::~PasswordManager()
-{
-    delete ui;
-}
-
 /*
- * 打印日志吧
- *
+ * 检测菜单栏什么键被按下
  */
 void PasswordManager::TrigerMenuBar(QAction* act)
 {
     qDebug() << act->text() << "键被按下";
 }
 
+/*
+ * 初始化主体布局：上部分搜索栏，下部分是表格
+ *
+ * 搜索栏可以去掉，设计为在查询的时候弹框
+ */
 void PasswordManager::InitMainBody()
 {
     QWidget *main_window = new QWidget(this);
@@ -141,6 +149,11 @@ void PasswordManager::InitMainBody()
     main_window->showFullScreen();
 }
 
+/*
+ * 初始化表格
+ *
+ * 从PM_DATA_FILE_PATH本地文件中导入数据
+ */
 void PasswordManager::InitTableWidget()
 {
     passwd_table->setColumnCount(4);
@@ -181,6 +194,8 @@ void PasswordManager::InitTableWidget()
 
 
 /*
+ * 密码信息详细弹框
+ *
  * 增加和修改都会调用这个弹框
  */
 void PasswordManager::PasswordMessageWindow(QString platform, QString account, QString password, QString remarks)
@@ -221,12 +236,18 @@ void PasswordManager::PasswordMessageWindow(QString platform, QString account, Q
     dialog->show();
 }
 
+/*
+ * 增加 功能点击事件
+ */
 void PasswordManager::AddActionClicked()
 {
     current_row = passwd_table->rowCount();
     PasswordMessageWindow("", "", "", "");
 }
 
+/*
+ * 删除 功能点击事件
+ */
 void PasswordManager::DelActionClicked()
 {
     current_row = passwd_table->currentRow();
@@ -241,6 +262,9 @@ void PasswordManager::DelActionClicked()
     }
 }
 
+/*
+ * 修改 功能点击事件
+ */
 void PasswordManager::ChgActionClicked()
 {
     qDebug("%s:%d", __FUNCTION__, __LINE__);
@@ -260,10 +284,17 @@ void PasswordManager::ChgActionClicked()
                           passwd_table->item(current_row, 3) ? passwd_table->item(current_row, 3)->text() : "");
 }
 
+/*
+ * 查询 功能点击事件
+ */
 void PasswordManager::QryActionClicked()
 {
 
 }
+
+/*
+ * 保存表格数据到本地文件PM_DATA_FILE_PATH
+ */
 bool PasswordManager::Save2Local()
 {
     FILE *fp = fopen(PM_DATA_FILE_PATH.toLatin1().data(), "w");
@@ -290,6 +321,9 @@ bool PasswordManager::Save2Local()
     return true;
 }
 
+/*
+ * 提示框
+ */
 void PasswordManager::Tips()
 {
     QMessageBox::information(this, tr("warning"),
@@ -297,6 +331,9 @@ void PasswordManager::Tips()
             QMessageBox::tr("ok"));
 }
 
+/*
+ * 判断密码信息录入的合法性
+ */
 bool PasswordManager::IsValidRecord()
 {
     if (platform_edit->text() == "") {
@@ -315,6 +352,9 @@ FAILED:
     return false;
 }
 
+/*
+ * 向表格中写入数据
+ */
 void PasswordManager::AddTableWidgetItemData(int column, QLineEdit *data)
 {
     if (passwd_table->item(current_row, column)) {
@@ -329,6 +369,9 @@ void PasswordManager::AddTableWidgetItemData(int column, QLineEdit *data)
     }
 }
 
+/*
+ * 密码详细信息框确定按钮点击事件
+ */
 void PasswordManager::PwdMsgWindowBtnClicked()
 {
     if(IsValidRecord() == false) return;
