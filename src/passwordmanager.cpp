@@ -304,16 +304,14 @@ bool PasswordManager::Save2Local()
     }
 
     int rows = passwd_table->rowCount();
+    int columns = passwd_table->columnCount();
+    qDebug("There are %d password records.", rows);
     for (int i = 0; i < rows; i++) {
-        RecordStruct rs;
-        rs.web_name = QString2StdString(passwd_table->item(i, 0)->text());
-        rs.user_name = QString2StdString(passwd_table->item(i, 1)->text());
-        rs.pwd = QString2StdString(passwd_table->item(i, 2)->text());
-        if (passwd_table->item(i, 3)->text() == "\n") {
-            fprintf(fp, "%s,%s,%s,\n", rs.web_name.data(), rs.user_name.data(), rs.pwd.data());
-        } else {
-            rs.note = QString2StdString(passwd_table->item(i, 3)->text());
-            fprintf(fp, "%s,%s,%s,%s\n", rs.web_name.data(), rs.user_name.data(), rs.pwd.data(), rs.note.data());
+        for (int j = 0; j < columns; j++) {
+            if (passwd_table->item(i, j)->text() != "\n") {
+                fprintf(fp, "%s", GetTableItemData(passwd_table, i, j));
+            }
+            fprintf(fp, "%s", j == (columns - 1) ? "\n" : ",");
         }
     }
 
@@ -386,7 +384,26 @@ void PasswordManager::PwdMsgWindowBtnClicked()
     dialog = nullptr;
 }
 
+/*
+ * 重写退出事件
+ */
+void PasswordManager::closeEvent(QCloseEvent *event)
+{
+    QMessageBox close_mb(QMessageBox::Warning, "",tr("Are you sure exit?"));
+    close_mb.setWindowFlag(Qt::FramelessWindowHint);
+    close_mb.setAttribute(Qt::WA_ShowModal, true);
 
+    close_mb.setStandardButtons(QMessageBox::Ok|QMessageBox::Cancel);
+    close_mb.setButtonText (QMessageBox::Ok,QString(tr("yes")));
+    close_mb.setButtonText (QMessageBox::Cancel,QString(tr("no")));
+    if(close_mb.exec() == QMessageBox::Ok) {
+        Save2Local();
+        event->accept();
+    } else {
+        event->ignore();
+    }
+    return ;
+}
 
 
 

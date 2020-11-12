@@ -46,13 +46,15 @@
 
 using namespace std;
 
-struct RecordStruct{
-    string web_name;
-    string user_name;
-    string pwd;
-    string note;
+// 密码管理器 数据结构体
+struct PasswordManagerStruct{
+    string platform;
+    string account;
+    string password;
+    string remarks;
 };
 
+// 账本 数据结构体
 struct AccountBookStruct{
     string date;
     string weather;
@@ -113,7 +115,7 @@ void Log();
 
 
 
-
+char* GetTableItemData(QTableWidget* table, int row, int column);
 extern QFont GetFont();
 extern QString GetStyle();
 extern string QString2StdString(QString str);
@@ -121,9 +123,9 @@ extern QString StdString2QString(string str);
 extern char* trim(char* str, const char* delimiter);
 extern void SplitString(const string& s, vector<string>& v, const string& c);
 extern void SplitStringByChar();
-extern int WriteFile(const char *file_path, const char *write_type, RecordStruct rs);
+extern int WriteFile(const char *file_path, const char *write_type, PasswordManagerStruct PMS);
 //密码器专用读取
-extern vector<RecordStruct> ReadFile(const char *file_path);
+extern vector<PasswordManagerStruct> ReadFile(const char *file_path);
 //读取以逗号隔开的文件，返回不定长的数据
 extern vector<vector<string> > ReadFileAll(const char *file_path);
 #endif // GLOBALVARIABLE_H

@@ -228,16 +228,17 @@ bool AccountBook::Save2Local()
 
     int rows = record_tw->rowCount();
     for (int i = 0; i < rows; i++) {
-        RecordStruct rs;
-        rs.web_name = QString2StdString(record_tw->item(i, 0)->text());
-        rs.user_name = QString2StdString(record_tw->item(i, 1)->text());
-        rs.pwd = QString2StdString(record_tw->item(i, 2)->text());
+        vector<string> tmp;
+        tmp.push_back(QString2StdString(record_tw->item(i, 0)->text()));
+        tmp.push_back(QString2StdString(record_tw->item(i, 1)->text()));
+        tmp.push_back(QString2StdString(record_tw->item(i, 2)->text()));
         if (record_tw->item(i, 3)->text() == "\n") {
-            fprintf(fp, "%s,%s,%s,\n", rs.web_name.data(), rs.user_name.data(), rs.pwd.data());
+            fprintf(fp, "%s,%s,%s,\n", tmp[0].data(), tmp[1].data(), tmp[2].data());
         } else {
-            rs.note = QString2StdString(record_tw->item(i, 3)->text());
-            fprintf(fp, "%s,%s,%s,%s\n", rs.web_name.data(), rs.user_name.data(), rs.pwd.data(), rs.note.data());
+            tmp.push_back(QString2StdString(record_tw->item(i, 3)->text()));
+            fprintf(fp, "%s,%s,%s,%s\n", tmp[0].data(), tmp[1].data(), tmp[2].data(), tmp[3].data());
         }
+        tmp.clear();
     }
 
     fclose(fp);
@@ -283,34 +284,6 @@ FAILED:
 
 void AccountBook::AddBtnClicked()
 {
-    if(IsValidRecord() == false) return ;
-    QMessageBox mb(QMessageBox::Warning, "","确定要添加当前记录？");
-    mb.setStandardButtons(QMessageBox::Ok|QMessageBox::Cancel);
-    mb.setButtonText (QMessageBox::Ok,QString("确 定"));
-    mb.setButtonText (QMessageBox::Cancel,QString("取 消"));
-    if(mb.exec() == QMessageBox::Ok)
-    {
-        /*添加event*/
-        RecordStruct rs;
-        rs.web_name = QString2StdString(web_name2->text());
-        rs.user_name = QString2StdString(user_name2->text());
-        rs.pwd = QString2StdString(pwd_name2->text());
-        rs.note = QString2StdString(note_name2->text());
-
-
-        QString file_path = ".\\data\\hankin.txt";
-        if (!WriteFile(file_path.toLatin1().data(), "a", rs))
-        {
-            InitTableWidget();
-            QMessageBox::information(this, tr(""),
-                    tr("添加成功！"),
-                    QMessageBox::tr("ok"));
-        } else {
-            QMessageBox::information(this, tr(""),
-                    tr("添加失败！"),
-                    QMessageBox::tr("ok"));
-        }
-    }
     detail_dialog->close();
 }
 

@@ -14,6 +14,13 @@ void Log()
     qDebug("%s:%d", __FUNCTION__, __LINE__);
 }
 
+char* GetTableItemData(QTableWidget* table, int row, int column)
+{
+    QString data = table->item(row, column)->text();
+    char* str = const_cast<char*>(QString2StdString(data).data());
+    return str;
+}
+
 extern QFont GetFont()
 {
     //中文支持
@@ -135,13 +142,13 @@ baidu,hankin,112233,ok
 mook,hj,12341234,study this everthing
 
 */
-extern vector<RecordStruct> ReadFile(const char *file_path)
+extern vector<PasswordManagerStruct> ReadFile(const char *file_path)
 {
     qDebug("start read file = %s", file_path);
 
     // define varibale
-    vector<RecordStruct> ret;
-    RecordStruct tmp;
+    vector<PasswordManagerStruct> ret;
+    PasswordManagerStruct tmp;
     vector<string> vec;
     const int buffer_size = 10000;
     char buffer[buffer_size + 1];
@@ -173,12 +180,12 @@ extern vector<RecordStruct> ReadFile(const char *file_path)
             qDebug("vec size unequl 4");
             goto FAILED;
         }
-        tmp.web_name = vec[0];
-        tmp.user_name = vec[1];
-        tmp.pwd = vec[2];
+        tmp.platform = vec[0];
+        tmp.account = vec[1];
+        tmp.password = vec[2];
         char *ch = const_cast<char*>(vec[3].data());
         trim(ch, "\n");
-        tmp.note = ch;
+        tmp.remarks = ch;
 
         ret.push_back(tmp);
         vec.clear();
@@ -224,7 +231,7 @@ FAILED:
     return ret;
 }
 
-extern int WriteFile(const char *file_path, const char *write_type, RecordStruct rs)
+extern int WriteFile(const char *file_path, const char *write_type, PasswordManagerStruct rs)
 {
     qDebug("start read file = %s", file_path);
 
@@ -237,7 +244,7 @@ extern int WriteFile(const char *file_path, const char *write_type, RecordStruct
         return -1;
     }
 
-    fprintf(fp, "%s,%s,%s,%s\n", rs.web_name.data(), rs.user_name.data(), rs.pwd.data(), rs.note.data());
+    fprintf(fp, "%s,%s,%s,%s\n", rs.platform.data(), rs.account.data(), rs.password.data(), rs.remarks.data());
 
     fclose(fp);
     return 0;

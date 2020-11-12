@@ -174,6 +174,7 @@ void MainWindow::QryActionClicked()
 {
 
 }
+
 bool MainWindow::Save2Local()
 {
     int rows = record_tw->rowCount();
@@ -185,15 +186,15 @@ bool MainWindow::Save2Local()
     }
 
     for (int i = 0; i < rows; i++) {
-        RecordStruct rs;
-        rs.web_name = QString2StdString(record_tw->item(i, 0)->text());
-        rs.user_name = QString2StdString(record_tw->item(i, 1)->text());
-        rs.pwd = QString2StdString(record_tw->item(i, 2)->text());
+        vector<char*> tmp;
+        tmp.push_back(GetTableItemData(record_tw, i, 0));
+        tmp.push_back(GetTableItemData(record_tw, i, 1));
+        tmp.push_back(GetTableItemData(record_tw, i, 2));
         if (record_tw->item(i, 3)->text() == "\n") {
-            fprintf(fp, "%s,%s,%s,\n", rs.web_name.data(), rs.user_name.data(), rs.pwd.data());
+            fprintf(fp, "%s,%s,%s,\n", tmp[0], tmp[1], tmp[2]);
         } else {
-            rs.note = QString2StdString(record_tw->item(i, 3)->text());
-            fprintf(fp, "%s,%s,%s,%s\n", rs.web_name.data(), rs.user_name.data(), rs.pwd.data(), rs.note.data());
+            tmp.push_back(GetTableItemData(record_tw, i, 3));
+            fprintf(fp, "%s,%s,%s,%s\n", tmp[0], tmp[1], tmp[2], tmp[3]);
         }
     }
 

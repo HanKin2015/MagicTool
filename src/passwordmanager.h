@@ -44,6 +44,14 @@ private slots:
     void DelActionClicked();
     void ChgActionClicked();
     void QryActionClicked();
+
+protected:
+    void MouseDownEvent(QMouseEvent* );
+    void MouseUpEvent(QMouseEvent* );
+    void MouseMoveEvent(QMouseEvent* );
+    void MouseReleaseEvent(QMouseEvent* );
+    void iSlot();
+    void closeEvent(QCloseEvent* );
 };
 
 #endif // PASSWORDMANAGER_H
