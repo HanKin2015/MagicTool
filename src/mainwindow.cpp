@@ -178,6 +178,8 @@ void MainWindow::QryActionClicked()
 bool MainWindow::Save2Local()
 {
     int rows = record_tw->rowCount();
+    int columns = record_tw->columnCount();
+
     QString file_path = ".\\data\\hankin.txt";
     FILE *fp = fopen(file_path.toLatin1().data(), "w");
     if (fp == nullptr) {
@@ -186,15 +188,12 @@ bool MainWindow::Save2Local()
     }
 
     for (int i = 0; i < rows; i++) {
-        vector<char*> tmp;
-        tmp.push_back(GetTableItemData(record_tw, i, 0));
-        tmp.push_back(GetTableItemData(record_tw, i, 1));
-        tmp.push_back(GetTableItemData(record_tw, i, 2));
-        if (record_tw->item(i, 3)->text() == "\n") {
-            fprintf(fp, "%s,%s,%s,\n", tmp[0], tmp[1], tmp[2]);
-        } else {
-            tmp.push_back(GetTableItemData(record_tw, i, 3));
-            fprintf(fp, "%s,%s,%s,%s\n", tmp[0], tmp[1], tmp[2], tmp[3]);
+        for (int j = 0; j < columns; j++) {
+            if (record_tw->item(i, j)) {
+                string str = GetTableItemData(record_tw, i, j);
+                fprintf(fp, "%s", str.data());
+            }
+            fprintf(fp, "%s", (j == (columns - 1)) ? "\n" : ",");
         }
     }
 

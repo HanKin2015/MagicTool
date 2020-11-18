@@ -43,22 +43,28 @@ void PasswordManager::InitMenuBar()
 {
     //创建文件菜单
     QMenu* file_menu = new QMenu(tr("file(&F)"));
+
+    QAction *backup_action = file_menu->addAction(tr("&backup"));
+    backup_action->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_N));
+    connect(backup_action, SIGNAL(triggered()), this, SLOT(BackupActionClicked()));
     QAction *exit_action = file_menu->addAction(tr("&exit"));
     exit_action->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_N));
 
     // 创建操作菜单：增删改查
     QMenu *operation_menu = new QMenu(tr("operation(&O)"));
+
     QAction *add_action = operation_menu->addAction(tr("&add"));
     QAction *del_action = operation_menu->addAction(tr("&delete"));
     QAction *chg_action = operation_menu->addAction(tr("&change"));
     QAction *qry_action = operation_menu->addAction(tr("&query"));
-    connect(add_action,SIGNAL(triggered()),this,SLOT(AddActionClicked()));
-    connect(del_action,SIGNAL(triggered()),this,SLOT(DelActionClicked()));
-    connect(chg_action,SIGNAL(triggered()),this,SLOT(ChgActionClicked()));
-    connect(qry_action,SIGNAL(triggered()),this,SLOT(QryActionClicked()));
+    connect(add_action, SIGNAL(triggered()), this,SLOT(AddActionClicked()));
+    connect(del_action, SIGNAL(triggered()), this,SLOT(DelActionClicked()));
+    connect(chg_action, SIGNAL(triggered()), this,SLOT(ChgActionClicked()));
+    connect(qry_action, SIGNAL(triggered()), this,SLOT(QryActionClicked()));
 
     // 创建帮助菜单
     QMenu *help_menu = new QMenu(tr("help(&H)"));
+
     QAction *document_action = help_menu->addAction(tr("&document"));
     QAction *update_log_action = help_menu->addAction(tr("&update log"));
     QAction *about_action = help_menu->addAction(tr("&about"));
@@ -236,12 +242,48 @@ void PasswordManager::PasswordMessageWindow(QString platform, QString account, Q
     dialog->show();
 }
 
+
+/*
+ * 备份 功能点击事件
+ *
+ * 将data数据备份一份，加时间命名
+ */
+void PasswordManager::BackupActionClicked()
+{
+    QDateTime current_date_time =QDateTime::currentDateTime();
+    QString current_date =current_date_time.toString("yyyyMMddhhmm");
+    qDebug() << current_date;
+
+    if (!QFile::exists(PM_DATA_FILE_PATH)) {
+        qDebug("PM_DATA_FILE_PATH file is not exist!");
+        QMessageBox::about(this, tr("backup database"), tr("backup failed, database file is not exist!"));
+        return;
+    }
+    qCritical();
+    QString backup_file_path = PM_DATA_DIR_PATH + QString("data_%1.txt").arg(current_date);
+    qDebug("%s  --->   %s", PM_DATA_FILE_PATH.toLatin1().data(), backup_file_path.toLatin1().data());
+
+    //QFileInfo info = QFileInfo(backup_file_path);
+    //QString file_name = info.fileName();
+    //QString file_path = info.filePath();
+    //qDebug("%s == %s", file_name.toLatin1().data(), file_path.toLatin1().data());
+
+    if(QFile::copy(PM_DATA_FILE_PATH, backup_file_path)) {
+        QMessageBox::about(this, tr("backup database"), tr("backup success!"));
+    } else {
+        qDebug("%s, errno = %d", strerror(errno), errno);
+        QMessageBox::about(this, tr("backup database"), tr("backup failed!"));
+    }
+}
+
 /*
  * 增加 功能点击事件
+ *
+ * 行号是从0开始计算
  */
 void PasswordManager::AddActionClicked()
 {
-    current_row = passwd_table->rowCount();
+    current_row = passwd_table->rowCount() + 1;
     PasswordMessageWindow("", "", "", "");
 }
 
@@ -308,10 +350,11 @@ bool PasswordManager::Save2Local()
     qDebug("There are %d password records.", rows);
     for (int i = 0; i < rows; i++) {
         for (int j = 0; j < columns; j++) {
-            if (passwd_table->item(i, j)->text() != "\n") {
-                fprintf(fp, "%s", GetTableItemData(passwd_table, i, j));
+            if (passwd_table->item(i, j)) {
+                string str = GetTableItemData(passwd_table, i, j);
+                fprintf(fp, "%s", str.data());
             }
-            fprintf(fp, "%s", j == (columns - 1) ? "\n" : ",");
+            fprintf(fp, "%s", (j == (columns - 1)) ? "\n" : ",");
         }
     }
 
@@ -358,7 +401,10 @@ void PasswordManager::AddTableWidgetItemData(int column, QLineEdit *data)
     if (passwd_table->item(current_row, column)) {
         passwd_table->item(current_row, column)->setText(data->text());
     } else {
-        passwd_table->setRowCount(current_row + 1);
+        // 增加框
+        if (current_row == passwd_table->rowCount() + 1) {
+            passwd_table->setRowCount(current_row);
+        }
         QTableWidgetItem *item = passwd_table->item(current_row, column);
         item = new QTableWidgetItem;
         item->setText(data->text());

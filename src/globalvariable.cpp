@@ -14,11 +14,10 @@ void Log()
     qDebug("%s:%d", __FUNCTION__, __LINE__);
 }
 
-char* GetTableItemData(QTableWidget* table, int row, int column)
+string GetTableItemData(QTableWidget* table, int row, int column)
 {
     QString data = table->item(row, column)->text();
-    char* str = const_cast<char*>(QString2StdString(data).data());
-    return str;
+    return QString2StdString(data).data();
 }
 
 extern QFont GetFont()

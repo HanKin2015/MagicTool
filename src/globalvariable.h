@@ -102,7 +102,7 @@ const QString LOG_FILE_PATH = "./log/magictool.log";
 // data
 const QString AB_DATA_DIR_PATH = "./data/accountbook/";
 const QString PN_DATA_DIR_PATH = "./data/perfectnote/";
-const QString PM_DATA_DIR_PATH = "./data/passwormanager/";
+const QString PM_DATA_DIR_PATH = "./data/passwordmanager/";
 const QString PN_CATALOG_FILE_PATH = "./data/perfectnote/catalog.txt";
 const QString AB_DATA_FILE_PATH = "./data/accountbook/data.txt";
 const QString PM_DATA_FILE_PATH = "./data/passwordmanager/data.txt";
@@ -115,7 +115,7 @@ void Log();
 
 
 
-char* GetTableItemData(QTableWidget* table, int row, int column);
+string GetTableItemData(QTableWidget* table, int row, int column);
 extern QFont GetFont();
 extern QString GetStyle();
 extern string QString2StdString(QString str);

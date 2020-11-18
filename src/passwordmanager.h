@@ -44,6 +44,7 @@ private slots:
     void DelActionClicked();
     void ChgActionClicked();
     void QryActionClicked();
+    void BackupActionClicked();
 
 protected:
     void MouseDownEvent(QMouseEvent* );
