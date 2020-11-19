@@ -1,0 +1,15 @@
+2020-11-19 09:16:05 Debug:current demo path = D:/Github/MagicTool/src
+
+2020-11-19 09:16:05 Debug:load zh_cn.qm file success!
+
+2020-11-19 09:16:05 Warning:QLayout: Attempting to add QLayout "" to MainWindow "MainWindow", which already has a layout
+2020-11-19 09:16:08 Debug:start read file = ./data/passwordmanager/data.txt
+2020-11-19 09:16:08 Debug:current record size = 23
+2020-11-19 09:16:10 Info:AddActionClicked [ 288 ] "AddActionClicked"
+2020-11-19 09:16:10 Debug:PasswordMessageWindow:209
+2020-11-19 09:16:11 Debug:"&增加" 键被按下
+2020-11-19 09:16:16 Info:BackupActionClicked [ 253 ] "BackupActionClicked"
+2020-11-19 09:16:16 Debug:"202011190916"
+2020-11-19 09:16:16 Debug:./data/passwordmanager/data.txt  --->   ./data/passwordmanager/data_202011190916.txt
+2020-11-19 09:16:17 Debug:"&backup" 键被按下
+2020-11-19 09:16:22 Debug:There are 23 password records.

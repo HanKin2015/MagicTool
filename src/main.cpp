@@ -2,6 +2,8 @@
 #include <QApplication>
 #include <QTextCodec>
 
+#define LOG 1
+
 // transfor utf8
 void ChangeTextCodec()
 {
@@ -9,12 +11,16 @@ void ChangeTextCodec()
     QTextCodec::setCodecForLocale(codec);
 }
 
-
-
 int main(int argc, char *argv[])
 {
-    int exit_code = 0;
+#if LOG
+    // 日志收集回调函数
+    qInstallMessageHandler(MessageOutPut);
+#endif
 
+    LOGI << QString("===== begin =====");
+
+    int exit_code = 0;
     do {
         QApplication app(argc, argv);
 
@@ -48,5 +54,6 @@ int main(int argc, char *argv[])
         exit_code = app.exec();
     } while(exit_code == EXIT_CODE_REBOOT);
 
+    LOGI << QString("===== end =====");
     return exit_code;
 }

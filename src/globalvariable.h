@@ -31,6 +31,7 @@
 #include <QProcess>
 #include <QToolBar>
 #include <QToolButton>
+#include <QMutex>
 
 #include <string>
 #include <string.h>
@@ -43,6 +44,12 @@
 #include <cstring>
 #include <stdarg.h>
 #include <direct.h>
+
+#define LOGD qDebug()<<__FUNCTION__<<"["<<__LINE__<<"]"
+#define LOGC qCritical()<<__FUNCTION__<<"["<<__LINE__<<"]"
+#define LOGI qInfo()<<__FUNCTION__<<"["<<__LINE__<<"]"
+#define LOGF qFatal()<<__FUNCTION__<<"["<<__LINE__<<"]"
+#define LOGW qWarning()<<__FUNCTION__<<"["<<__LINE__<<"]"
 
 using namespace std;
 
@@ -108,12 +115,8 @@ const QString AB_DATA_FILE_PATH = "./data/accountbook/data.txt";
 const QString PM_DATA_FILE_PATH = "./data/passwordmanager/data.txt";
 
 
-
-
-
-void Log();
-
-
+//日志收集回调函数
+void MessageOutPut(QtMsgType type, const QMessageLogContext &context, const QString &msg);
 
 string GetTableItemData(QTableWidget* table, int row, int column);
 extern QFont GetFont();

@@ -250,6 +250,8 @@ void PasswordManager::PasswordMessageWindow(QString platform, QString account, Q
  */
 void PasswordManager::BackupActionClicked()
 {
+    LOGI << QString("BackupActionClicked");
+
     QDateTime current_date_time =QDateTime::currentDateTime();
     QString current_date =current_date_time.toString("yyyyMMddhhmm");
     qDebug() << current_date;
@@ -259,7 +261,7 @@ void PasswordManager::BackupActionClicked()
         QMessageBox::about(this, tr("backup database"), tr("backup failed, database file is not exist!"));
         return;
     }
-    qCritical();
+
     QString backup_file_path = PM_DATA_DIR_PATH + QString("data_%1.txt").arg(current_date);
     qDebug("%s  --->   %s", PM_DATA_FILE_PATH.toLatin1().data(), backup_file_path.toLatin1().data());
 
@@ -283,6 +285,8 @@ void PasswordManager::BackupActionClicked()
  */
 void PasswordManager::AddActionClicked()
 {
+    LOGI << QString("AddActionClicked");
+
     current_row = passwd_table->rowCount() + 1;
     PasswordMessageWindow("", "", "", "");
 }
