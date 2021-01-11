@@ -34,7 +34,7 @@ cacls F:\文件夹名\文件名.扩展名 /p everyone:f
 
 # 网页浏览卡慢
 使用ping命令看看是不是丢包
-ncpa.cpl
+win+R -->> ncpa.cpl (网络适配器)
 tracert
 arp -a
 arp -d
@@ -61,3 +61,8 @@ mstsc
 关闭防火墙
 计算机属性-》远程设置-》允许远程桌面的计算机连接
 远程的计算机账户需要设置密码
+
+# 开机自启动
+- win+R
+- msconfig
+- 启动选项卡

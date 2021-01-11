@@ -12,3 +12,21 @@
 
 # 查看网络带宽
 ethtool eth0
+
+# 查看网络端口是否开放
+telnet ip port
+ssh -v -p port username@ip
+curl ip:port
+wget ip:port
+
+# 查看系统更新日志
+中标麒麟系统日志:/var/log/messages
+中标麒麟更新日志:/var/log/yum.log
+
+
+
+
+
+
+
+

@@ -26,7 +26,7 @@ int main(int argc, char *argv[])
 
         // 当前代码路径，QT相对路径是相对于QtCreator的build路径，可以在项目中设置。推荐在代码中修改当前的相对路径。
         QDir::setCurrent(CURRENT_DEMO_PATH);
-        qDebug("current demo path = %s\n", QDir::currentPath().toLatin1().data());
+        LOGI << QString("current demo path = %1").arg(QDir::currentPath());
 
         // 字体设置
         QFont font = app.font();
