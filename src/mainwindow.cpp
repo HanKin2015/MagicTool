@@ -59,9 +59,11 @@ void MainWindow::InitMainWindowMenu()
     QAction *AB_action = window_menu->addAction(tr("&account book"));
     QAction *PN_action = window_menu->addAction(tr("&perfect note"));
     QAction *PM_action = window_menu->addAction(tr("&password manager"));
+    QAction *UT_action = window_menu->addAction(tr("&unit test"));
     connect(AB_action,SIGNAL(triggered()),this,SLOT(ABActionClicked()));
     connect(PN_action,SIGNAL(triggered()),this,SLOT(PNActionClicked()));
     connect(PM_action,SIGNAL(triggered()),this,SLOT(PMActionClicked()));
+    connect(UT_action,SIGNAL(triggered()),this,SLOT(UTActionClicked()));
 
     // 创建操作菜单：增删改查
     QMenu *operation_menu = ui->menubar->addMenu(tr("operation(&O)"));
@@ -219,6 +221,22 @@ void MainWindow::PMActionClicked()
 {
     PasswordManager *pm = new PasswordManager();
     pm->show();
+}
+
+void MainWindow::UTActionClicked()
+{
+    QDialog *ut_window = new QDialog();
+    ut_window->setWindowTitle("unit test");
+    //设置成模态：父窗口无法进行编辑操作
+    //ut_window->setAttribute(Qt::WA_ShowModal, true);
+    //背景是黑的
+    //ut_window->setAttribute(Qt::WA_NoSystemBackground);
+    //效果一样，背景是黑的
+    //ut_window->setAttribute(Qt::WA_TranslucentBackground);
+    //去掉边框
+    //ut_window->setWindowFlag(Qt::FramelessWindowHint);
+    ut_window->setWindowFlag(Qt::X11BypassWindowManagerHint);
+    ut_window->show();
 }
 
 //重写退出事件

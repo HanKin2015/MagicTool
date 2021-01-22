@@ -56,6 +56,7 @@ private slots:
     void ABActionClicked();
     void PNActionClicked();
     void PMActionClicked();
+    void UTActionClicked();
 
     //皮肤菜单槽
     void BlackActionClicked();
@@ -68,7 +69,7 @@ private slots:
     void ChgActionClicked();
     void QryActionClicked();
 
-    // 语言菜单槽
+    //语言菜单槽
     void ChineseActionClicked();
     void EnglishActionClicked();
 

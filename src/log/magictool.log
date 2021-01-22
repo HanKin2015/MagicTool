@@ -26,3 +26,45 @@
 2020-11-26 12:51:24 Debug:start read file = ./data/passwordmanager/data.txt
 2020-11-26 12:51:24 Debug:current record size = 23
 2020-11-26 12:51:28 Debug:There are 23 password records.
+2021-01-11 16:14:19 Info:qMain [ 29 ] "current demo path = D:/Github/MagicTool/src"
+2021-01-11 16:14:19 Debug:load zh_cn.qm file success!
+
+2021-01-11 16:14:23 Warning:QLayout: Attempting to add QLayout "" to MainWindow "MainWindow", which already has a layout
+2021-01-11 16:16:02 Info:qMain [ 57 ] "===== end ====="
+2021-01-11 16:17:10 Info:qMain [ 29 ] "current demo path = D:/Github/MagicTool/src"
+2021-01-11 16:17:10 Debug:load zh_cn.qm file success!
+
+2021-01-11 16:17:11 Warning:QLayout: Attempting to add QLayout "" to MainWindow "MainWindow", which already has a layout
+2021-01-11 16:17:40 Info:qMain [ 57 ] "===== end ====="
+2021-01-11 16:17:57 Info:qMain [ 29 ] "current demo path = D:/Github/MagicTool/src"
+2021-01-11 16:17:57 Debug:load zh_cn.qm file success!
+
+2021-01-11 16:17:58 Warning:QLayout: Attempting to add QLayout "" to MainWindow "MainWindow", which already has a layout
+2021-01-11 16:18:15 Info:qMain [ 57 ] "===== end ====="
+2021-01-11 16:20:03 Info:qMain [ 29 ] "current demo path = D:/Github/MagicTool/src"
+2021-01-11 16:20:03 Debug:load zh_cn.qm file success!
+
+2021-01-11 16:20:03 Warning:QLayout: Attempting to add QLayout "" to MainWindow "MainWindow", which already has a layout
+2021-01-11 16:20:22 Info:qMain [ 57 ] "===== end ====="
+2021-01-11 16:21:32 Info:qMain [ 29 ] "current demo path = D:/Github/MagicTool/src"
+2021-01-11 16:21:32 Debug:load zh_cn.qm file success!
+
+2021-01-11 16:21:32 Warning:QLayout: Attempting to add QLayout "" to MainWindow "MainWindow", which already has a layout
+2021-01-11 16:21:39 Info:qMain [ 57 ] "===== end ====="
+2021-01-11 16:23:01 Info:qMain [ 29 ] "current demo path = D:/Github/MagicTool/src"
+2021-01-11 16:23:01 Debug:load zh_cn.qm file success!
+
+2021-01-11 16:23:01 Warning:QLayout: Attempting to add QLayout "" to MainWindow "MainWindow", which already has a layout
+2021-01-11 16:23:31 Info:qMain [ 57 ] "===== end ====="
+2021-01-11 16:24:10 Info:qMain [ 29 ] "current demo path = D:/Github/MagicTool/src"
+2021-01-11 16:24:10 Debug:load zh_cn.qm file success!
+
+2021-01-11 16:24:11 Warning:QLayout: Attempting to add QLayout "" to MainWindow "MainWindow", which already has a layout
+2021-01-14 13:08:29 Info:qMain [ 29 ] "current demo path = D:/Github/MagicTool/src"
+2021-01-14 13:08:29 Debug:load zh_cn.qm file success!
+
+2021-01-14 13:08:32 Warning:QLayout: Attempting to add QLayout "" to MainWindow "MainWindow", which already has a layout
+2021-01-14 13:11:20 Debug:start read file = ./data/perfectnote/catalog.txt
+2021-01-14 13:11:28 Debug:start read file = ./data/accountbook/data.txt
+2021-01-14 13:11:28 Debug:current record size = 35
+2021-01-14 13:12:40 Info:qMain [ 57 ] "===== end ====="

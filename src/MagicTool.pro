@@ -24,7 +24,8 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     passwordmanager.cpp \
-    perfectnote.cpp
+    perfectnote.cpp \
+    unittest.cpp
 
 HEADERS += \
     accountbook.h \
