@@ -1,0 +1,32 @@
+void AccountBook::AddBtnClicked()
+{
+    if(IsValidRecord() == false) return ;
+    QMessageBox mb(QMessageBox::Warning, "","确定要添加当前记录？");
+    mb.setStandardButtons(QMessageBox::Ok|QMessageBox::Cancel);
+    mb.setButtonText (QMessageBox::Ok,QString("确 定"));
+    mb.setButtonText (QMessageBox::Cancel,QString("取 消"));
+    if(mb.exec() == QMessageBox::Ok)
+    {
+        /*添加event*/
+        RecordStruct rs;
+        rs.web_name = QString2StdString(web_name2->text());
+        rs.user_name = QString2StdString(user_name2->text());
+        rs.pwd = QString2StdString(pwd_name2->text());
+        rs.note = QString2StdString(note_name2->text());
+
+
+        QString file_path = ".\\data\\hankin.txt";
+        if (!WriteFile(file_path.toLatin1().data(), "a", rs))
+        {
+            InitTableWidget();
+            QMessageBox::information(this, tr(""),
+                    tr("添加成功！"),
+                    QMessageBox::tr("确定"));
+        } else {
+            QMessageBox::information(this, tr(""),
+                    tr("添加失败！"),
+                    QMessageBox::tr("确定"));
+        }
+    }
+    detail_dialog->close();
+}

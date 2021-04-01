@@ -1,3 +1,10 @@
+/*
+ * passwordmanager.c
+ *      密码管理器
+ *
+ * Copyright (c) 2021 hankin. All rights reserved.
+ *
+ */
 #include "passwordmanager.h"
 #include "ui_passwordmanager.h"
 
@@ -83,6 +90,8 @@ void PasswordManager::InitMenuBar()
 
 /*
  * 初始化工具栏：增加、删除、修改、查询
+ * @param [in]
+ * @return
  */
 void PasswordManager::InitToolBar()
 {

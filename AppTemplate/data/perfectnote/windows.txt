@@ -76,8 +76,4 @@ powercfg -duplicatescheme e9a42b02-d5df-448d-aa00-03f14749eb61
 
 窗口界面上将显示出“电源方案 GUID: xxxxxxxx (卓越性能)”字符串提示，这时我们便成功开启了“卓越性能模式”。
 
-# 退域
-更改计算机名
-WORKGROUP
-输入当前用户账户密码
 

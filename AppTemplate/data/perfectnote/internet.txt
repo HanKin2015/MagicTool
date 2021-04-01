@@ -1,0 +1,24 @@
+# 1、路由
+查看当前路由：
+route print
+
+
+route add 199.200.2.2 mask 255.255.0.0 199.200.255.254 -p
+
+加p参数会加到永久路由中
+
+同理删除：route delete 199.200.2.2 mask 255.255.0.0 199.200.255.254 -p
+
+# 2、设置ip地址
+ubuntu：
+
+
+# 3、ubuntu修改hosts文件可使用自定义域名访问
+sudo vim /etc/hosts
+/etc/init.d/networking restart
+/etc/init.d/network-manager restart
+
+# 4、ip能ping通，但是使用火狐浏览器打不开
+修改dns无用，因为直接使用ip访问，与dns无关
+防火墙或者或者https://
+最终准备重置浏览器或者安装新的浏览器，在浏览器设置里面发现真的使用了代理。

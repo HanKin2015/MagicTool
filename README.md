@@ -26,6 +26,33 @@
 	- image
 	- libary
 
+## 文档规则
+
+### 注释
+```
+/*
+ * usb_record_info.c
+ *      记录外设厂商id(vid),产品id(pid),版本号(rev),厂商字符串描述,产品字符串描述,设备描述符,配置描述符以及时间(插入使用时间以及拔出时间)
+ *
+ * Copyright (c) 2021 hankin. All rights reserved.
+ *
+ */
+ 
+
+/*
+ * 数型描述符数组转换为一个字符串,以空格间隔拼接
+ * @param [in]desc_data  数型描述符数组
+ * @param [in]desc_len   数组长度
+ * @param [out]desc_str  描述符字符串
+ * @param [in]str_len   字符串长度
+ * @return true转换成功, false转换失败
+ */
+```
+
+
+美中不足，多个开发工具有太多的共同点，为啥不使用类进行封装，不同的地方使用重写方法。
+参考导航栏的弹出框写法。
+
 
 
 

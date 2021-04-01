@@ -1,0 +1,16 @@
+当项目中编译过后会产生大量的untracked文件，使用git status会
+git status --untracked-files=no
+git status .
+diff
+git diff
+
+## 配置
+git config -l # 查看配置
+git remote -v
+git remote show origin
+
+
+
+
+
+

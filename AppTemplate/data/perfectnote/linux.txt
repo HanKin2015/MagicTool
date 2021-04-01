@@ -1,0 +1,32 @@
+# 查看Linux内核版本命令（两种方法）：
+1、cat /proc/version
+2、uname -a
+
+# 查看Linux系统版本的命令（3种方法）：
+1、lsb_release -a，即可列出所有版本信息
+2、cat /etc/redhat-release，这种方法只适合Redhat系的Linux
+3、cat /etc/issue，此命令也适用于所有的Linux发行版
+
+# 查看cpu信息的命令：
+1、 cat /proc/cpuinfo （Linux查看cpu相关信息，包括型号、主频、内核信息等）
+
+# 查看网络带宽
+ethtool eth0
+
+# 查看网络端口是否开放
+telnet ip port
+ssh -v -p port username@ip
+curl ip:port
+wget ip:port
+
+# 查看系统更新日志
+中标麒麟系统日志:/var/log/messages
+中标麒麟更新日志:/var/log/yum.log
+
+
+
+
+
+
+
+
