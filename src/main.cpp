@@ -1,7 +1,6 @@
 #include "mainwindow.h"
 #include <QApplication>
 #include <QTextCodec>
-
 #define LOG 1
 
 // transfor utf8
@@ -18,14 +17,13 @@ int main(int argc, char *argv[])
     qInstallMessageHandler(MessageOutPut);
 #endif
 
-    LOGI << QString("===== begin =====");
-
     int exit_code = 0;
     do {
         QApplication app(argc, argv);
 
         // 当前代码路径，QT相对路径是相对于QtCreator的build路径，可以在项目中设置。推荐在代码中修改当前的相对路径。
         QDir::setCurrent(CURRENT_DEMO_PATH);
+        LOGI << QString("===== begin =====");
         LOGI << QString("current demo path = %1").arg(QDir::currentPath());
 
         // 字体设置

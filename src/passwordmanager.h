@@ -4,9 +4,11 @@
 #include <QDialog>
 #include "globalvariable.h"
 
+QT_BEGIN_NAMESPACE
 namespace Ui {
-class PasswordManager;
+    class PasswordManager;
 }
+QT_END_NAMESPACE
 
 class PasswordManager : public QDialog
 {

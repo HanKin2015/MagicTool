@@ -44,12 +44,19 @@
 #include <cstring>
 #include <stdarg.h>
 #include <direct.h>
+#include <QThread>
 
-#define LOGD qDebug()<<__FUNCTION__<<"["<<__LINE__<<"]"
-#define LOGC qCritical()<<__FUNCTION__<<"["<<__LINE__<<"]"
-#define LOGI qInfo()<<__FUNCTION__<<"["<<__LINE__<<"]"
-#define LOGF qFatal()<<__FUNCTION__<<"["<<__LINE__<<"]"
-#define LOGW qWarning()<<__FUNCTION__<<"["<<__LINE__<<"]"
+#ifdef _WIN32
+#include <process.h>
+#else
+#include <unistd.h>
+#endif
+
+#define LOGD qDebug()
+#define LOGC qCritical()
+#define LOGI qInfo()
+#define LOGF qFatal()
+#define LOGW qWarning()
 
 using namespace std;
 

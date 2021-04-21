@@ -27,9 +27,9 @@
 #include <QSignalMapper>
 #include "globalvariable.h"
 
-namespace Ui {
-class AccountBook;
-}
+QT_BEGIN_NAMESPACE
+namespace Ui { class AccountBook; }
+QT_END_NAMESPACE
 
 class AccountBook : public QDialog
 {

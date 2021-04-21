@@ -112,3 +112,370 @@
 2021-03-23 13:36:20 Debug:current record size = 47
 2021-03-23 13:36:29 Debug:"&增加" 键被按下
 2021-03-23 13:36:40 Info:qMain [ 57 ] "===== end ====="
+2021-04-19 21:24:20 Info:qMain [ 29 ] "current demo path = D:/Github/MagicTool/src"
+2021-04-19 21:24:20 Debug:load zh_cn.qm file success!
+
+2021-04-19 21:24:23 Warning:QLayout: Attempting to add QLayout "" to MainWindow "MainWindow", which already has a layout
+2021-04-19 21:25:44 Debug:url toPercentEncoding: "http%3A%2F%2Fwww.baidu.com%2Ffolder%2Ftemp%2Fvideo-all%2Fgame%2B3.txt"
+2021-04-19 21:25:44 Debug:basepath: "http://www.baidu.com/folder/temp/video-all/"   filename: "game+3.txt"
+2021-04-19 21:25:44 Debug:filename toPercentEncoding: "game%2B3.txt"
+2021-04-19 21:25:44 Debug:url: QUrl("http://www.baidu.com/folder/temp/video-all/game%2B3.txt")
+2021-04-19 21:25:48 Debug:url toPercentEncoding: "http%3A%2F%2Fwww.baidu.com%2Ffolder%2Ftemp%2Fvideo-all%2Fgame%2B3.txt"
+2021-04-19 21:25:48 Debug:basepath: "http://www.baidu.com/folder/temp/video-all/"   filename: "game+3.txt"
+2021-04-19 21:25:48 Debug:filename toPercentEncoding: "game%2B3.txt"
+2021-04-19 21:25:48 Debug:url: QUrl("http://www.baidu.com/folder/temp/video-all/game%2B3.txt")
+2021-04-19 21:25:50 Debug:url toPercentEncoding: "http%3A%2F%2Fwww.baidu.com%2Ffolder%2Ftemp%2Fvideo-all%2Fgame%2B3.txt"
+2021-04-19 21:25:50 Debug:basepath: "http://www.baidu.com/folder/temp/video-all/"   filename: "game+3.txt"
+2021-04-19 21:25:50 Debug:filename toPercentEncoding: "game%2B3.txt"
+2021-04-19 21:25:50 Debug:url: QUrl("http://www.baidu.com/folder/temp/video-all/game%2B3.txt")
+2021-04-19 21:25:51 Warning:QObject::connect: No such slot MainWindow::AddBtnClicked()
+2021-04-19 21:25:51 Warning:QObject::connect:  (receiver name: 'MainWindow')
+2021-04-19 21:25:57 Info:qMain [ 57 ] "===== end ====="
+2021-04-19 21:32:55 Info:qMain [ 29 ] "current demo path = D:/Github/MagicTool/src"
+2021-04-19 21:32:55 Debug:load zh_cn.qm file success!
+
+2021-04-19 21:32:55 Warning:QLayout: Attempting to add QLayout "" to MainWindow "MainWindow", which already has a layout
+2021-04-19 21:33:09 Debug:url toPercentEncoding: "http%3A%2F%2Fwww.bai%20du.com%2Fgame%2B3.txt"
+2021-04-19 21:33:09 Debug:fromPercentEncoding:  "https://testurl.net/gf/e51f1774/TKIsnXER5yHjPSj9h9N5W9qexRRaZ1NEOkdOdqF/YNht6fwqs/nq0edOKoMJ26UKwu44ww3n7Y6d\nCewL43WiP1LrJUYYTEv3YusoRZfv4BY3L/dF2gKQpJh4AkF+8P1FD2Ftl7DztJT7v"
+2021-04-19 21:33:09 Debug:fromEncoded:  QUrl("https://testurl.net/gf%2Fe51f1774%2FTKIsnXER5yHjPSj9h9N5W9qexRRaZ1NEOkdOdqF%2FYNht6fwqs%2Fnq0edOKoMJ26UKwu44ww3n7Y6d%0ACewL43WiP1LrJUYYTEv3YusoRZfv4BY3L%2FdF2gKQpJh4AkF%2B8P1FD2Ftl7DztJT7v")
+2021-04-19 21:33:09 Debug:fromUserInput:  QUrl("https://testurl.net/gf%2Fe51f1774%2FTKIsnXER5yHjPSj9h9N5W9qexRRaZ1NEOkdOdqF%2FYNht6fwqs%2Fnq0edOKoMJ26UKwu44ww3n7Y6d%0ACewL43WiP1LrJUYYTEv3YusoRZfv4BY3L%2FdF2gKQpJh4AkF%2B8P1FD2Ftl7DztJT7v")
+2021-04-19 21:33:09 Debug:basepath: "http://www.bai du.com/"   filename: "game+3.txt"
+2021-04-19 21:33:09 Debug:filename toPercentEncoding: "game%2B3.txt"
+2021-04-19 21:33:09 Debug:url: QUrl("")
+2021-04-19 21:35:07 Info:qMain [ 57 ] "===== end ====="
+2021-04-19 21:39:02 Info:qMain [ 29 ] "current demo path = D:/Github/MagicTool/src"
+2021-04-19 21:39:02 Debug:load zh_cn.qm file success!
+
+2021-04-19 21:39:02 Warning:QLayout: Attempting to add QLayout "" to MainWindow "MainWindow", which already has a layout
+2021-04-19 21:39:07 Debug:url toPercentEncoding: "http%3A%2F%2Fwww.bai%20du.com%2Fgame%2B3.txt"
+2021-04-19 21:39:07 Debug:fromPercentEncoding:  "https://testurl.net/gf/e51f1774/dqF/fwqs/n7Y6d\nCBY3L/dF2gKQpJh4AkF+8P1F7v"
+2021-04-19 21:39:07 Debug:fromEncoded:  QUrl("https://testurl.net/gf%2Fe51f1774%2FdqF%2Ffwqs%2Fn7Y6d%0ACBY3L%2FdF2gKQpJh4AkF%2B8P1F7v")
+2021-04-19 21:39:07 Debug:fromUserInput:  QUrl("https://testurl.net/gf%2Fe51f1774%2FdqF%2Ffwqs%2Fn7Y6d%0ACBY3L%2FdF2gKQpJh4AkF%2B8P1F7v")
+2021-04-19 21:39:07 Debug:basepath: "http://www.bai du.com/"   filename: "game+3.txt"
+2021-04-19 21:39:07 Debug:filename toPercentEncoding: "game%2B3.txt"
+2021-04-19 21:39:07 Debug:url: QUrl("")
+2021-04-19 21:39:07 Debug:[Original String]: "/*pat + %20 %2Bh*/"
+2021-04-19 21:39:07 Debug:--------------------------------------------------------------------
+2021-04-19 21:39:07 Debug:(QUrl::toEncoded)          : "/*pat%20+%20%20%20%2Bh*/"
+2021-04-19 21:39:07 Debug:(QUrl::url)                : "/*pat +   %2Bh*/"
+2021-04-19 21:39:07 Debug:(QUrl::toString)           : "/*pat +   %2Bh*/"
+2021-04-19 21:39:07 Debug:(QUrl::toDisplayString)    : "/*pat%20+%20%20%20%2Bh*/"
+2021-04-19 21:39:07 Debug:(QUrl::fromPercentEncoding): "/*pat +   +h*/"
+2021-04-19 22:18:33 Info:qMain [ 57 ] "===== end ====="
+2021-04-19 22:18:43 Info:qMain [ 29 ] "current demo path = D:/Github/MagicTool/src"
+2021-04-19 22:18:43 Debug:load zh_cn.qm file success!
+
+2021-04-19 22:18:43 Warning:QLayout: Attempting to add QLayout "" to MainWindow "MainWindow", which already has a layout
+2021-04-19 22:19:43 Debug:url toPercentEncoding: "http%3A%2F%2Fwww.bai%20du.com%2Fgame%2B3.txt"
+2021-04-19 22:19:43 Debug:fromPercentEncoding:  "https://testurl.net/gf/e51f1774/dqF/fwqs/n7Y6d\nCBY3L/dF2gKQpJh4AkF+8P1F7v"
+2021-04-19 22:19:43 Debug:fromEncoded:  QUrl("https://testurl.net/gf%2Fe51f1774%2FdqF%2Ffwqs%2Fn7Y6d%0ACBY3L%2FdF2gKQpJh4AkF%2B8P1F7v")
+2021-04-19 22:19:43 Debug:fromUserInput:  QUrl("https://testurl.net/gf%2Fe51f1774%2FdqF%2Ffwqs%2Fn7Y6d%0ACBY3L%2FdF2gKQpJh4AkF%2B8P1F7v")
+2021-04-19 22:19:43 Debug:basepath: "http://www.bai du.com/"   filename: "game+3.txt"
+2021-04-19 22:19:43 Debug:filename toPercentEncoding: "game%2B3.txt"
+2021-04-19 22:19:43 Debug:url: QUrl("")
+2021-04-19 22:19:43 Debug:[Original String]: "/*pat + %20 %2Bh*/"
+2021-04-19 22:19:43 Debug:--------------------------------------------------------------------
+2021-04-19 22:19:43 Debug:(QUrl::toEncoded)          : "/*pat%20+%20%20%20%2Bh*/"
+2021-04-19 22:19:43 Debug:(QUrl::url)                : "/*pat +   %2Bh*/"
+2021-04-19 22:19:43 Debug:(QUrl::toString)           : "/*pat +   %2Bh*/"
+2021-04-19 22:19:43 Debug:(QUrl::toDisplayString)    : "/*pat%20+%20%20%20%2Bh*/"
+2021-04-19 22:19:43 Debug:(QUrl::fromPercentEncoding): "/*pat +   +h*/"
+2021-04-19 22:19:43 Debug:QUrl("http:///game%2B3.txt?type=content&q=Qt")
+2021-04-19 22:26:15 Info:qMain [ 57 ] "===== end ====="
+2021-04-19 22:26:27 INFO [..\..\..\..\Github\MagicTool\src\globalvariable.cpp:MessageOutPut::43] qMain [ 29 ] "current demo path = D:/Github/MagicTool/src"
+2021-04-19 22:26:27 DEBUG [..\..\..\..\Github\MagicTool\src\globalvariable.cpp:MessageOutPut::43] load zh_cn.qm file success!
+
+2021-04-19 22:26:28 WARNING [..\..\..\..\Github\MagicTool\src\globalvariable.cpp:MessageOutPut::43] QLayout: Attempting to add QLayout "" to MainWindow "MainWindow", which already has a layout
+2021-04-19 22:26:31 DEBUG [..\..\..\..\Github\MagicTool\src\globalvariable.cpp:MessageOutPut::43] url toPercentEncoding: "http%3A%2F%2Fwww.bai%20du.com%2Fgame%2B3.txt"
+2021-04-19 22:26:31 DEBUG [..\..\..\..\Github\MagicTool\src\globalvariable.cpp:MessageOutPut::43] fromPercentEncoding:  "https://testurl.net/gf/e51f1774/dqF/fwqs/n7Y6d\nCBY3L/dF2gKQpJh4AkF+8P1F7v"
+2021-04-19 22:26:31 DEBUG [..\..\..\..\Github\MagicTool\src\globalvariable.cpp:MessageOutPut::43] fromEncoded:  QUrl("https://testurl.net/gf%2Fe51f1774%2FdqF%2Ffwqs%2Fn7Y6d%0ACBY3L%2FdF2gKQpJh4AkF%2B8P1F7v")
+2021-04-19 22:26:31 DEBUG [..\..\..\..\Github\MagicTool\src\globalvariable.cpp:MessageOutPut::43] fromUserInput:  QUrl("https://testurl.net/gf%2Fe51f1774%2FdqF%2Ffwqs%2Fn7Y6d%0ACBY3L%2FdF2gKQpJh4AkF%2B8P1F7v")
+2021-04-19 22:26:31 DEBUG [..\..\..\..\Github\MagicTool\src\globalvariable.cpp:MessageOutPut::43] basepath: "http://www.bai du.com/"   filename: "game+3.txt"
+2021-04-19 22:26:31 DEBUG [..\..\..\..\Github\MagicTool\src\globalvariable.cpp:MessageOutPut::43] filename toPercentEncoding: "game%2B3.txt"
+2021-04-19 22:26:31 DEBUG [..\..\..\..\Github\MagicTool\src\globalvariable.cpp:MessageOutPut::43] url: QUrl("")
+2021-04-19 22:26:31 DEBUG [..\..\..\..\Github\MagicTool\src\globalvariable.cpp:MessageOutPut::43] [Original String]: "/*pat + %20 %2Bh*/"
+2021-04-19 22:26:31 DEBUG [..\..\..\..\Github\MagicTool\src\globalvariable.cpp:MessageOutPut::43] --------------------------------------------------------------------
+2021-04-19 22:26:31 DEBUG [..\..\..\..\Github\MagicTool\src\globalvariable.cpp:MessageOutPut::43] (QUrl::toEncoded)          : "/*pat%20+%20%20%20%2Bh*/"
+2021-04-19 22:26:31 DEBUG [..\..\..\..\Github\MagicTool\src\globalvariable.cpp:MessageOutPut::43] (QUrl::url)                : "/*pat +   %2Bh*/"
+2021-04-19 22:26:31 DEBUG [..\..\..\..\Github\MagicTool\src\globalvariable.cpp:MessageOutPut::43] (QUrl::toString)           : "/*pat +   %2Bh*/"
+2021-04-19 22:26:31 DEBUG [..\..\..\..\Github\MagicTool\src\globalvariable.cpp:MessageOutPut::43] (QUrl::toDisplayString)    : "/*pat%20+%20%20%20%2Bh*/"
+2021-04-19 22:26:31 DEBUG [..\..\..\..\Github\MagicTool\src\globalvariable.cpp:MessageOutPut::43] (QUrl::fromPercentEncoding): "/*pat +   +h*/"
+2021-04-19 22:26:31 DEBUG [..\..\..\..\Github\MagicTool\src\globalvariable.cpp:MessageOutPut::43] QUrl("http:///se%2Barch?type=content&q=Qt")
+2021-04-19 22:28:53 DEBUG [..\..\..\..\Github\MagicTool\src\globalvariable.cpp:MessageOutPut::43] url toPercentEncoding: "http%3A%2F%2Fwww.bai%20du.com%2Fgame%2B3.txt"
+2021-04-19 22:28:53 DEBUG [..\..\..\..\Github\MagicTool\src\globalvariable.cpp:MessageOutPut::43] fromPercentEncoding:  "https://testurl.net/gf/e51f1774/dqF/fwqs/n7Y6d\nCBY3L/dF2gKQpJh4AkF+8P1F7v"
+2021-04-19 22:28:53 DEBUG [..\..\..\..\Github\MagicTool\src\globalvariable.cpp:MessageOutPut::43] fromEncoded:  QUrl("https://testurl.net/gf%2Fe51f1774%2FdqF%2Ffwqs%2Fn7Y6d%0ACBY3L%2FdF2gKQpJh4AkF%2B8P1F7v")
+2021-04-19 22:28:53 DEBUG [..\..\..\..\Github\MagicTool\src\globalvariable.cpp:MessageOutPut::43] fromUserInput:  QUrl("https://testurl.net/gf%2Fe51f1774%2FdqF%2Ffwqs%2Fn7Y6d%0ACBY3L%2FdF2gKQpJh4AkF%2B8P1F7v")
+2021-04-19 22:28:53 DEBUG [..\..\..\..\Github\MagicTool\src\globalvariable.cpp:MessageOutPut::43] basepath: "http://www.bai du.com/"   filename: "game+3.txt"
+2021-04-19 22:28:53 DEBUG [..\..\..\..\Github\MagicTool\src\globalvariable.cpp:MessageOutPut::43] filename toPercentEncoding: "game%2B3.txt"
+2021-04-19 22:28:53 DEBUG [..\..\..\..\Github\MagicTool\src\globalvariable.cpp:MessageOutPut::43] url: QUrl("")
+2021-04-19 22:28:53 DEBUG [..\..\..\..\Github\MagicTool\src\globalvariable.cpp:MessageOutPut::43] [Original String]: "/*pat + %20 %2Bh*/"
+2021-04-19 22:28:53 DEBUG [..\..\..\..\Github\MagicTool\src\globalvariable.cpp:MessageOutPut::43] --------------------------------------------------------------------
+2021-04-19 22:28:53 DEBUG [..\..\..\..\Github\MagicTool\src\globalvariable.cpp:MessageOutPut::43] (QUrl::toEncoded)          : "/*pat%20+%20%20%20%2Bh*/"
+2021-04-19 22:28:53 DEBUG [..\..\..\..\Github\MagicTool\src\globalvariable.cpp:MessageOutPut::43] (QUrl::url)                : "/*pat +   %2Bh*/"
+2021-04-19 22:28:53 DEBUG [..\..\..\..\Github\MagicTool\src\globalvariable.cpp:MessageOutPut::43] (QUrl::toString)           : "/*pat +   %2Bh*/"
+2021-04-19 22:28:53 DEBUG [..\..\..\..\Github\MagicTool\src\globalvariable.cpp:MessageOutPut::43] (QUrl::toDisplayString)    : "/*pat%20+%20%20%20%2Bh*/"
+2021-04-19 22:28:53 DEBUG [..\..\..\..\Github\MagicTool\src\globalvariable.cpp:MessageOutPut::43] (QUrl::fromPercentEncoding): "/*pat +   +h*/"
+2021-04-19 22:28:53 DEBUG [..\..\..\..\Github\MagicTool\src\globalvariable.cpp:MessageOutPut::43] QUrl("http:///se%2Barch?type=content&q=Qt")
+2021-04-19 22:29:02 DEBUG [..\..\..\..\Github\MagicTool\src\globalvariable.cpp:MessageOutPut::43] url toPercentEncoding: "http%3A%2F%2Fwww.bai%20du.com%2Fgame%2B3.txt"
+2021-04-19 22:29:02 DEBUG [..\..\..\..\Github\MagicTool\src\globalvariable.cpp:MessageOutPut::43] fromPercentEncoding:  "https://testurl.net/gf/e51f1774/dqF/fwqs/n7Y6d\nCBY3L/dF2gKQpJh4AkF+8P1F7v"
+2021-04-19 22:29:02 DEBUG [..\..\..\..\Github\MagicTool\src\globalvariable.cpp:MessageOutPut::43] fromEncoded:  QUrl("https://testurl.net/gf%2Fe51f1774%2FdqF%2Ffwqs%2Fn7Y6d%0ACBY3L%2FdF2gKQpJh4AkF%2B8P1F7v")
+2021-04-19 22:29:02 DEBUG [..\..\..\..\Github\MagicTool\src\globalvariable.cpp:MessageOutPut::43] fromUserInput:  QUrl("https://testurl.net/gf%2Fe51f1774%2FdqF%2Ffwqs%2Fn7Y6d%0ACBY3L%2FdF2gKQpJh4AkF%2B8P1F7v")
+2021-04-19 22:29:02 DEBUG [..\..\..\..\Github\MagicTool\src\globalvariable.cpp:MessageOutPut::43] basepath: "http://www.bai du.com/"   filename: "game+3.txt"
+2021-04-19 22:29:02 DEBUG [..\..\..\..\Github\MagicTool\src\globalvariable.cpp:MessageOutPut::43] filename toPercentEncoding: "game%2B3.txt"
+2021-04-19 22:29:02 DEBUG [..\..\..\..\Github\MagicTool\src\globalvariable.cpp:MessageOutPut::43] url: QUrl("")
+2021-04-19 22:29:02 DEBUG [..\..\..\..\Github\MagicTool\src\globalvariable.cpp:MessageOutPut::43] [Original String]: "/*pat + %20 %2Bh*/"
+2021-04-19 22:29:02 DEBUG [..\..\..\..\Github\MagicTool\src\globalvariable.cpp:MessageOutPut::43] --------------------------------------------------------------------
+2021-04-19 22:29:02 DEBUG [..\..\..\..\Github\MagicTool\src\globalvariable.cpp:MessageOutPut::43] (QUrl::toEncoded)          : "/*pat%20+%20%20%20%2Bh*/"
+2021-04-19 22:29:02 DEBUG [..\..\..\..\Github\MagicTool\src\globalvariable.cpp:MessageOutPut::43] (QUrl::url)                : "/*pat +   %2Bh*/"
+2021-04-19 22:29:02 DEBUG [..\..\..\..\Github\MagicTool\src\globalvariable.cpp:MessageOutPut::43] (QUrl::toString)           : "/*pat +   %2Bh*/"
+2021-04-19 22:29:02 DEBUG [..\..\..\..\Github\MagicTool\src\globalvariable.cpp:MessageOutPut::43] (QUrl::toDisplayString)    : "/*pat%20+%20%20%20%2Bh*/"
+2021-04-19 22:29:02 DEBUG [..\..\..\..\Github\MagicTool\src\globalvariable.cpp:MessageOutPut::43] (QUrl::fromPercentEncoding): "/*pat +   +h*/"
+2021-04-19 22:29:02 DEBUG [..\..\..\..\Github\MagicTool\src\globalvariable.cpp:MessageOutPut::43] QUrl("http:///se%2Barch?type=content&q=Qt")
+2021-04-19 22:29:14 INFO [..\..\..\..\Github\MagicTool\src\globalvariable.cpp:MessageOutPut::43] qMain [ 57 ] "===== end ====="
+2021-04-19 22:29:38 INFO [..\..\..\..\Github\MagicTool\src\globalvariable.cpp:MessageOutPut::43] qMain [ 29 ] "current demo path = D:/Github/MagicTool/src"
+2021-04-19 22:29:38 DEBUG [..\..\..\..\Github\MagicTool\src\globalvariable.cpp:MessageOutPut::43] load zh_cn.qm file success!
+
+2021-04-19 22:29:39 WARNING [..\..\..\..\Github\MagicTool\src\globalvariable.cpp:MessageOutPut::43] QLayout: Attempting to add QLayout "" to MainWindow "MainWindow", which already has a layout
+2021-04-19 22:29:42 DEBUG [..\..\..\..\Github\MagicTool\src\globalvariable.cpp:MessageOutPut::43] url toPercentEncoding: "http%3A%2F%2Fwww.bai%20du.com%2Fgame%2B3.txt"
+2021-04-19 22:29:42 DEBUG [..\..\..\..\Github\MagicTool\src\globalvariable.cpp:MessageOutPut::43] fromPercentEncoding:  "https://testurl.net/gf/e51f1774/dqF/fwqs/n7Y6d\nCBY3L/dF2gKQpJh4AkF+8P1F7v"
+2021-04-19 22:29:42 DEBUG [..\..\..\..\Github\MagicTool\src\globalvariable.cpp:MessageOutPut::43] fromEncoded:  QUrl("https://testurl.net/gf%2Fe51f1774%2FdqF%2Ffwqs%2Fn7Y6d%0ACBY3L%2FdF2gKQpJh4AkF%2B8P1F7v")
+2021-04-19 22:29:42 DEBUG [..\..\..\..\Github\MagicTool\src\globalvariable.cpp:MessageOutPut::43] fromUserInput:  QUrl("https://testurl.net/gf%2Fe51f1774%2FdqF%2Ffwqs%2Fn7Y6d%0ACBY3L%2FdF2gKQpJh4AkF%2B8P1F7v")
+2021-04-19 22:29:42 DEBUG [..\..\..\..\Github\MagicTool\src\globalvariable.cpp:MessageOutPut::43] basepath: "http://www.bai du.com/"   filename: "game+3.txt"
+2021-04-19 22:29:42 DEBUG [..\..\..\..\Github\MagicTool\src\globalvariable.cpp:MessageOutPut::43] filename toPercentEncoding: "game%2B3.txt"
+2021-04-19 22:29:42 DEBUG [..\..\..\..\Github\MagicTool\src\globalvariable.cpp:MessageOutPut::43] url: QUrl("")
+2021-04-19 22:29:42 DEBUG [..\..\..\..\Github\MagicTool\src\globalvariable.cpp:MessageOutPut::43] [Original String]: "/*pat + %20 %2Bh*/"
+2021-04-19 22:29:42 DEBUG [..\..\..\..\Github\MagicTool\src\globalvariable.cpp:MessageOutPut::43] --------------------------------------------------------------------
+2021-04-19 22:29:42 DEBUG [..\..\..\..\Github\MagicTool\src\globalvariable.cpp:MessageOutPut::43] (QUrl::toEncoded)          : "/*pat%20+%20%20%20%2Bh*/"
+2021-04-19 22:29:42 DEBUG [..\..\..\..\Github\MagicTool\src\globalvariable.cpp:MessageOutPut::43] (QUrl::url)                : "/*pat +   %2Bh*/"
+2021-04-19 22:29:42 DEBUG [..\..\..\..\Github\MagicTool\src\globalvariable.cpp:MessageOutPut::43] (QUrl::toString)           : "/*pat +   %2Bh*/"
+2021-04-19 22:29:42 DEBUG [..\..\..\..\Github\MagicTool\src\globalvariable.cpp:MessageOutPut::43] (QUrl::toDisplayString)    : "/*pat%20+%20%20%20%2Bh*/"
+2021-04-19 22:29:42 DEBUG [..\..\..\..\Github\MagicTool\src\globalvariable.cpp:MessageOutPut::43] (QUrl::fromPercentEncoding): "/*pat +   +h*/"
+2021-04-19 22:29:42 DEBUG [..\..\..\..\Github\MagicTool\src\globalvariable.cpp:MessageOutPut::43] QUrl("http:///se%2Barch?type=content&q=Qt")
+2021-04-19 22:31:39 INFO [..\..\..\..\Github\MagicTool\src\globalvariable.cpp:MessageOutPut::43] qMain [ 57 ] "===== end ====="
+2021-04-20 13:47:44 INFO [:::0] qMain [ 29 ] "current demo path = D:/Github/MagicTool/src"
+2021-04-20 13:47:44 DEBUG [:::0] load zh_cn.qm file success!
+
+2021-04-20 13:47:47 WARNING [:::0] QLayout: Attempting to add QLayout "" to MainWindow "MainWindow", which already has a layout
+2021-04-20 13:48:08 DEBUG [:::0] url toPercentEncoding: "http%3A%2F%2Fwww.bai%20du.com%2Fgame%2B3.txt"
+2021-04-20 13:48:08 DEBUG [:::0] fromPercentEncoding:  "https://testurl.net/gf/e51f1774/dqF/fwqs/n7Y6d\nCBY3L/dF2gKQpJh4AkF+8P1F7v"
+2021-04-20 13:48:08 DEBUG [:::0] fromEncoded:  QUrl("https://testurl.net/gf%2Fe51f1774%2FdqF%2Ffwqs%2Fn7Y6d%0ACBY3L%2FdF2gKQpJh4AkF%2B8P1F7v")
+2021-04-20 13:48:08 DEBUG [:::0] fromUserInput:  QUrl("https://testurl.net/gf%2Fe51f1774%2FdqF%2Ffwqs%2Fn7Y6d%0ACBY3L%2FdF2gKQpJh4AkF%2B8P1F7v")
+2021-04-20 13:48:08 DEBUG [:::0] basepath: "http://www.bai du.com/"   filename: "game+3.txt"
+2021-04-20 13:48:08 DEBUG [:::0] filename toPercentEncoding: "game%2B3.txt"
+2021-04-20 13:48:08 DEBUG [:::0] url: QUrl("")
+2021-04-20 13:48:08 DEBUG [:::0] [Original String]: "/*pat + %20 %2Bh*/"
+2021-04-20 13:48:08 DEBUG [:::0] --------------------------------------------------------------------
+2021-04-20 13:48:08 DEBUG [:::0] (QUrl::toEncoded)          : "/*pat%20+%20%20%20%2Bh*/"
+2021-04-20 13:48:08 DEBUG [:::0] (QUrl::url)                : "/*pat +   %2Bh*/"
+2021-04-20 13:48:08 DEBUG [:::0] (QUrl::toString)           : "/*pat +   %2Bh*/"
+2021-04-20 13:48:08 DEBUG [:::0] (QUrl::toDisplayString)    : "/*pat%20+%20%20%20%2Bh*/"
+2021-04-20 13:48:08 DEBUG [:::0] (QUrl::fromPercentEncoding): "/*pat +   +h*/"
+2021-04-20 13:48:08 DEBUG [:::0] QUrl("http:///se%2Barch?type=content&q=Qt")
+2021-04-20 13:53:07 INFO [:::0] qMain [ 57 ] "===== end ====="
+2021-04-20 13:53:19 INFO [:::0] qMain [ 29 ] "current demo path = D:/Github/MagicTool/src"
+2021-04-20 13:53:19 DEBUG [:::0] load zh_cn.qm file success!
+
+2021-04-20 13:53:19 WARNING [:::0] QLayout: Attempting to add QLayout "" to MainWindow "MainWindow", which already has a layout
+2021-04-20 13:53:43 DEBUG [:::0] url toPercentEncoding: "http%3A%2F%2Fwww.bai%20du.com%2Fgame%2B3.txt"
+2021-04-20 13:53:43 DEBUG [:::0] fromPercentEncoding:  "https://testurl.net/gf/e51f1774/dqF/fwqs/n7Y6d\nCBY3L/dF2gKQpJh4AkF+8P1F7v"
+2021-04-20 13:53:43 DEBUG [:::0] fromEncoded:  QUrl("https://testurl.net/gf%2Fe51f1774%2FdqF%2Ffwqs%2Fn7Y6d%0ACBY3L%2FdF2gKQpJh4AkF%2B8P1F7v")
+2021-04-20 13:53:43 DEBUG [:::0] fromUserInput:  QUrl("https://testurl.net/gf%2Fe51f1774%2FdqF%2Ffwqs%2Fn7Y6d%0ACBY3L%2FdF2gKQpJh4AkF%2B8P1F7v")
+2021-04-20 13:53:43 DEBUG [:::0] basepath: "http://www.bai du.com/"   filename: "game+3.txt"
+2021-04-20 13:53:43 DEBUG [:::0] filename toPercentEncoding: "game%2B3.txt"
+2021-04-20 13:53:43 DEBUG [:::0] url: QUrl("")
+2021-04-20 13:53:43 DEBUG [:::0] [Original String]: "/*pat + %20 %2Bh*/"
+2021-04-20 13:53:43 DEBUG [:::0] --------------------------------------------------------------------
+2021-04-20 13:53:43 DEBUG [:::0] (QUrl::toEncoded)          : "/*pat%20+%20%20%20%2Bh*/"
+2021-04-20 13:53:43 DEBUG [:::0] (QUrl::url)                : "/*pat +   %2Bh*/"
+2021-04-20 13:53:43 DEBUG [:::0] (QUrl::toString)           : "/*pat +   %2Bh*/"
+2021-04-20 13:53:43 DEBUG [:::0] (QUrl::toDisplayString)    : "/*pat%20+%20%20%20%2Bh*/"
+2021-04-20 13:53:43 DEBUG [:::0] (QUrl::fromPercentEncoding): "/*pat +   +h*/"
+2021-04-20 13:53:43 DEBUG [:::0] QUrl("http:///se%2Barch?type=content&q=Qt")
+2021-04-20 14:09:43 INFO [:::0] qMain [ 57 ] "===== end ====="
+2021-04-20 14:09:54 INFO [:::0] qMain [ 28 ] "current demo path = D:/Github/MagicTool/src"
+2021-04-20 14:09:54 DEBUG [:::0] load zh_cn.qm file success!
+
+2021-04-20 14:09:54 WARNING [:::0] QLayout: Attempting to add QLayout "" to MainWindow "MainWindow", which already has a layout
+2021-04-20 14:11:44 DEBUG [:::0] dsads
+2021-04-20 14:11:44 INFO [:::0] qMain [ 57 ] "===== end ====="
+2021-04-20 14:12:07 INFO [:::0] qMain [ 28 ] "current demo path = D:/Github/MagicTool/src"
+2021-04-20 14:12:07 DEBUG [:::0] load zh_cn.qm file success!
+
+2021-04-20 14:12:07 WARNING [:::0] QLayout: Attempting to add QLayout "" to MainWindow "MainWindow", which already has a layout
+2021-04-20 14:15:16 DEBUG [:::0] dsads
+2021-04-20 14:15:16 INFO [:::0] qMain [ 57 ] "===== end ====="
+2021-04-20 14:15:25 INFO [:::0] qMain [ 28 ] "current demo path = D:/Github/MagicTool/src"
+2021-04-20 14:15:25 DEBUG [:::0] load zh_cn.qm file success!
+
+2021-04-20 14:15:25 WARNING [:::0] QLayout: Attempting to add QLayout "" to MainWindow "MainWindow", which already has a layout
+2021-04-20 14:15:29 DEBUG [:::0] url toPercentEncoding: "http%3A%2F%2Fwww.bai%20du.com%2Fgame%2B3.txt"
+2021-04-20 14:15:29 DEBUG [:::0] fromPercentEncoding:  "https://testurl.net/gf/e51f1774/dqF/fwqs/n7Y6d\nCBY3L/dF2gKQpJh4AkF+8P1F7v"
+2021-04-20 14:15:29 DEBUG [:::0] fromEncoded:  QUrl("https://testurl.net/gf%2Fe51f1774%2FdqF%2Ffwqs%2Fn7Y6d%0ACBY3L%2FdF2gKQpJh4AkF%2B8P1F7v")
+2021-04-20 14:15:29 DEBUG [:::0] fromUserInput:  QUrl("https://testurl.net/gf%2Fe51f1774%2FdqF%2Ffwqs%2Fn7Y6d%0ACBY3L%2FdF2gKQpJh4AkF%2B8P1F7v")
+2021-04-20 14:15:29 DEBUG [:::0] basepath: "http://www.bai du.com/"   filename: "game+3.txt"
+2021-04-20 14:15:29 DEBUG [:::0] filename toPercentEncoding: "game%2B3.txt"
+2021-04-20 14:15:29 DEBUG [:::0] url: QUrl("")
+2021-04-20 14:15:29 DEBUG [:::0] [Original String]: "/*pat + %20 %2Bh*/"
+2021-04-20 14:15:29 DEBUG [:::0] --------------------------------------------------------------------
+2021-04-20 14:15:29 DEBUG [:::0] (QUrl::toEncoded)          : "/*pat%20+%20%20%20%2Bh*/"
+2021-04-20 14:15:29 DEBUG [:::0] (QUrl::url)                : "/*pat +   %2Bh*/"
+2021-04-20 14:15:29 DEBUG [:::0] (QUrl::toString)           : "/*pat +   %2Bh*/"
+2021-04-20 14:15:29 DEBUG [:::0] (QUrl::toDisplayString)    : "/*pat%20+%20%20%20%2Bh*/"
+2021-04-20 14:15:29 DEBUG [:::0] (QUrl::fromPercentEncoding): "/*pat +   +h*/"
+2021-04-20 14:15:29 DEBUG [:::0] QUrl("http:///se%2Barch?type=content&q=Qt")
+2021-04-20 14:15:50 DEBUG [:::0] dsads
+2021-04-20 14:15:50 INFO [:::0] qMain [ 57 ] "===== end ====="
+2021-04-21 09:54:50 INFO [:::0] qMain [ 28 ] "current demo path = D:/Github/MagicTool/src"
+2021-04-21 09:54:50 DEBUG [:::0] load zh_cn.qm file success!
+
+2021-04-21 09:54:52 WARNING [:::0] QLayout: Attempting to add QLayout "" to MainWindow "MainWindow", which already has a layout
+2021-04-21 09:55:00 DEBUG [:::0] url toPercentEncoding: "http%3A%2F%2Fwww.bai%20du.com%2Fgame%2B3.txt"
+2021-04-21 09:55:00 DEBUG [:::0] fromPercentEncoding:  "https://testurl.net/gf/e51f1774/dqF/fwqs/n7Y6d\nCBY3L/dF2gKQpJh4AkF+8P1F7v"
+2021-04-21 09:55:00 DEBUG [:::0] fromEncoded:  QUrl("https://testurl.net/gf%2Fe51f1774%2FdqF%2Ffwqs%2Fn7Y6d%0ACBY3L%2FdF2gKQpJh4AkF%2B8P1F7v")
+2021-04-21 09:55:00 DEBUG [:::0] fromUserInput:  QUrl("https://testurl.net/gf%2Fe51f1774%2FdqF%2Ffwqs%2Fn7Y6d%0ACBY3L%2FdF2gKQpJh4AkF%2B8P1F7v")
+2021-04-21 09:55:00 DEBUG [:::0] basepath: "http://www.bai du.com/"   filename: "game+3.txt"
+2021-04-21 09:55:00 DEBUG [:::0] filename toPercentEncoding: "game%2B3.txt"
+2021-04-21 09:55:00 DEBUG [:::0] url: QUrl("")
+2021-04-21 09:55:00 DEBUG [:::0] [Original String]: "/*pat + %20 %2Bh*/"
+2021-04-21 09:55:00 DEBUG [:::0] --------------------------------------------------------------------
+2021-04-21 09:55:00 DEBUG [:::0] (QUrl::toEncoded)          : "/*pat%20+%20%20%20%2Bh*/"
+2021-04-21 09:55:00 DEBUG [:::0] (QUrl::url)                : "/*pat +   %2Bh*/"
+2021-04-21 09:55:00 DEBUG [:::0] (QUrl::toString)           : "/*pat +   %2Bh*/"
+2021-04-21 09:55:00 DEBUG [:::0] (QUrl::toDisplayString)    : "/*pat%20+%20%20%20%2Bh*/"
+2021-04-21 09:55:00 DEBUG [:::0] (QUrl::fromPercentEncoding): "/*pat +   +h*/"
+2021-04-21 09:55:00 DEBUG [:::0] QUrl("http:///se%2Barch?type=content&q=Qt")
+2021-04-21 09:55:21 DEBUG [:::0] dsads
+2021-04-21 09:55:21 INFO [:::0] qMain [ 57 ] "===== end ====="
+2021-04-21 10:08:42 INFO [..\..\..\..\Github\MagicTool\src\main.cpp:int qMain(int, char**)::28] qMain [ 28 ] "current demo path = D:/Github/MagicTool/src"
+2021-04-21 10:08:42 DEBUG [..\..\..\..\Github\MagicTool\src\main.cpp:int qMain(int, char**)::42] load zh_cn.qm file success!
+
+2021-04-21 10:08:42 WARNING [:::0] QLayout: Attempting to add QLayout "" to MainWindow "MainWindow", which already has a layout
+2021-04-21 10:08:45 DEBUG [..\..\..\..\Github\MagicTool\src\mainwindow.cpp:void MainWindow::DelActionClicked()::160] url toPercentEncoding: "http%3A%2F%2Fwww.bai%20du.com%2Fgame%2B3.txt"
+2021-04-21 10:08:45 DEBUG [..\..\..\..\Github\MagicTool\src\mainwindow.cpp:void MainWindow::DelActionClicked()::161] fromPercentEncoding:  "https://testurl.net/gf/e51f1774/dqF/fwqs/n7Y6d\nCBY3L/dF2gKQpJh4AkF+8P1F7v"
+2021-04-21 10:08:45 DEBUG [..\..\..\..\Github\MagicTool\src\mainwindow.cpp:void MainWindow::DelActionClicked()::162] fromEncoded:  QUrl("https://testurl.net/gf%2Fe51f1774%2FdqF%2Ffwqs%2Fn7Y6d%0ACBY3L%2FdF2gKQpJh4AkF%2B8P1F7v")
+2021-04-21 10:08:45 DEBUG [..\..\..\..\Github\MagicTool\src\mainwindow.cpp:void MainWindow::DelActionClicked()::163] fromUserInput:  QUrl("https://testurl.net/gf%2Fe51f1774%2FdqF%2Ffwqs%2Fn7Y6d%0ACBY3L%2FdF2gKQpJh4AkF%2B8P1F7v")
+2021-04-21 10:08:45 DEBUG [..\..\..\..\Github\MagicTool\src\mainwindow.cpp:void MainWindow::DelActionClicked()::167] basepath: "http://www.bai du.com/"   filename: "game+3.txt"
+2021-04-21 10:08:45 DEBUG [..\..\..\..\Github\MagicTool\src\mainwindow.cpp:void MainWindow::DelActionClicked()::169] filename toPercentEncoding: "game%2B3.txt"
+2021-04-21 10:08:45 DEBUG [..\..\..\..\Github\MagicTool\src\mainwindow.cpp:void MainWindow::DelActionClicked()::172] url: QUrl("")
+2021-04-21 10:08:45 DEBUG [..\..\..\..\Github\MagicTool\src\mainwindow.cpp:void MainWindow::DelActionClicked()::177] [Original String]: "/*pat + %20 %2Bh*/"
+2021-04-21 10:08:45 DEBUG [..\..\..\..\Github\MagicTool\src\mainwindow.cpp:void MainWindow::DelActionClicked()::178] --------------------------------------------------------------------
+2021-04-21 10:08:45 DEBUG [..\..\..\..\Github\MagicTool\src\mainwindow.cpp:void MainWindow::DelActionClicked()::179] (QUrl::toEncoded)          : "/*pat%20+%20%20%20%2Bh*/"
+2021-04-21 10:08:45 DEBUG [..\..\..\..\Github\MagicTool\src\mainwindow.cpp:void MainWindow::DelActionClicked()::180] (QUrl::url)                : "/*pat +   %2Bh*/"
+2021-04-21 10:08:45 DEBUG [..\..\..\..\Github\MagicTool\src\mainwindow.cpp:void MainWindow::DelActionClicked()::181] (QUrl::toString)           : "/*pat +   %2Bh*/"
+2021-04-21 10:08:45 DEBUG [..\..\..\..\Github\MagicTool\src\mainwindow.cpp:void MainWindow::DelActionClicked()::182] (QUrl::toDisplayString)    : "/*pat%20+%20%20%20%2Bh*/"
+2021-04-21 10:08:45 DEBUG [..\..\..\..\Github\MagicTool\src\mainwindow.cpp:void MainWindow::DelActionClicked()::183] (QUrl::fromPercentEncoding): "/*pat +   +h*/"
+2021-04-21 10:08:45 DEBUG [..\..\..\..\Github\MagicTool\src\mainwindow.cpp:void MainWindow::DelActionClicked()::196] QUrl("http:///se%2Barch?type=content&q=Qt")
+2021-04-21 10:14:29 DEBUG [..\..\..\..\Github\MagicTool\src\main.cpp:int qMain(int, char**)::56] dsads
+2021-04-21 10:14:29 INFO [..\..\..\..\Github\MagicTool\src\main.cpp:int qMain(int, char**)::57] qMain [ 57 ] "===== end ====="
+2021-04-21 10:15:02 INFO [..\..\..\..\Github\MagicTool\src\main.cpp:int qMain(int, char**)::28] qMain [ 28 ] "current demo path = D:/Github/MagicTool/src"
+2021-04-21 10:15:02 DEBUG [..\..\..\..\Github\MagicTool\src\main.cpp:int qMain(int, char**)::42] load zh_cn.qm file success!
+
+2021-04-21 10:15:02 WARNING [:::0] QLayout: Attempting to add QLayout "" to MainWindow "MainWindow", which already has a layout
+2021-04-21 10:15:05 DEBUG [..\..\..\..\Github\MagicTool\src\mainwindow.cpp:void MainWindow::DelActionClicked()::160] url toPercentEncoding: "http%3A%2F%2Fwww.bai%20du.com%2Fgame%2B3.txt"
+2021-04-21 10:15:05 DEBUG [..\..\..\..\Github\MagicTool\src\mainwindow.cpp:void MainWindow::DelActionClicked()::161] fromPercentEncoding:  "https://testurl.net/gf/e51f1774/dqF/fwqs/n7Y6d\nCBY3L/dF2gKQpJh4AkF+8P1F7v"
+2021-04-21 10:15:05 DEBUG [..\..\..\..\Github\MagicTool\src\mainwindow.cpp:void MainWindow::DelActionClicked()::162] fromEncoded:  QUrl("https://testurl.net/gf%2Fe51f1774%2FdqF%2Ffwqs%2Fn7Y6d%0ACBY3L%2FdF2gKQpJh4AkF%2B8P1F7v")
+2021-04-21 10:15:05 DEBUG [..\..\..\..\Github\MagicTool\src\mainwindow.cpp:void MainWindow::DelActionClicked()::163] fromUserInput:  QUrl("https://testurl.net/gf%2Fe51f1774%2FdqF%2Ffwqs%2Fn7Y6d%0ACBY3L%2FdF2gKQpJh4AkF%2B8P1F7v")
+2021-04-21 10:15:05 DEBUG [..\..\..\..\Github\MagicTool\src\mainwindow.cpp:void MainWindow::DelActionClicked()::167] basepath: "http://www.bai du.com/"   filename: "game+3.txt"
+2021-04-21 10:15:05 DEBUG [..\..\..\..\Github\MagicTool\src\mainwindow.cpp:void MainWindow::DelActionClicked()::169] filename toPercentEncoding: "game%2B3.txt"
+2021-04-21 10:15:05 DEBUG [..\..\..\..\Github\MagicTool\src\mainwindow.cpp:void MainWindow::DelActionClicked()::172] url: QUrl("")
+2021-04-21 10:15:05 DEBUG [..\..\..\..\Github\MagicTool\src\mainwindow.cpp:void MainWindow::DelActionClicked()::177] [Original String]: "/*pat + %20 %2Bh*/"
+2021-04-21 10:15:05 DEBUG [..\..\..\..\Github\MagicTool\src\mainwindow.cpp:void MainWindow::DelActionClicked()::178] --------------------------------------------------------------------
+2021-04-21 10:15:05 DEBUG [..\..\..\..\Github\MagicTool\src\mainwindow.cpp:void MainWindow::DelActionClicked()::179] (QUrl::toEncoded)          : "/*pat%20+%20%20%20%2Bh*/"
+2021-04-21 10:15:05 DEBUG [..\..\..\..\Github\MagicTool\src\mainwindow.cpp:void MainWindow::DelActionClicked()::180] (QUrl::url)                : "/*pat +   %2Bh*/"
+2021-04-21 10:15:05 DEBUG [..\..\..\..\Github\MagicTool\src\mainwindow.cpp:void MainWindow::DelActionClicked()::181] (QUrl::toString)           : "/*pat +   %2Bh*/"
+2021-04-21 10:15:05 DEBUG [..\..\..\..\Github\MagicTool\src\mainwindow.cpp:void MainWindow::DelActionClicked()::182] (QUrl::toDisplayString)    : "/*pat%20+%20%20%20%2Bh*/"
+2021-04-21 10:15:05 DEBUG [..\..\..\..\Github\MagicTool\src\mainwindow.cpp:void MainWindow::DelActionClicked()::183] (QUrl::fromPercentEncoding): "/*pat +   +h*/"
+2021-04-21 10:15:05 DEBUG [..\..\..\..\Github\MagicTool\src\mainwindow.cpp:void MainWindow::DelActionClicked()::196] QUrl("http:///se%2Barch?type=content&q=Qt")
+2021-04-21 14:15:48 DEBUG [..\..\..\..\Github\MagicTool\src\globalvariable.cpp:std::vector<std::vector<std::__cxx11::basic_string<char> > > ReadFileAll(const char*)::239] start read file = ./data/accountbook/data.txt
+2021-04-21 14:15:48 DEBUG [..\..\..\..\Github\MagicTool\src\accountbook.cpp:void AccountBook::InitTableWidget()::131] current record size = 63
+2021-04-21 14:16:07 DEBUG [..\..\..\..\Github\MagicTool\src\main.cpp:int qMain(int, char**)::56] dsads
+2021-04-21 14:16:07 INFO [..\..\..\..\Github\MagicTool\src\main.cpp:int qMain(int, char**)::57] qMain [ 57 ] "===== end ====="
+2021-04-21 14:19:54 INFO [\main.cpp:int qMain::28] qMain [ 28 ] "current demo path = D:/Github/MagicTool/src"
+2021-04-21 14:19:54 DEBUG [\main.cpp:int qMain::42] load zh_cn.qm file success!
+
+2021-04-21 14:19:54 WARNING [:::0] QLayout: Attempting to add QLayout "" to MainWindow "MainWindow", which already has a layout
+2021-04-21 14:20:00 DEBUG [\mainwindow.cpp:::DelActionClicked::160] url toPercentEncoding: "http%3A%2F%2Fwww.bai%20du.com%2Fgame%2B3.txt"
+2021-04-21 14:20:00 DEBUG [\mainwindow.cpp:::DelActionClicked::161] fromPercentEncoding:  "https://testurl.net/gf/e51f1774/dqF/fwqs/n7Y6d\nCBY3L/dF2gKQpJh4AkF+8P1F7v"
+2021-04-21 14:20:00 DEBUG [\mainwindow.cpp:::DelActionClicked::162] fromEncoded:  QUrl("https://testurl.net/gf%2Fe51f1774%2FdqF%2Ffwqs%2Fn7Y6d%0ACBY3L%2FdF2gKQpJh4AkF%2B8P1F7v")
+2021-04-21 14:20:00 DEBUG [\mainwindow.cpp:::DelActionClicked::163] fromUserInput:  QUrl("https://testurl.net/gf%2Fe51f1774%2FdqF%2Ffwqs%2Fn7Y6d%0ACBY3L%2FdF2gKQpJh4AkF%2B8P1F7v")
+2021-04-21 14:20:00 DEBUG [\mainwindow.cpp:::DelActionClicked::167] basepath: "http://www.bai du.com/"   filename: "game+3.txt"
+2021-04-21 14:20:00 DEBUG [\mainwindow.cpp:::DelActionClicked::169] filename toPercentEncoding: "game%2B3.txt"
+2021-04-21 14:20:00 DEBUG [\mainwindow.cpp:::DelActionClicked::172] url: QUrl("")
+2021-04-21 14:20:00 DEBUG [\mainwindow.cpp:::DelActionClicked::177] [Original String]: "/*pat + %20 %2Bh*/"
+2021-04-21 14:20:00 DEBUG [\mainwindow.cpp:::DelActionClicked::178] --------------------------------------------------------------------
+2021-04-21 14:20:00 DEBUG [\mainwindow.cpp:::DelActionClicked::179] (QUrl::toEncoded)          : "/*pat%20+%20%20%20%2Bh*/"
+2021-04-21 14:20:00 DEBUG [\mainwindow.cpp:::DelActionClicked::180] (QUrl::url)                : "/*pat +   %2Bh*/"
+2021-04-21 14:20:00 DEBUG [\mainwindow.cpp:::DelActionClicked::181] (QUrl::toString)           : "/*pat +   %2Bh*/"
+2021-04-21 14:20:00 DEBUG [\mainwindow.cpp:::DelActionClicked::182] (QUrl::toDisplayString)    : "/*pat%20+%20%20%20%2Bh*/"
+2021-04-21 14:20:00 DEBUG [\mainwindow.cpp:::DelActionClicked::183] (QUrl::fromPercentEncoding): "/*pat +   +h*/"
+2021-04-21 14:20:00 DEBUG [\mainwindow.cpp:::DelActionClicked::196] QUrl("http:///se%2Barch?type=content&q=Qt")
+2021-04-21 14:20:08 DEBUG [\main.cpp:int qMain::56] dsads
+2021-04-21 14:20:08 INFO [\main.cpp:int qMain::57] qMain [ 57 ] "===== end ====="
+2021-04-21 14:24:29 INFO [main.cpp:nt qMain::28] qMain [ 28 ] "current demo path = D:/Github/MagicTool/src"
+2021-04-21 14:24:29 DEBUG [main.cpp:nt qMain::42] load zh_cn.qm file success!
+
+2021-04-21 14:24:29 WARNING [:::0] QLayout: Attempting to add QLayout "" to MainWindow "MainWindow", which already has a layout
+2021-04-21 14:25:05 INFO [main.cpp:nt qMain::56] qMain [ 56 ] "===== end ====="
+2021-04-21 14:30:50 INFO [main.cpp:int qMain::27] qMain [ 27 ] "current demo path = D:/Github/MagicTool/src"
+2021-04-21 14:30:50 DEBUG [main.cpp:int qMain::41] load zh_cn.qm file success!
+
+2021-04-21 14:30:50 WARNING [:::0] QLayout: Attempting to add QLayout "" to MainWindow "MainWindow", which already has a layout
+2021-04-21 14:31:03 INFO [main.cpp:int qMain::53] qMain [ 53 ] "===== begin ====="
+2021-04-21 14:31:03 INFO [main.cpp:int qMain::56] qMain [ 56 ] "===== end ====="
+2021-04-21 14:48:24 INFO [main.cpp:int qMain::27] qMain [ 27 ] "current demo path = D:/Github/MagicTool/src" int qMain(int, char**)
+2021-04-21 14:48:24 DEBUG [main.cpp:int qMain::41] load zh_cn.qm file success!
+ int qMain(int, char**)
+2021-04-21 14:48:25 WARNING [:::0] QLayout: Attempting to add QLayout "" to MainWindow "MainWindow", which already has a layout 
+2021-04-21 14:50:30 INFO [main.cpp:int qMain::53] qMain [ 53 ] "===== begin =====" int qMain(int, char**)
+2021-04-21 14:50:30 INFO [main.cpp:int qMain::56] qMain [ 56 ] "===== end =====" int qMain(int, char**)
+2021-04-21 14:53:16 INFO [main.cpp:int qMain::27] qMain [ 27 ] "current demo path = D:/Github/MagicTool/src" .int qMain(int, char**)
+2021-04-21 14:53:16 DEBUG [main.cpp:int qMain::41] load zh_cn.qm file success!
+ .int qMain(int, char**)
+2021-04-21 14:53:17 WARNING [:::0] QLayout: Attempting to add QLayout "" to MainWindow "MainWindow", which already has a layout .
+2021-04-21 14:53:26 INFO [main.cpp:int qMain::53] qMain [ 53 ] "===== begin =====" .int qMain(int, char**)
+2021-04-21 14:53:26 INFO [main.cpp:int qMain::56] qMain [ 56 ] "===== end =====" .int qMain(int, char**)
+2021-04-21 14:54:44 INFO [main.cpp:int qMain::27] qMain [ 27 ] "current demo path = D:/Github/MagicTool/src" .int qMain(int, char**)0
+2021-04-21 14:54:44 DEBUG [main.cpp:int qMain::41] load zh_cn.qm file success!
+ .int qMain(int, char**)0
+2021-04-21 14:54:45 WARNING [:::0] QLayout: Attempting to add QLayout "" to MainWindow "MainWindow", which already has a layout .0
+2021-04-21 14:54:49 INFO [main.cpp:int qMain::53] qMain [ 53 ] "===== begin =====" .int qMain(int, char**)0
+2021-04-21 14:54:49 INFO [main.cpp:int qMain::56] qMain [ 56 ] "===== end =====" .int qMain(int, char**)0
+2021-04-21 14:55:47 INFO [main.cpp:qMain::27] qMain [ 27 ] "current demo path = D:/Github/MagicTool/src" .int qMain(int, char**)4
+2021-04-21 14:55:47 DEBUG [main.cpp:qMain::41] load zh_cn.qm file success!
+ .int qMain(int, char**)4
+2021-04-21 14:55:48 WARNING [:::0] QLayout: Attempting to add QLayout "" to MainWindow "MainWindow", which already has a layout .0
+2021-04-21 14:56:20 INFO [main.cpp:qMain::53] qMain [ 53 ] "===== begin =====" .int qMain(int, char**)4
+2021-04-21 14:56:20 INFO [main.cpp:qMain::56] qMain [ 56 ] "===== end =====" .int qMain(int, char**)4
+2021-04-21 17:05:33 INFO [main.cpp:qMain::28] "===== begin =====" .int qMain(int, char**)4
+2021-04-21 17:05:33 DEBUG [main.cpp:qMain::29] 0x2dff80 .int qMain(int, char**)4
+2021-04-21 17:05:33 INFO [main.cpp:qMain::30] "current demo path = D:/Github/MagicTool/src" .int qMain(int, char**)4
+2021-04-21 17:05:33 DEBUG [main.cpp:qMain::44] load zh_cn.qm file success!
+ .int qMain(int, char**)4
+2021-04-21 17:05:35 WARNING [:::0] QLayout: Attempting to add QLayout "" to MainWindow "MainWindow", which already has a layout .0
+2021-04-21 17:07:59 INFO [main.cpp:qMain::58] "===== end =====" .int qMain(int, char**)4
+2021-04-21 17:08:11 INFO [main.cpp:qMain::28] "===== begin ====="
+2021-04-21 17:08:11 DEBUG [main.cpp:qMain::29] 16292
+2021-04-21 17:08:11 INFO [main.cpp:qMain::31] "current demo path = D:/Github/MagicTool/src"
+2021-04-21 17:08:11 DEBUG [main.cpp:qMain::45] load zh_cn.qm file success!
+
+2021-04-21 17:08:12 WARNING [:::0] QLayout: Attempting to add QLayout "" to MainWindow "MainWindow", which already has a layout
+2021-04-21 17:17:28 INFO [main.cpp:qMain::59] "===== end ====="
+2021-04-21 17:17:47 INFO [main.cpp:qMain::34] "===== begin ====="
+2021-04-21 17:17:47 DEBUG [main.cpp:qMain::35] 25612 12440
+2021-04-21 17:17:47 INFO [main.cpp:qMain::37] "current demo path = D:/Github/MagicTool/src"
+2021-04-21 17:17:47 DEBUG [main.cpp:qMain::51] load zh_cn.qm file success!
+
+2021-04-21 17:17:47 WARNING [:::0] QLayout: Attempting to add QLayout "" to MainWindow "MainWindow", which already has a layout
+2021-04-21 17:24:32 INFO [main.cpp:qMain::65] "===== end ====="
+2021-04-21 17:41:23 INFO [main.cpp:34404] [16224:qMain::26] "===== begin ====="
+2021-04-21 17:41:23 INFO [main.cpp:34404] [16224:qMain::27] "current demo path = D:/Github/MagicTool/src"
+2021-04-21 17:41:23 DEBUG [main.cpp:34404] [16224:qMain::41] load zh_cn.qm file success!
+
+2021-04-21 17:41:23 WARNING [:34404] [16224:::0] QLayout: Attempting to add QLayout "" to MainWindow "MainWindow", which already has a layout
+2021-04-21 17:41:48 INFO [main.cpp:34404] [16224:qMain::55] "===== end ====="
+2021-04-21 17:42:39 INFO [13460:34320] [main.cpp:qMain::26] "===== begin ====="
+2021-04-21 17:42:39 INFO [13460:34320] [main.cpp:qMain::27] "current demo path = D:/Github/MagicTool/src"
+2021-04-21 17:42:39 DEBUG [13460:34320] [main.cpp:qMain::41] load zh_cn.qm file success!
+
+2021-04-21 17:42:40 WARNING [13460:34320] [:::0] QLayout: Attempting to add QLayout "" to MainWindow "MainWindow", which already has a layout
+2021-04-21 17:42:47 INFO [13460:34320] [main.cpp:qMain::55] "===== end ====="

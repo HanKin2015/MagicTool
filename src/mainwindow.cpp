@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include <QUrlQuery>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -147,9 +148,52 @@ void MainWindow::AddActionClicked()
     connect(ok_btn, SIGNAL(clicked()), this, SLOT(AddBtnClicked()));
 }
 
+/*
+ * 删除按钮点击事件
+ */
 void MainWindow::DelActionClicked()
 {
+    QString str = "http://www.bai du.com/game+3.txt";
+    QString url_str = "https://testurl.net/gf%2Fe51f1774%2FdqF%2Ffwqs%2Fn7Y6d%0ACBY3L%2FdF2gKQpJh4AkF%2B8P1F7v";
+    QUrl url;
+    url.setUrl(str);
+    qDebug()<<"url toPercentEncoding:"<<QUrl::toPercentEncoding(str);
+    qDebug()<<"fromPercentEncoding: " << QUrl::fromPercentEncoding(url_str.toUtf8());
+    qDebug()<<"fromEncoded: " << QUrl::fromEncoded(url_str.toUtf8());
+    qDebug()<<"fromUserInput: " << QUrl::fromUserInput(url_str.toUtf8());
 
+    QString filename = url.fileName();
+    QString basepath = str.remove(filename);
+    qDebug()<<"basepath:"<<basepath<<" "<<"filename:"<<filename;
+    filename = filename.toUtf8().toPercentEncoding();
+    qDebug()<<"filename toPercentEncoding:"<<filename;
+
+    url.setUrl(basepath + filename);
+    qDebug()<<"url:"<<url;
+
+    QString target("/*pat + %20 %2Bh*/");
+
+    QUrl url_path(target);
+    qDebug() << "[Original String]:" << target;
+    qDebug() << "--------------------------------------------------------------------";
+    qDebug() << "(QUrl::toEncoded)          :" << url_path.toEncoded(QUrl::FullyEncoded);
+    qDebug() << "(QUrl::url)                :" << url_path.url();
+    qDebug() << "(QUrl::toString)           :" << url_path.toString();
+    qDebug() << "(QUrl::toDisplayString)    :" << url_path.toDisplayString(QUrl::FullyDecoded);
+    qDebug() << "(QUrl::fromPercentEncoding):" << url_path.fromPercentEncoding(target.toUtf8());
+
+    // 基本 URL
+    QString baseUrl = "http://www.zhihu.c+om/se%2Barch";
+    QUrl url_base(baseUrl);
+
+    // key-value 对
+    QUrlQuery query;
+    query.addQueryItem("type", "content");
+    query.addQueryItem("q", "Qt");
+
+    url_base.setQuery(query);
+
+    qDebug() << url_base;
 }
 
 void MainWindow::ChgActionClicked()

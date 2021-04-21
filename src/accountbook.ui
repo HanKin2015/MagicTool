@@ -1,6 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>accountbook</class>
- <widget name="accountbook" class="QDialog">
+ <class>AccountBook</class>
+ <widget class="QDialog" name="AccountBook">
   <property name="geometry">
    <rect>
     <x>0</x>

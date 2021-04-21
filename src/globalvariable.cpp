@@ -13,34 +13,57 @@ void MessageOutPut(QtMsgType type, const QMessageLogContext &context, const QStr
 {
     static QMutex mutex;
     mutex.lock();
-    QString text;
+    QString log_type;
     switch(type) {
         case QtDebugMsg:
-            text = QString("Debug:");
+            log_type = QString("DEBUG");
             break;
 
         case QtWarningMsg:
-            text = QString("Warning:");
+            log_type = QString("WARNING");
             break;
 
         case QtCriticalMsg:
-            text = QString("Critical:");
+            log_type = QString("CRITICAL");
             break;
 
         case QtFatalMsg:
-            text = QString("Fatal:");
+            log_type = QString("FATAL");
             break;
         case QtInfoMsg:
-            text = QString("Info:");
+            log_type = QString("INFO");
             break;
 //        case QtSystemMsg:
 //            break;
         default:
+            log_type = QString("");
             break;
     }
-    //日志写到文件
+
+    // 由于默认的文件名和函数名显示过长，特此截取处理
+    int index = 0;
+
+    // cpp文件名
+    QString cpp_file = context.file;
+    index = cpp_file.lastIndexOf("\\") + 1;
+    cpp_file = cpp_file.mid(index);
+    // cpp函数名
+    QString cpp_func = context.function;
+    index = cpp_func.lastIndexOf(":");
+    if (index == -1) {   // 未找到,可能不是类函数
+        index = cpp_func.indexOf(" ");
+    }
+    index++;
+    cpp_func = cpp_func.mid(index, cpp_func.indexOf("(") - index);
+    // 进程id
+    // 线程id
+    int cpp_pid = getpid();
+    int cpp_tid = QString::number(quintptr(QThread::currentThreadId())).toInt();
+
+    // 日志写到文件
     QString current_date_time = QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss");
-    QString message = QString("%1 %2%3").arg(current_date_time).arg(text).arg(msg);
+    QString message = QString("%1 %2 [%3:%4] [%5:%6::%7] %8").arg(current_date_time).arg(log_type)
+            .arg(cpp_pid).arg(cpp_tid).arg(cpp_file).arg(cpp_func).arg(context.line).arg(msg);
     QFile file(LOG_FILE_PATH);
     file.open(QIODevice::WriteOnly | QIODevice::Append);
     QTextStream text_stream(&file);
