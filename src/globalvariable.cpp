@@ -56,8 +56,8 @@ void MessageOutPut(QtMsgType type, const QMessageLogContext &context, const QStr
     index++;
     cpp_func = cpp_func.mid(index, cpp_func.indexOf("(") - index);
     // 进程id
-    // 线程id
     int cpp_pid = getpid();
+    // 线程id
     int cpp_tid = QString::number(quintptr(QThread::currentThreadId())).toInt();
 
     // 日志写到文件
