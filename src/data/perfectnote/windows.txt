@@ -1,38 +1,38 @@
-# windows错误码查询
+# 1、windows错误码查询
 net helpmsg 5006
 
-# 查询系统版本
+# 2、查询系统版本
 运行窗口-》winver
 
-# 快速电脑属性
+# 3、快速电脑属性
 win+Break
 
-# 卸载驱动
+# 4、卸载驱动
 pnputil自带命令
 pnputil /delete-driver oem23.inf /force
 通过设备管理器的inf名称查看，oem*是第三方驱动
 pnputil -e枚举驱动
 
-# pchunter不支持1909
+# 5、pchunter不支持1909
 
-# CTRL+Y的功能是恢复上一bai步操作。
+# 6、CTRL+Y的功能是恢复上一bai步操作。
 CTRL+Z功能就是撤销上一步的操作
 
-# 错误0x8007045D由于I/O设备错误，无法运行此项请求
+# 7、错误0x8007045D由于I/O设备错误，无法运行此项请求
 win+r运行 CMD后，输入 CHKDSK E:/R后回车
 
 E:为你出现问题的盘符
 
 cacls F:\文件夹名\文件名.扩展名 /p everyone:f
 
-# 使用编辑器打中文字时光标消失
+# 8、使用编辑器打中文字时光标消失
 切换到中文输入法，输入时光标出现，这是按Esc键即可恢复。
 
-# 删除不了文件
+# 9、删除不了文件/文件夹
 可能挂了钩子无法删除
-在设备管理器-》资源监视器-》关联的句柄（这里可能什么都看不见，但是通过搜索即可）
+在设备管理器-》资源监视器-》CPU-》关联的句柄-》右上角输入文件/文件夹名称-》结束进程（这里可能什么都看不见，但是通过搜索即可）
 
-# 网页浏览卡慢
+# 10、网页浏览卡慢
 使用ping命令看看是不是丢包
 win+R -->> ncpa.cpl (网络适配器)
 tracert
@@ -41,7 +41,7 @@ arp -d
 
 https://uupdump.ml/?lang=zh-cn
 
-# System Idle Process
+# 11、System Idle Process
 System Idle Process SYSTEM并不是一个真正的进程，System Idle Process是核心虚拟出来的，多任务操作系统都会存在！
 
 在没有可用的进程时，系统处于空运行状态，此时就是System Idle Process SYSTEM在运行！故它占用百分之九十以上CPU时间，说明你的机器负荷很轻！
@@ -56,18 +56,18 @@ System Idle Process占用越多CPU时，说明你的电脑越空闲
 
 System Idle Process 当达到5%以下的时候，那么你可以选择重启了！
 
-# 远程桌面
+# 12、远程桌面
 mstsc
 关闭防火墙
 计算机属性-》远程设置-》允许远程桌面的计算机连接
 远程的计算机账户需要设置密码
 
-# 开机自启动
+# 13、开机自启动
 - win+R
 - msconfig
 - 启动选项卡
 
-# 开启卓越性能模式
+# 14、开启卓越性能模式
 第一步：小娜搜索“windows powershell”，并右键以管理员身份运行.
 
 第二步：在弹出“windows powershell”窗口界面后，输入如下命令代码.
@@ -76,12 +76,39 @@ powercfg -duplicatescheme e9a42b02-d5df-448d-aa00-03f14749eb61
 
 窗口界面上将显示出“电源方案 GUID: xxxxxxxx (卓越性能)”字符串提示，这时我们便成功开启了“卓越性能模式”。
 
-# 退域
+# 15、退域
 更改计算机名
 WORKGROUP
 输入当前用户账户密码
 
-# 缺少dll文件
+# 16、缺少dll文件
 安装c++运行库即可
 visual C++ Redistributable(vcredist_x64.exe)版本2015以上
+
+# 17、linux下查看u盘格式
+fdisk -l
+
+# 18、windows错误码查询
+https://docs.microsoft.com/zh-cn/windows/win32/com/com-error-codes-4
+
+# 19、windows日志
+右键win图标->事件查看器->windows日志->安全
+
+# 20、控制面板快捷键
+win+R->control
+
+# 21、Win10系统录音机
+全称语音录音机
+## 21、win10激活
+创建win10激活.bat文件，填写以下内容：
+```
+slmgr /ipk W269N-WFGWX-YVC9B-4J6C9-T83GX 
+slmgr /skms kms.03k.org 
+slmgr /ato
+```
+
+
+
+
+
 
